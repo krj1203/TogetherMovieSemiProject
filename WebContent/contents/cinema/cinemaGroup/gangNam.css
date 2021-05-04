@@ -1,0 +1,322 @@
+.cinema-FacilityInfo{
+    width: 300px;
+    margin-left: 240px;
+    margin-top: 100px;
+    
+
+}
+
+.cinema-FacilityInfo__guide{
+    font-weight: bold;
+    font-size: 25px;
+    color:#503396;
+}
+
+.cinema-FacilityInfo__facil{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 25px;
+
+}
+
+
+.cinema-FacilityInfo__logo{
+    margin-top: 25px;
+    display: flex;
+}
+
+.cinema-theater{
+    display: flex;
+    flex-direction: column;
+    width:100px;
+    height: 100px;
+    border-radius: 50%;
+    border:2px solid gainsboro ;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    
+}
+
+.cinema-theater > span{
+    margin-top: 6px;
+    font-size: 14px ;
+}
+
+
+.cinema-handiCaappedSeat>span{
+    margin-top: 6px;
+    font-size: 14px ;
+}
+
+
+
+
+
+
+
+.cinema-handiCaappedSeat{
+    display: flex;
+    flex-direction: column;
+    width:100px;
+    height: 100px;
+    border-radius: 50%;
+    border:2px solid gainsboro;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 30px;
+    
+}
+
+
+.cinema-floor{
+    margin-top: 40px;
+    width:700px;
+}
+
+
+.cinema-floor>span{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+
+.cinema-floor>div{
+    margin-top: 30px;
+    
+}
+
+
+.floor-list>li>span{
+    color:#01738b
+}
+
+.floor-list>li{
+    list-style-type: square;
+    margin-left: 18px;
+    line-height: 30px;
+}
+
+
+.cinema-transportationGuide > p:nth-child(1){
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 40px;
+    color:#503396;
+}   
+
+.cinema-transportationGuide > p:nth-child(2){
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 25px;
+
+}
+
+.cinema-transportationGuide >div{
+    width:550px;
+    margin-top: 10px;
+}
+
+
+.cinema-transportationGuide >div>ul>li{
+    list-style-type: square;
+    margin-left: 18px;
+}
+
+
+
+.cinema-transportationGuide >div>ul>li span{
+    color:#01738b;
+    margin-top: 10px;
+}
+
+
+.location-logo{
+    width:136px;
+    height: 36px;
+    color:white;
+    background-color: #503396;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight:400;
+    margin-top: 20px;
+}
+
+.location-logo__click{
+    color: white;
+    margin-left: 5px;
+}
+
+.parking-title{
+    margin-top: 50px;
+    margin-left: 240px;
+}
+
+
+.parking-title > span{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.parking{
+    width:1000px;
+    height: 450px;
+    margin-top: 20px;
+    margin-left: 240px;
+    border-radius: 5px;
+    border:2px solid gainsboro ;
+}
+
+.parking-guide{
+    width:800px;
+    height: 50px;
+    display: flex;
+    margin: 20px;
+   
+}
+
+.parking-ex{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+   
+}
+
+.parking-ex__adjustment{
+    margin-left: 40px;
+}
+
+.parking-ex__detail{
+    margin-left: 20px;
+}
+
+
+
+.parking-ex__detail > ul >li{
+    list-style-type: square;
+}
+
+.parking-confirm{
+    margin-top: 40px;
+}
+
+.parking-fee{
+    margin:20px;
+    display: flex;
+    height: auto;
+   
+
+}
+
+
+
+
+.parking-fee__logo{
+    margin-top: 20px;
+}
+
+
+
+
+.parking-fee-box{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    
+}
+
+
+.parking-fee__subtitle{
+    margin-top: 25px;
+    margin-left: 5px;
+
+}
+
+
+
+.parking-fee__detail{
+    margin-top: 10px;
+}
+
+.parking-fee__detail>ul>li{
+    list-style-type: square;
+    line-height: 30px;
+    margin-left: 25px;
+
+
+}
+
+
+
+
+.publicTransport-title{
+    margin-top: 50px;
+    margin-left: 240px;
+}
+
+
+.publicTransport-title > span{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+
+.publicTransport{
+    width:1000px;
+    height: 300px;
+    margin-top: 20px;
+    margin-left: 240px;
+    border-radius: 5px;
+    border:2px solid gainsboro ;
+}
+
+
+
+.publicTransport-bigBox{
+    margin:20px;
+    display: flex;
+    height: auto;
+   
+}
+
+.publicTransport-subtitle > span{
+    margin-left: 25px;
+}
+
+
+
+.bus-line>ul>li{
+    list-style-type: square;
+    line-height: 30px;
+    margin-left: 47px;
+    margin-top: 10px;
+}
+
+
+.subway-line>ul>li{
+    list-style-type: square;
+    line-height: 30px;
+    margin-left: 53px;
+    margin-top: 10px;
+}
+
+.subway-subtitle{
+    margin-left:10px;
+    margin-top: 5px;
+}
+
+.subway-mainbox{
+    margin-top: 50px;
+}
+
+.gangNam-footer{
+
+    margin-top: 200px;
+}

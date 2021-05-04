@@ -1,0 +1,32 @@
+footer {
+  width: 1280px;
+  height: 220px;
+  background-color: var(--mainColor);
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer-box {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+}
+
+.footer-logo img {
+  margin-left: 82px;
+  width: 150px;
+  height: 150px;
+  margin-top: 20px;
+  
+  
+}
+
+.footer-write{
+  color: white;
+  text-align: center; 
+  margin-right: 230px;
+}
+

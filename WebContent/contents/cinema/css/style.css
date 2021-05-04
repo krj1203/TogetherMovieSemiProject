@@ -1,0 +1,15 @@
+@import "reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import "variable.css";
+@import "header.css";
+@import "main.css";
+@import "cinema.css";
+@import "../cinemaGroup/gangNam.css";
+@import "../cinemaGroup/dongDaeMoon.css";
+@import "../cinemaGroup/gunDae.css";
+@import "footer.css";
+
+body {
+  width: 100wh;
+  font-family: "Roboto", sans-serif;
+}

@@ -1,0 +1,25 @@
+.status-tab {
+  display: flex;
+  padding-left: 200px;
+  border: 1px solid red;
+}
+
+.status-tab__logo {
+  width: 200px;
+  height: 200px;
+
+  padding-bottom: 50px;
+}
+
+.status-tab__menu {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  font-size: large;
+  font-weight: bold;
+}
+
+.status-tab__h1 {
+  padding: 50px;
+}

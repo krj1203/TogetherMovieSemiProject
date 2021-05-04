@@ -1,0 +1,141 @@
+.cinema{
+    display: flex;
+    flex-direction: column;
+    margin-top:50px;
+}
+
+.cinema-title{
+    width:300px;
+    height: 65px;
+    /* background-color: rgb(243, 156, 18);
+    color: white; */
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 240px;
+}
+
+.cinema-subTitle{
+    width: 580px;
+    height: 65px;
+    font-size: 20px;
+    color: black;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    margin-left: 240px;
+   
+}
+
+
+
+
+
+
+
+
+
+.cinema-wrap{
+    width:100%;
+    padding:10px;
+    margin-top: 100px;
+    height: 1px;
+
+
+    
+
+
+}
+
+.cinema-wrap>div>div{
+    float: left;
+    text-align: center;
+    
+    height:50px;
+    padding: 10px 0 10px 0;
+    
+    
+}
+
+
+.cinema-wrap__box{
+    margin: 0 auto ;
+    width:820px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+    
+    
+
+
+}
+
+.cinema-wrap__box::after{
+    
+    content:'';
+    display:block;
+    clear:both;
+}
+
+
+
+.cinema-logo{
+    width:70px;
+
+    
+}
+
+
+.cinema-name{
+    width:200px;
+  
+    
+}
+
+.cinema-area{
+    width:100px;
+   
+}
+
+.cinema-address{
+    width:300px;
+    
+}
+
+.cinema-btn{
+    width:150px;
+    
+}
+
+
+.cinema-allLogo{
+    width:70px;
+    
+}
+
+.cinema-wrap__box>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.btn-1{
+    margin-right: 10px  ;
+    background-color: white;
+    color: black;
+    border-style: none;
+    border: 1px solid black;
+}
+
+.btn-2{
+    margin-right: 10px  ;
+    color: white;
+    border-style: none;
+    background-color: rgb(243, 156, 18);
+    box-shadow: none;
+    border-style: none;
+}
