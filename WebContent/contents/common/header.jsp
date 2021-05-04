@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <style>
+
 main {
   width: 1280px;
   min-height:1500px; 
@@ -155,7 +156,9 @@ ul{list-style:none;}
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<!--  주석  ㅇㅇㅇㅇ-->
+    <!-- 모든 파일에 들어가는 헤더파일 -->
+    <!-- 마스터 테스트 전용 주석 -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="<%= request.getContextPath() %>/index.jsp"><img src="<%= request.getContextPath() %>/contents/cinema/images/Tm_rogo_02 .png" width="200px" height="200px"></a>
       <!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -165,11 +168,10 @@ ul{list-style:none;}
             <div class="collapse navbar-collapse" id="navbarColor03;">
               <ul class="navbar-nav mr-auto">
                 <li class="dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">영화정보<b class="caret"></b></a>
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="<%= request.getContextPath()%>/contents/movieInfo_Board/boxoffice/boxOffice.jsp" role="button" aria-haspopup="true" aria-expanded="false">영화정보<b class="caret"></b></a>
                   <div class="dropdown-menu">
-                  	<a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listBMovie'">박스오피스</a>
-                    <a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listLMovie'">최신개봉작</a>
-                    <a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listSMovie'">상영예정작</a>
+                    <a class="dropdown-item" href="<%= request.getContextPath()%>/contents/movieInfo_Board/latestMovie/latestMovie.jsp">최신개봉작</a>
+                    <a class="dropdown-item" href="<%= request.getContextPath()%>/contents/movieInfo_Board/ScheduledMovie/scheduledMovie.jsp">상영예정작</a>
                   </div> 
                 </li>
                 <li class="dropdown">
@@ -207,8 +209,6 @@ ul{list-style:none;}
 	        $('#goods').on('click', function () {
 				location.href="<%= request.getContextPath() %>/list.gs";
 			});
-	        
-	        
           </script>
 </body>
 </html>
