@@ -5,8 +5,9 @@
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
-	ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>)request.getAttribute("mList");
+	ArrayList<MovieInfo> BmList = (ArrayList<MovieInfo>)request.getAttribute("BmList");
 	ArrayList<MovieFile> fList = (ArrayList<MovieFile>)request.getAttribute("fList");
+
 %>
 
 
@@ -42,15 +43,15 @@
 		  color:white;
 		  padding-top:20px;
 		 }
-#boxOffice{background-color:rgb(243, 156, 18);}
-#lMovie{background-color:white;}
+#boxOffice{background-color:white;}
+#lMovie{background-color:rgb(243, 156, 18);}
 #sMovie{background-color:rgb(243, 156, 18);}
-.button{background-color:white;  font-size: 16px; height: 40px; width: 130px; margin-top:15px;}
+.button{background-color:white;  font-size: 16px; height: 40px; width: 130px; margin-top:15px; align:center;}
+
 
 
 .thumbnailArea {width:1100px; height:950px; 
-                margin:20px; padding-left:160px; margin-top: 50px;
-                }
+                margin:20px; padding-left:160px; margin-top: 50px;}
                 
 .thumb-list{width:300px; height:400px;  display:inline-block;  border:1px solid black;}
 .thumnail-list img{width:250px; height:300px; cursor:pointer; border:1px solid black;}
@@ -68,7 +69,7 @@
 	
 		<div class="category">
 			 <nav>
-				<div class="movie_go" id='boxOffice'><a onclick="location.href ='<%=request.getContextPath()%>/listBMovie'">박스오피스</a></div>
+				<div class="movie_go" id='boxOffice'><a onclick="location.href ='<%=request.getContextPath()%>/listBMovie">박스오피스</a></div>
 				<div class="movie_go" id="lMovie" ><a onclick="location.href ='<%=request.getContextPath()%>/listLMovie'">최신개봉작</a></div>
 				<div class="movie_go" id="sMovie"><a onclick="location.href ='<%=request.getContextPath()%>/listSMovie'">상영예정작</a></div>
 			</nav>
@@ -77,25 +78,25 @@
 					
 	<section>
 			<c:if test="${sessionScope.loginUser.user_id == 'admin'}">
-				<button onclick="location.href='<%= request.getContextPath()%>/writeLList'" style="margin-left: 1100px;"> 영화정보 작성</button>
+				<button onclick="location.href='<%= request.getContextPath()%>/writeBList'" style="margin-left: 1100px;"> 영화정보 작성</button>
 			</c:if>
 			
 		
 			
 				<div class="thumbnailArea">
-					<%if(mList.isEmpty() || fList.isEmpty()){ %>
+					<%if(BmList.isEmpty() || fList.isEmpty()){ %>
 					등록된 게시물이 없습니다.
 					<% }else{ %>
-						<%for(int i=0; i < mList.size(); i++) {%>
-							<% MovieInfo b = mList.get(i); %>
+						<%for(int i=0; i < BmList.size(); i++) {%>
+							<% MovieInfo b = BmList.get(i); %>
 							<div class="thumb-list">
 								<div>	
 									<input type="hidden" name="mNo" value="<%=b.getMovieNo() %>">
-									<%for(int j=0; j < mList.size(); j++) {%>
+									<%for(int j=0; j < BmList.size(); j++) {%>
 										<%MovieFile a = fList.get(j); %>
 										<% if(b.getMovieNo() == a.getMovieNo()){ %>
-											<ul class='Lmovie'>
-												<li><img src ="<%=request.getContextPath() %>/latestMovie_uploadFiles/<%=a.getChangeName() %>"></li>	
+											<ul class='Bmovie'>
+												<li><img src ="<%=request.getContextPath() %>/BoxOffcie_uploadFiles/<%=a.getChangeName() %>" style="max-width: 100%; height: auto;"></li>	
 												<li><p style="text-align: left" ><strong><%=b.getMovieTitle() %></strong></p></li>
 												<li><input  class='button' type="button" onclick="" id="detailtBtn" value="+상세보기"></li>	
 											</ul>
@@ -119,13 +120,12 @@
     
     <script>
     $(function() {
-		$('.Lmovie').click(function () {
-			location.href="<%= request.getContextPath()%>/detail.lmovie?mNo" + mNo;
+		$('.Bmovie').click(function () {
+			location.href="<%= request.getContextPath()%>/detail.lmovie";
 		});
 	});
     
-    
-
+   
     </script>
    
    
