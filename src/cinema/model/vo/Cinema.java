@@ -85,6 +85,32 @@ public class Cinema {
 		this.code = i;
 	}
 
+	
+	
+	
+	
+
+	public Cinema(int cn_no, String cn_name, String cn_topic, String cn_available, String cn_adress, String cn_sitelink,
+			String cn_maplink, String area, String cn_pConfirm, String cn_pGuide, String cn_pPay, String cn_floor,
+			String cn_bus, String cn_metro, int code) {
+		super();
+		this.cn_no = cn_no;
+		this.cn_name = cn_name;
+		this.cn_topic = cn_topic;
+		this.cn_available = cn_available;
+		this.cn_adress = cn_adress;
+		this.cn_sitelink = cn_sitelink;
+		this.cn_maplink = cn_maplink;
+		this.area = area;
+		this.cn_pConfirm = cn_pConfirm;
+		this.cn_pGuide = cn_pGuide;
+		this.cn_pPay = cn_pPay;
+		this.cn_floor = cn_floor;
+		this.cn_bus = cn_bus;
+		this.cn_metro = cn_metro;
+		this.code = code;
+	}
+
 	public int getCn_no() {
 		return cn_no;
 	}

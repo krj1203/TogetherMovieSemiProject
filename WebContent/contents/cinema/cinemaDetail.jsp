@@ -34,10 +34,23 @@
 		<main style="min-height: 500px;">
 		<%@include file="../common/header.jsp" %>
 		
-		<form action="<%= request.getContextPath()%>/updateCinema.ci" method="post">
+		<form action="<%= request.getContextPath()%>/updateFormCinema.ci" method="post">
 			<!--수정하기위한 hidden값이 들어가는 부분  -->
-			<input type ="hidden" name = "">
-			<input type ="hidden" name = "">
+			<input type ="hidden" name = "no" value="<%=cinema.getCn_no()%>">
+			<input type ="hidden" name = "name" value="<%=cinema.getCn_name() %>" >
+			<input type ="hidden" name = "topic"  value="<%=cinema.getCn_topic()%>">
+			<input type ="hidden" name = "avail" value="<%=cinema.getCn_available()%>">
+			<input type ="hidden" name = "adress" value="<%=cinema.getCn_adress() %>">
+			<input type ="hidden" name = "site" value="<%=cinema.getCn_sitelink() %>" >
+			<input type ="hidden" name = "map" value="<%=cinema.getCn_maplink() %>" >
+			<input type ="hidden" name = "area" value="<%=cinema.getArea() %>" >
+			<input type ="hidden" name = "confirm"  value="<%=cinema.getCn_pConfirm()%>">
+			<input type ="hidden" name = "guide" value="<%=cinema.getCn_pGuide() %>" >
+			<input type ="hidden" name = "pay" value ="<%=cinema.getCn_pPay()%>">
+			<input type ="hidden" name = "floor" value="<%=cinema.getCn_floor()%>">
+			<input type ="hidden" name = "bus" value="<%=cinema.getCn_bus()%>">
+			<input type ="hidden" name = "metro" value="<%=cinema.getCn_metro() %>">
+			<input type ="hidden" name = "code" value="<%=cinema.getCode() %>">
 			<!-- 주차, 층별, 교통, 보유시설같은 다른 Array로 온 것들도 cinema로 보내야 할 것 같음 -->
 		<div style="padding-bottom: =100px;">
         	<div class="cinema">
@@ -45,7 +58,7 @@
               	<div style="text-align: right;">
 	            <c:if test="${sessionScope.loginUser.user_id == 'admin'}">
 					<input type ="button" id="deleteCibtn"style="border:0px; background-color: rgb(243, 156, 18);" value="해당 영화관 삭제">
-					<input type ="submit" id ="updateButton" value="수정">
+					<input type ="submit" id ="updateButton" style="border:0px; background-color: rgb(243, 156, 18, 0.5);"value="수정">
 				</c:if>
 	          	</div>
               </div>
@@ -87,7 +100,7 @@
                 </div>
             </div>
             <div class="location-logo">
-                <i class="fas fa-map-marker-alt"><a class="location-logo__click" href="../mapAPI/artNineMap/artNineMap.html">실시간 길찾기</a></i>
+                <i class="fas fa-map-marker-alt"><a class="location-logo__click" href="<%=cinema.getCn_maplink()%>">실시간 길찾기</a></i>
             </div> 
         </div>
         

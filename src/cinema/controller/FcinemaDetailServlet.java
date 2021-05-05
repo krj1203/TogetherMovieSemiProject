@@ -71,6 +71,7 @@ public class FcinemaDetailServlet extends HttpServlet {
 		}
 		//지하철 분할
 		String metro = ci.getCn_metro();
+		System.out.println("metro >> " + metro);
 		ArrayList<String> metroList = null;
 		if(metro != null) {
 			metro= metro.replaceAll("(\r\n|\r|\n|\n\r)", "");

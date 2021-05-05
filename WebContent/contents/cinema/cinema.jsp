@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/contents/cinema/css/style.css"/> 
     <title>극장맛집-친구게시판 초안</title>
-    <script src="contents/main/js/jquery-3.6.0.min.js"></script>	
+    <script src="<%=request.getContextPath() %>/contents/main/js/jquery-3.6.0.min.js"></script>	
 </head>
 <body>
 
@@ -50,7 +50,7 @@
 	                <div class="cinema-name"><%=c.getCn_name() %></div>
 	                <div class="cinema-area"><%=c.getArea() %></div>
 	                <div class="cinema-address"><%=c.getCn_adress() %></div>
-	                <div class="cinema-btn"><button type="button" class="btn-1">보기</button><button class="btn-2">예매</button></div>
+	                <div class="cinema-btn"><button type="button" class="btn-1">보기</button><button class="btn-2" onclick="location.href='<%=c.getCn_sitelink()%>'">예매</button></div>
 	            </div>
       		  </div>
 			<%} %>
@@ -70,8 +70,11 @@
     			var num = $(this).parents().children('.no').val();
     			console.log(num);
     			
+    			
     			location.href ='<%= request.getContextPath()%>/detail.FC?no=' + num;
     		});
+    		
+    		
     	});
     </script>
 </body>

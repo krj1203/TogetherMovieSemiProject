@@ -104,16 +104,17 @@ public class CinemaDAO {
 			pstmt.setString(3, cinema.getCn_available());
 			pstmt.setString(4, cinema.getCn_adress());
 			pstmt.setString(5, cinema.getCn_sitelink());
-			pstmt.setString(6, cinema.getCn_status());
-			pstmt.setString(7, cinema.getArea());
-			pstmt.setString(8, cinema.getCn_file_name());
-			pstmt.setString(9, cinema.getCn_floor());
-			pstmt.setString(10, cinema.getCn_pGuide());
-			pstmt.setString(11, cinema.getCn_pConfirm());
-			pstmt.setString(12, cinema.getCn_pPay());
-			pstmt.setString(13, cinema.getCn_bus());
-			pstmt.setString(14, cinema.getCn_metro());
-			pstmt.setInt(15, cinema.getCode());
+			pstmt.setString(6, cinema.getCn_maplink());
+			pstmt.setString(7, cinema.getCn_status());
+			pstmt.setString(8, cinema.getArea());
+			pstmt.setString(9, cinema.getCn_file_name());
+			pstmt.setString(10, cinema.getCn_floor());
+			pstmt.setString(11, cinema.getCn_pGuide());
+			pstmt.setString(12, cinema.getCn_pConfirm());
+			pstmt.setString(13, cinema.getCn_pPay());
+			pstmt.setString(14, cinema.getCn_bus());
+			pstmt.setString(15, cinema.getCn_metro());
+			pstmt.setInt(16, cinema.getCode());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
