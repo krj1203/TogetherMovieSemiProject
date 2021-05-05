@@ -1,9 +1,9 @@
 package member.model.dao;
-//좀 대세연
+
 //대대대대대세세세ㅔ세여여여ㅕ여여
 
 
-import static db.JdbcUtil.close;
+import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
