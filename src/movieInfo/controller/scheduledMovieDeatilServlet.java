@@ -29,12 +29,13 @@ public class scheduledMovieDeatilServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int sNo = Integer.parseInt(request.getParameter("sNo"));
-		System.out.println("영화 정보 :" + sNo);
+	
 		
 		MovieInfoService service = new MovieInfoService();
 		
 		MovieInfo movieInfo = service.selectMovieInfo(sNo);
 		ArrayList<MovieFile> fileList = service.selectMovieFile(sNo);
+		
 		
 		String page = null;
 		if(fileList != null) {
@@ -43,15 +44,13 @@ public class scheduledMovieDeatilServlet extends HttpServlet {
 			page="contents/movieInfo_Board/scheduledMovieDetail.jsp";
 			
 		} else {
-			request.setAttribute("msg", "상품 상세보기 실패");
+			request.setAttribute("msg", "게시글 상세보기 실패");
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 	
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

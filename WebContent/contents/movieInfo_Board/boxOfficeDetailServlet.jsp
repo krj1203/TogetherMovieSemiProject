@@ -26,7 +26,7 @@
 <body>
 	<div class="movieInfo_view">
 		<div class="img">
-			<img src="<%= request.getContextPath() %>/latestMovie_uploadFiles/<%= titleImg.getChangeName()%>">
+			<img src="<%= request.getContextPath() %>/BoxOffcie_uploadFiles/<%= titleImg.getChangeName()%>">
 		</div>
 		<h2><%=m.getMovieTitle() %></h2>
 		<table>
