@@ -19,6 +19,9 @@
     
 	<script src="contents/main/js/jquery-3.6.0.min.js"></script>
     <title>buy 초안</title>
+    
+ <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 
 <body>
@@ -46,12 +49,7 @@
 						</tr>
 						<tr>
 							<th>구매수량</th>
-							<td>
-								<div class="length">
-									<input type="number" min="1" max="1" value="1" id="count">
-								</div>
-							</td>
-						</tr>
+							<td><input type="text" size="3" class="i1" maxlength="2"></td>
 						</tr>
 						<tr>
 							<th>배송비</th>
@@ -59,7 +57,8 @@
 						</tr>
 						<tr>
 							<th>결제금액</th>
-							<td class="total"><b><%= g.getGoods_price() %></b>원</td>
+							<td class="total"><b><label></label></b>원</td>
+							<input type="hidden" name="amount" value="">
 						</tr>
 						</tbody>
 					</table>
@@ -67,15 +66,32 @@
 						<img src="<%= request.getContextPath() %>/goods_uploadFiles/<%= titleImg.getChangeName()%>">
 					</div>
 					<div class="btns">
-						<a href="#a" class="btn2">구매하기</a>
+						<a class="btn2">구매하기</a>
 					</div>
 				</div>
 			</div>
     </main>
     <%@include file="../common/footer.jsp" %>
 	<script>
-	
+		$(function () {
+			$('.i1').on('keyup', function (e) {
+				$('label').empty();
+				var amount = (<%= g.getGoods_price() %>*$('.i1').val());
+				$('label').append(amount);		
+				$('input[name=amount]').attr('value',amount);
+				console.log(amount);
+			});
+		});
+		$(function () {
+			$('.btns').click(function () {
+				var amount = $('input[name=amount]').val();
+				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount;
+			});
+		});
+
 		
+
+
 	</script>
 </body>
 </html>
