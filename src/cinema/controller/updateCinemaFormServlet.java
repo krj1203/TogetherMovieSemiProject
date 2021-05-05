@@ -1,26 +1,26 @@
 package cinema.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cinema.model.service.CinemaService;
 import cinema.model.vo.Cinema;
 
 /**
- * Servlet implementation class InsertFCinemaServlet
+ * Servlet implementation class updateCinemaServlet
  */
-@WebServlet("/InsertFCinema.do")
-public class InsertFCinemaServlet extends HttpServlet {
+@WebServlet("/updateFormCinema.ci")
+public class updateCinemaFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertFCinemaServlet() {
+    public updateCinemaFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,42 +31,28 @@ public class InsertFCinemaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		//실험1: 그냥 문자열 쥰내 길게해서 보내기
-		String name = request.getParameter("cinema_name");
+		int no = Integer.parseInt(request.getParameter("no"));
+		String name = request.getParameter("name");
 		String topic = request.getParameter("topic");
-		String company = request.getParameter("company");
-		String area = request.getParameter("area");
+		String avail = request.getParameter("avail");
+		String adress = request.getParameter("adress");
 		String site = request.getParameter("site");
 		String map = request.getParameter("map");
+		String area = request.getParameter("area");
+		String confirm = request.getParameter("confirm");
+		String guide = request.getParameter("guide");
+		String pay = request.getParameter("pay");
 		String floor = request.getParameter("floor");
-		String adress = request.getParameter("adress");
-		String pGuide = request.getParameter("guide");
-		String pConfirm = request.getParameter("confzirm");
-		String pPay = request.getParameter("pay");
 		String bus = request.getParameter("bus");
 		String metro = request.getParameter("metro");
-		String[] avArr = request.getParameterValues("avail");
-		String avail = "";
-		int code = 1;
-		if(avArr != null) {
-			for(int i = 0; i < avArr.length; i++) {
-				if(i == avArr.length - 1) {
-					avail += avArr[i];
-				}else {
-					avail += avArr[i] + ", ";
-				}
-			}
-		}
-		//맵api하는 방법 알아오기
-		Cinema cinema = new Cinema(name, topic, avail, adress, site, map, "Y", area, pConfirm, pGuide, pPay, company, floor, bus, metro, 1);
+		int code = Integer.parseInt(request.getParameter("code"));
 		
-		int result = new CinemaService().insertFCinema(cinema);
+		Cinema c = new Cinema(no, name, topic, avail, adress, site, map, area, confirm, guide, 
+				pay, floor, bus, metro, code);
+		System.out.println("update c >>" + c.getCn_metro());
 		
-		if(result > 0) {
-			response.sendRedirect("friend.ci");
-		} else {
-			response.sendRedirect("contents/cinema/writeForm/FcinemaWriteForm.jsp");
-		}
+		request.setAttribute("c", c);
+		request.getRequestDispatcher("contents/cinema/writeForm/updateCinemaForm.jsp").forward(request, response);
 	}
 
 	/**
