@@ -16,11 +16,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 
-	<link rel="stylesheet" type="text/css" href="../../cinema/css/style.css"/>
-	<link rel="stylesheet" type="text/css" href="latestMovie.css?ver=1.1"/> 
-	
--->
+
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/contents/main/css/index.css"/>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/contents/movieInfo_Board/latestMovie/latestMovie.css"/>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/contents/cinema/css/style.css"/>
@@ -50,12 +46,13 @@
 
 
 
-.thumbnailArea {width:1100px; height:950px; 
+.thumbnailArea {width:1100px; height:1600px;  <!--★ -->
                 margin:20px; padding-left:160px; margin-top: 50px;
-                }
+                line-height: 150%;}
                 
 .thumb-list{width:300px; height:400px;  display:inline-block;  border:1px solid black;}
 .thumnail-list img{width:250px; height:300px; cursor:pointer; border:1px solid black;}
+
 </style>
 
 
@@ -92,14 +89,14 @@
 							<% MovieInfo b = SmList.get(i); %>
 							<div class="thumb-list">
 								<div>	
-									<input type="hidden" id="sNo" name="sNo" value="<%=b.getMovieNo() %>">
+									<input type="hidden" id="sNo" name="sNo" value="<%=b.getMovieNo()%>">
 									<%for(int j=0; j < SmList.size(); j++) {%>
 										<%MovieFile a = fList.get(j); %>
 										<% if(b.getMovieNo() == a.getMovieNo()){ %>
-											<ul class='Lmovie'>
+											<ul class='Smovie'>
 												<li><img src ="<%=request.getContextPath() %>/scheduledMovie_uploadFiles/<%=a.getChangeName() %>"></li>	
 												<li><p style="text-align: left" ><strong><%=b.getMovieTitle() %></strong></p></li>
-												<li><input  class='button' type="button" onclick="" id="detailtBtn" value="+상세보기" ></li>	
+												<li><input  class='button' type="button" onclick="" id="detailtBtn" value="+상세보기"	></li>	
 											</ul>
 										<% } %>
 									<% } %>	
@@ -122,11 +119,24 @@
     <script>
     $(function name() {
 		$('.thumb-list').click(function () {
-			var gNo = $(this).children().children().eq(0).val();
-			location.href='<%= request.getContextPath()%>/SMoviedetail.mo?sNo=' + sNo;
-		});
-	});
-   
+			var w = window.open("about:blank", '영화 상세정보','width=300, height=300, menubar=no, status=no, toolbar=no');
+			var sNo = $(this).children().children().eq(0).val();
+			 console.log(sNo);
+			 
+			 url='<%= request.getContextPath()%>/SMoviedetail.mo?sNo=' + sNo;
+			   
+			 
+			 $.ajax({
+	                url:'SMoviedetail.mo',
+	                data:{sNo : sNo},
+	                success:function(data){
+	                   console.log('통신성공');
+	                   w.location.href=url;
+	                }
+	             });
+	          });
+	       
+	       });
     
     </script>
    

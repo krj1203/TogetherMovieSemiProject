@@ -91,7 +91,7 @@
 							<% MovieInfo b = BmList.get(i); %>
 							<div class="thumb-list">
 								<div>	
-									<input type="hidden" name="mNo" value="<%=b.getMovieNo() %>">
+									<input type="hidden" id="sNo" name="sNo" value="<%=b.getMovieNo() %>">
 									<%for(int j=0; j < BmList.size(); j++) {%>
 										<%MovieFile a = fList.get(j); %>
 										<% if(b.getMovieNo() == a.getMovieNo()){ %>
@@ -118,16 +118,30 @@
     
     
     
+      
     <script>
-    $(function() {
-		$('.Bmovie').click(function () {
-			location.href="<%= request.getContextPath()%>/detail.lmovie";
-		});
-	});
+    $(function name() {
+		$('.thumb-list').click(function () {
+			var w = window.open("about:blank", '영화 상세정보','width=300, height=300, menubar=no, status=no, toolbar=no');
+			var sNo = $(this).children().children().eq(0).val();
+			 console.log(sNo);
+			 
+			 url='<%= request.getContextPath()%>/BMoviedetail.mo?sNo=' + sNo;
+			   
+			 
+			 $.ajax({
+	                url:'BMoviedetail.mo',
+	                data:{sNo : sNo},
+	                success:function(data){
+	                   console.log('통신성공');
+	                   w.location.href=url;
+	                }
+	             });
+	          });
+	       
+	       });
     
-   
     </script>
-   
    
     
 </body>

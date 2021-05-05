@@ -15,11 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 
-	<link rel="stylesheet" type="text/css" href="../../cinema/css/style.css"/>
-	<link rel="stylesheet" type="text/css" href="latestMovie.css?ver=1.1"/> 
-	
--->
+
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/contents/main/css/index.css"/>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/contents/movieInfo_Board/latestMovie/latestMovie.css"/>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/contents/cinema/css/style.css"/>
@@ -90,7 +86,7 @@
 							<% MovieInfo b = mList.get(i); %>
 							<div class="thumb-list">
 								<div>	
-									<input type="hidden" name="mNo" value="<%=b.getMovieNo() %>">
+									<input type="hidden" id="sNo" name="sNo" value="<%=b.getMovieNo() %>">
 									<%for(int j=0; j < mList.size(); j++) {%>
 										<%MovieFile a = fList.get(j); %>
 										<% if(b.getMovieNo() == a.getMovieNo()){ %>
@@ -118,14 +114,28 @@
     
     
     <script>
-    $(function() {
-		$('.Lmovie').click(function () {
-			location.href="<%= request.getContextPath()%>/detail.lmovie?mNo" + mNo;
-		});
-	});
+    $(function name() {
+		$('.thumb-list').click(function () {
+			var w = window.open("about:blank", '영화 상세정보','width=300, height=300, menubar=no, status=no, toolbar=no');
+			var sNo = $(this).children().children().eq(0).val();
+			 console.log(sNo);
+			 
+			 url='<%= request.getContextPath()%>/LMoviedetail.mo?sNo=' + sNo;
+			   
+			 
+			 $.ajax({
+	                url:'LMoviedetail.mo',
+	                data:{sNo : sNo},
+	                success:function(data){
+	                   console.log('통신성공');
+	                   w.location.href=url;
+	                }
+	             });
+	          });
+	       
+	       });
     
     
-
     </script>
    
    
