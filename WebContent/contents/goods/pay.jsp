@@ -40,7 +40,17 @@
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        imp_uid : rsp.imp_uid
+                        imp_uid : rsp.imp_uid,
+                        pg : 'kakaopay',
+                        pay_method : 'card',
+                        merchant_uid : 'merchant_' + new Date().getTime(),
+                        name : 'KH Goods 상품 결제',
+                        amount : '<%=amount%>',
+                        buyer_email : '${sessionScope.loginUser.user_id}',
+                        buyer_name : '${sessionScope.loginUser.user_name}',
+                        buyer_tel : '010-7173-1417',
+                        buyer_addr : '${sessionScope.loginUser.address}',
+                        buyer_postcode : '123-456'
                         //기타 필요한 데이터가 있으면 추가 전달
                     }
                 }).done(function(data) {
@@ -58,8 +68,7 @@
                         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
                     }
                 });
-                //성공시 이동할 페이지
-                location.href='<%=request.getContextPath()%>/contents/goods/parySuccess.jsp?msg='+msg;
+        
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
