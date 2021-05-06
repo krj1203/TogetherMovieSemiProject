@@ -17,6 +17,17 @@ public int confirm(String user_nickName) {
 		
 		int result = nickNameCheckDAO.confirm(user_nickName);
 		
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		
+		close(con);
+		
+		
 		close(con);
 		
 		return result;
