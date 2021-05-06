@@ -15,6 +15,13 @@
 		<label>지역 : </label><input type="text" size ="30" name="area"><br>
 		<label>영화관 사이트 : </label><input type="text" size ="50" name="site"><br>
 		<label>길찾기 사이트 : </label><input type="text" size ="50" name="map"><br>
+		<label>카테고리</label><br>
+		<select name ="code">
+			<option value="1">친구</option>
+			<option value="2">연인</option>
+			<option value="3">혼자</option>
+		</select>
+		
 		<label>영화관</label><br>
 		<select name ="company">
 			<option value="cgv.png">CGV</option>
