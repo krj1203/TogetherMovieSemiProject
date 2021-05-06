@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import board.model.vo.Board;
+import board.model.vo.Comment;
 import board.model.vo.PageInfo;
 
 public class BoardDAO {
@@ -112,6 +113,194 @@ public class BoardDAO {
 		
 		
 		return list;
+	}
+
+	public int insertBoard(Connection con, Board b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertBoard");
+		//insertBoard=INSERT INTO BOARD VALUES(SEQ_BID.NEXTVAL, ?, ?, ?, SYSDATE, 0, ?, 2, DEFAULT, ?)
+		// boradNo, boardType, boardTitle, boardContent, boardView, boardCategory, boardCode, userNo
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, b.getBoardType());
+			pstmt.setString(2, b.getBoardTitle());
+			pstmt.setString(3, b.getBoardContent());
+			pstmt.setString(4, b.getBoardCategory());
+			pstmt.setInt(5, b.getUsersNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateCount(Connection con, String bCate, int bNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, bCate);
+			pstmt.setInt(2, bNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Board selectBoard(Connection con2, String bCate, int bNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String query = prop.getProperty("selectBoard");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, bCate);
+			pstmt.setInt(2, bNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b = new Board(rset.getInt("BOARD_NO"),
+						rset.getInt("BOARD_TYPE"),
+						rset.getString("BOARD_TITLE"),
+						rset.getString("BOARD_CONTENT"),
+						rset.getDate("BOARD_DATE"),
+						rset.getInt("BOARD_VIEW"),
+						rset.getString("BOARD_CATEGORY"),
+						rset.getInt("BOARD_CODE"),
+						rset.getString("STATUS"),
+						rset.getInt("USERS_NO"),
+						rset.getString("USERS_NICKNAME"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
+	}
+
+	public int delectBoard(Connection con, int bNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteBoard");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, bNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateBoard(Connection con, Board b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBoard");
+		// UPDATE BOARD SET BOARD_TYPE=?, BOARD_TITLE=?, BOARD_CONTENT, BOARD_CATEGORY=?, BOARD_CODE=2 WHERE BOARD_NO=?
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, b.getBoardType());
+			pstmt.setString(2, b.getBoardTitle());
+			pstmt.setString(3, b.getBoardTitle());
+			pstmt.setString(4, b.getBoardCategory());
+			pstmt.setInt(5, b.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		 
+		return result;
+	}
+
+	public int insertComment(Connection con, Comment c) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertComment");
+		// INSERT INTO COMMENTS VALUES(SEQ_CNO.NEXTVAL, ?, SYSDATE, DEFAULT, ?, ?)
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, c.getCommentContent());
+			pstmt.setInt(2, c.getBoardNo());
+			pstmt.setInt(3, c.getUserNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Comment> selectCommentList(Connection con, int boardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Comment> cList = null;
+		
+		String query = prop.getProperty("selectCommentList");
+		// SELECT * FROM COMMENTSLIST WHERE BOARD_NO=?
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			cList = new ArrayList<Comment>();
+			while(rset.next()) {
+				cList.add(new Comment(rset.getInt("COMMENTS_NO"),
+									rset.getInt("BOARD_NO"),
+									rset.getInt("USERS_NO"),
+									rset.getString("USERS_NICKNAME"),
+									rset.getString("COMMENTS_CONTENTS"),
+									rset.getDate("COMMENTS_DATE"),
+									rset.getString("STATUS")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return cList;
 	}
 
 	public int getGoodsListCount(Connection conn) {
