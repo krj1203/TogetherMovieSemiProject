@@ -79,4 +79,20 @@ public class CinemaService {
 		return result;
 	}
 
+	public int updateFCinema(Cinema cinema) {
+		CinemaDAO cineDAO = CinemaDAO.getInstance();
+		Connection conn = getConnection();
+		cineDAO.setConnection(conn);
+		int result = cineDAO.updateFCinema(cinema);
+		
+		System.out.println("CineService : updateFCinema >" + result);
+		if(result >0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
 }
