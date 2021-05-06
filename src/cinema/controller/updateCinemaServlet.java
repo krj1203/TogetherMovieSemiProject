@@ -1,6 +1,7 @@
 package cinema.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +12,16 @@ import cinema.model.service.CinemaService;
 import cinema.model.vo.Cinema;
 
 /**
- * Servlet implementation class InsertFCinemaServlet
+ * Servlet implementation class updateCinemaServlet
  */
-@WebServlet("/InsertFCinema.do")
-public class InsertFCinemaServlet extends HttpServlet {
+@WebServlet("/updateFCinema.do")
+public class updateCinemaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertFCinemaServlet() {
+    public updateCinemaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +32,10 @@ public class InsertFCinemaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		//실험1: 그냥 문자열 쥰내 길게해서 보내기
+		int no = Integer.parseInt(request.getParameter("no"));
 		String name = request.getParameter("cinema_name");
 		String topic = request.getParameter("topic");
+		int code = Integer.parseInt(request.getParameter("code"));
 		String company = request.getParameter("company");
 		String area = request.getParameter("area");
 		String site = request.getParameter("site");
@@ -47,7 +49,7 @@ public class InsertFCinemaServlet extends HttpServlet {
 		String metro = request.getParameter("metro");
 		String[] avArr = request.getParameterValues("avail");
 		String avail = "";
-		int code = 1;
+		
 		if(avArr != null) {
 			for(int i = 0; i < avArr.length; i++) {
 				if(i == avArr.length - 1) {
@@ -57,10 +59,12 @@ public class InsertFCinemaServlet extends HttpServlet {
 				}
 			}
 		}
-		//맵api하는 방법 알아오기
-		Cinema cinema = new Cinema(name, topic, avail, adress, site, map, "Y", area, pConfirm, pGuide, pPay, company, floor, bus, metro, 1);
 		
-		int result = new CinemaService().insertFCinema(cinema);
+		
+		Cinema cinema = new Cinema(no, name, topic, avail, adress, site, map, "Y", area, pConfirm
+								,pGuide, pPay, null, company, floor, bus, metro, code);
+		
+		int result = new CinemaService().updateFCinema(cinema);
 		
 		if(result > 0) {
 			response.sendRedirect("friend.ci");

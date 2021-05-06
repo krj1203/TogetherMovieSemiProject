@@ -37,6 +37,8 @@ public class Cinema {
 		this.cn_file_path = cn_file_path;
 		this.cn_file_name = cn_file_name;
 	}
+	
+	
 
 	public Cinema(int cn_no, String cn_name, String cn_topic, String cn_available, String cn_adress, String cn_sitelink,
 			String cn_maplink, String cn_status, String area, String cn_pConfirm, String cn_pGuide, String cn_pPay,

@@ -49,8 +49,8 @@ public class updateCinemaFormServlet extends HttpServlet {
 		
 		Cinema c = new Cinema(no, name, topic, avail, adress, site, map, area, confirm, guide, 
 				pay, floor, bus, metro, code);
-		System.out.println("update c >>" + c.getCn_metro());
 		
+		System.out.println("update c.adress" + c.getCn_adress());
 		request.setAttribute("c", c);
 		request.getRequestDispatcher("contents/cinema/writeForm/updateCinemaForm.jsp").forward(request, response);
 	}
