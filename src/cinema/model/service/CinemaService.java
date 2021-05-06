@@ -13,12 +13,12 @@ import cinema.model.vo.Cinema;
 
 public class CinemaService {
 
-	public ArrayList<Cinema> selectCList() {
+	public ArrayList<Cinema> selectCList(int i) {
 		CinemaDAO cineDAO = CinemaDAO.getInstance();
 		Connection conn = getConnection();
 		cineDAO.setConnection(conn);
 		System.out.println("cinemaService : DAO >>" + cineDAO);
-		ArrayList<Cinema> cList = cineDAO.getList();
+		ArrayList<Cinema> cList = cineDAO.getList(i);
 		
 		System.out.println("CineService : selectList >" + cList);
 		close(conn);

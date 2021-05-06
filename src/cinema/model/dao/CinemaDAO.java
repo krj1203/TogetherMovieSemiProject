@@ -42,13 +42,14 @@ public class CinemaDAO {
 	public void setConnection(Connection con2) {
 		this.conn = con2;
 	}
-	public ArrayList<Cinema> getList() {
+	public ArrayList<Cinema> getList(int i) {
 		// dao에서 리스트에 보여줄 정보를 가져옴 일단 전부다 가져오자
 		
 		System.out.println("CinemaDAO:getList()실행");
 		
 		//stmt 실행
-		Statement stmt = null;
+		
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("getCinemaList");
 		ArrayList<Cinema> list = null;
@@ -57,9 +58,12 @@ public class CinemaDAO {
 			System.out.println("try진입");		//현재 진입이 안대는중 왜지??
 			System.out.println("cinema 커넥션 : "+conn);
 			
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			System.out.println("cinemaDAO : stmt >>" + stmt);
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, i);
+			
+			rset = pstmt.executeQuery();
+			System.out.println("pstmt" + pstmt);
 			System.out.println("cinemaDAO : conn >>" + conn);
 			list = new ArrayList<Cinema>();
 			
@@ -85,7 +89,7 @@ public class CinemaDAO {
 			e.printStackTrace();
 		}finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		return list;
 	}
@@ -99,6 +103,7 @@ public class CinemaDAO {
 		try {
 			pstmt = conn.prepareStatement(query);
 			
+			System.out.println("dao맵이야"+cinema.getCn_maplink());
 			pstmt.setString(1, cinema.getCn_name());
 			pstmt.setString(2, cinema.getCn_topic());
 			pstmt.setString(3, cinema.getCn_available());

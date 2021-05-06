@@ -45,9 +45,10 @@ public class InsertFCinemaServlet extends HttpServlet {
 		String pPay = request.getParameter("pay");
 		String bus = request.getParameter("bus");
 		String metro = request.getParameter("metro");
+		int code = Integer.parseInt(request.getParameter("code"));
 		String[] avArr = request.getParameterValues("avail");
 		String avail = "";
-		int code = 1;
+		System.out.println(" map이야"+map);
 		if(avArr != null) {
 			for(int i = 0; i < avArr.length; i++) {
 				if(i == avArr.length - 1) {
@@ -58,7 +59,7 @@ public class InsertFCinemaServlet extends HttpServlet {
 			}
 		}
 		//맵api하는 방법 알아오기
-		Cinema cinema = new Cinema(name, topic, avail, adress, site, map, "Y", area, pConfirm, pGuide, pPay, company, floor, bus, metro, 1);
+		Cinema cinema = new Cinema(name, topic, avail, adress, site, map, "Y", area, pConfirm, pGuide, pPay, company, floor, bus, metro, code);
 		
 		int result = new CinemaService().insertFCinema(cinema);
 		

@@ -176,8 +176,8 @@ ul{list-style:none;}
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">맛집극장<b class="caret"></b></a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="<%= request.getContextPath() %>/friend.ci">친구</a>
-                    <a class="dropdown-item" href="<%= request.getContextPath() %>/contents/cinema/couple.jsp">연인</a>
-                    <a class="dropdown-item" href="<%= request.getContextPath() %>/contents/cinema/solo.jsp">혼자</a>
+                    <a class="dropdown-item" href="<%= request.getContextPath() %>/couple.ci">커플</a>
+                    <a class="dropdown-item" href="<%= request.getContextPath() %>/solo.ci">솔로</a>
                   </div> 
                 </li>
                 <li class="dropdown">
