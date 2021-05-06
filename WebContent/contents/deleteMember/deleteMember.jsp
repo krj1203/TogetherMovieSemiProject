@@ -9,14 +9,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../cinema/css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="deleteMember.css?ver=1.2" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/contents/cinema/css/style.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/contents/deleteMember/deleteMember.css">
+
+
         
     
     
 	<script src="contents/main/js/jquery-3.6.0.min.js"></script>
 	<script src="contents/main/js/lightslider.js"></script>
-    <title>만남의 광장</title>
+    <title>마이 페이지</title>
     
     
 </head>
@@ -26,28 +28,24 @@
 		<main>
 		<%@include file="../common/header.jsp" %>
          
-        <div class="deleteMemberBox">
+     	 <form action="deleteMember.do" method="post" name="frm">
+     		<div class="deleteMemberBox">
         	<div class="deleteMemberBox_title">
         		<span>본 사이트에서 탈퇴합니다.</span>
         	</div>
         	<div>
-        		<input class="deleteMemberBox_pwd" type="password" placeholder="비밀번호를 입력하세요.">
+        		<input class="deleteMemberBox_pwd" type="password" placeholder="비밀번호를 입력하세요." name="user_password">
         	</div>
         	<div class="deleteMemberBox_btnBox">
-        		<div><button class="deleteMemberBox_btn">등록</button></div>
-        		<div><button class="deleteMemberBox_btn">취소</button></div>
-        	
-        	
+        		<input class="deleteMemberBox_btn" type="submit" value="확인"  style="cursor: pointer;">
+        		<input class="deleteMemberBox_btn" type="button" value="취소"  style="cursor: pointer;" onclick="location.href='<%= request.getContextPath() %>/contents/myPage/myPage.jsp'">
+        		
         	</div>
         
-        
-        </div>
-         
-         
-         
-         
-         
-    </main>
+
+        </div>      
+        </form>
+    	</main>
     
     
     

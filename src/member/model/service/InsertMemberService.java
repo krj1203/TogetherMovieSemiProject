@@ -19,6 +19,17 @@ public int insertMember(Member member) {
 		
 		int result =  insertMemberDAO.insertMember(member);
 		
+		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		
+		close(con);
+		
+		
 		close(con);
 		
 		return result;
