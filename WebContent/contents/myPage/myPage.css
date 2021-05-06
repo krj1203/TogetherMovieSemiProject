@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+
+.myPage_box{
+	width:1194px;
+	border:1px solid red;
+	display:flex;
+	justify-content: space-between;
+}
+
+
+
+.myPage_rightBox{
+	width:880px;
+	height:700px;
+	border-right: 1.1px solid black;
+}
+
+.myPage_rightBox_title{
+	width: 180px;
+	height: 82px;
+	background-color: rgb(243, 156, 18);
+	font-size: 27px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.myPage-leftBox{
+	width: 220px;
+	height: 280px;
+	background-color: rgb(243, 156, 18);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.myPage_leftBox_myInfo{
+	width:163px;
+	height: 53px;
+	font-size: 22px;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid black;
+}
+
+.myPage_leftBox_pim{
+	margin-top: 20px;
+}
+
+
+.myPage_leftBox_withdrawl{
+	margin-top: 20px;
+}
+
+
+.myPage_rightBox_wirte{
+	width:500px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: space-between;
+	font-size: 17px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	margin-top: 70px;
+}
+
+.myPage_rightBox_write_inputBox{
+	margin-top: 20px;
+	
+}
+
+
+
+
+
+
+.myPage_rightBox_write_input{
+	border-style: none;
+}
