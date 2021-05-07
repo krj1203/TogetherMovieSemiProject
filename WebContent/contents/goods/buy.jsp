@@ -33,6 +33,7 @@
 			   <div align="center">
 				<div class="product_view">
 					<h2><%= g.getGoods_title() %></h2>
+					<input type="hidden" name="title" value="<%= g.getGoods_title() %>">
 					<table>
 						<colgroup>
 						<col style="width:173px;">
@@ -49,7 +50,7 @@
 						</tr>
 						<tr>
 							<th>구매수량</th>
-							<td><input type="text" size="3" class="i1" maxlength="2"></td>
+							<td><input type="text" name="count" size="3" class="i1" maxlength="2" value=""></td>
 						</tr>
 						<tr>
 							<th>배송비</th>
@@ -85,7 +86,10 @@
 		$(function () {
 			$('.btns').click(function () {
 				var amount = $('input[name=amount]').val();
-				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount;
+				var count = $('input[name=count]').val();
+				var title = $('input[name=title]').val();
+				console.log(count);
+				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + title;
 			});
 		});
 

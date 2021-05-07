@@ -1,6 +1,7 @@
 package goods.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PayServlet
+ * Servlet implementation class InsertPayServlet
  */
-@WebServlet("/pay.gs")
-public class PayServlet extends HttpServlet {
+@WebServlet("/insertpay.gs")
+public class InsertPayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PayServlet() {
+    public InsertPayServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,17 +27,21 @@ public class PayServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int amount = Integer.parseInt(request.getParameter("amount"));
-		String count = request.getParameter("count");
-		String title = request.getParameter("title");
+		System.out.println("서버 넘어옴");
+		System.out.println(request.getParameter("title"));
 		
-		request.setAttribute("amount", amount);
-		request.setAttribute("count", count);
-		request.setAttribute("title", title);
+		/*
+		 * HttpSession session = request.getSession(); Member member =
+		 * (Member)session.getAttribute("loginUser");
+		 * 
+		 * // 유저아이디 , 주소 , 핸드폰번호 , 금액 , 수량 , 결재상태(주문완료) String user_id =
+		 * member.getUser_id(); String address = member.getAddress(); String phone =
+		 * member.getPhone(); String pay = request.getParameter("amount"); String count
+		 * = request.getParameter("count");
+		 */
 		
 		
-		request.getRequestDispatcher("contents/goods/pay.jsp").forward(request, response);
-		
+
 	}
 
 	/**
