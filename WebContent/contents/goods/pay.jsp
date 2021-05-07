@@ -3,6 +3,8 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	int amount = (int)request.getAttribute("amount");
+	String count = (String)request.getAttribute("count");
+	String title = (String)request.getAttribute("title");
 %>
 
 <!DOCTYPE html>
@@ -29,7 +31,7 @@
             amount : '<%=amount%>',
             buyer_email : '${sessionScope.loginUser.user_id}',
             buyer_name : '${sessionScope.loginUser.user_name}',
-            buyer_tel : '010-7173-1417',
+            buyer_tel : '${sessionScope.loginUser.phone}',
             buyer_addr : '${sessionScope.loginUser.address}',
             buyer_postcode : '123-456',
             //m_redirect_url : 'http://www.naver.com'
@@ -60,7 +62,11 @@
                     }
                 });
                 //성공시 이동할 페이지
-                location.href='<%=request.getContextPath()%>/contents/goods/parySuccess.jsp?msg='+msg;
+                var amount = <%= amount %>;
+                var count = <%= count %>;
+                var title = <%= title %>;
+                location.href='<%=request.getContextPath()%>/insertpay.gs?amount=' + amount + '&count=' + count + '&title=' + title;
+                
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;

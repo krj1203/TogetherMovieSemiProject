@@ -42,13 +42,14 @@ public class CinemaDAO {
 	public void setConnection(Connection con2) {
 		this.conn = con2;
 	}
-	public ArrayList<Cinema> getList() {
+	public ArrayList<Cinema> getList(int i) {
 		// dao에서 리스트에 보여줄 정보를 가져옴 일단 전부다 가져오자
 		
 		System.out.println("CinemaDAO:getList()실행");
 		
 		//stmt 실행
-		Statement stmt = null;
+		
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("getCinemaList");
 		ArrayList<Cinema> list = null;
@@ -57,9 +58,12 @@ public class CinemaDAO {
 			System.out.println("try진입");		//현재 진입이 안대는중 왜지??
 			System.out.println("cinema 커넥션 : "+conn);
 			
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			System.out.println("cinemaDAO : stmt >>" + stmt);
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, i);
+			
+			rset = pstmt.executeQuery();
+			System.out.println("pstmt" + pstmt);
 			System.out.println("cinemaDAO : conn >>" + conn);
 			list = new ArrayList<Cinema>();
 			
@@ -85,7 +89,7 @@ public class CinemaDAO {
 			e.printStackTrace();
 		}finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		return list;
 	}
@@ -99,6 +103,7 @@ public class CinemaDAO {
 		try {
 			pstmt = conn.prepareStatement(query);
 			
+			System.out.println("dao맵이야"+cinema.getCn_maplink());
 			pstmt.setString(1, cinema.getCn_name());
 			pstmt.setString(2, cinema.getCn_topic());
 			pstmt.setString(3, cinema.getCn_available());
@@ -177,6 +182,45 @@ public class CinemaDAO {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public int updateFCinema(Cinema cinema) {
+		//CN_NAME =1, CN_TOPIC = 2, CN_AVAILABLE=3, CN_ADRESS=4, 
+		//CN_SITELINK =5, CN_MAPLINK=6, CN_AREA =7, CN_FLOOR =8, 
+		//CN_PGUIDE=9, CN_PCONFIRM =10, CN_PPAY=11, CN_BUS=12, CN_METRO=13,
+		//CN_CODE=14 WHERE CN_NO =15
+		
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateCinema");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, cinema.getCn_name());
+			pstmt.setString(2, cinema.getCn_topic());
+			pstmt.setString(3, cinema.getCn_available());
+			pstmt.setString(4, cinema.getCn_adress());
+			pstmt.setString(5, cinema.getCn_sitelink());
+			pstmt.setString(6, cinema.getCn_maplink());
+			pstmt.setString(7, cinema.getArea());
+			pstmt.setString(8, cinema.getCn_floor());
+			pstmt.setString(9, cinema.getCn_pGuide());
+			pstmt.setString(10, cinema.getCn_pConfirm());
+			pstmt.setString(11, cinema.getCn_pPay());
+			pstmt.setString(12, cinema.getCn_bus());
+			pstmt.setString(13, cinema.getCn_metro());
+			pstmt.setInt(14, cinema.getCode());
+			pstmt.setInt(15, cinema.getCn_no());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

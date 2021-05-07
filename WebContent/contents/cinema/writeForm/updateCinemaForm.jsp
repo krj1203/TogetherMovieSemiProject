@@ -35,9 +35,9 @@
 <title>영화관 수정</title>
 </head>
 <body>
-	<form name="insertCinema" action="<%= request.getContextPath() %>/InsertFCinema.do" method="post" >
-	
-	
+	<form name="insertCinema" action="<%= request.getContextPath() %>/updateFCinema.do" method="post" >
+		<input type="hidden" name ="no" value ="<%=c.getCn_no()%>">
+		<input type="hidden" name="company"value="<%= c.getCn_file_name()%>">
 		<label>지점명 : </label><input type="text" size = "50"name="cinema_name" value="<%=c.getCn_name()%>"><br>
 		<label>소개글 : </label><input type="text" size ="100" name="topic" value="<%=c.getCn_topic()%>"><br>
 		<label>지역 : </label><input type="text" size ="30" name="area" value="<%=c.getArea()%>"><br>
@@ -60,7 +60,7 @@
 			<label>교통안내 작성</label>
 			
 			<br>
-			<label>도로명 주소 : </label><input type="text" size = "100" name="adress" value=<%=c.getCn_adress() %>>
+			<label>도로명 주소 : </label><input type="text" size = "100" name="adress" value="<%=c.getCn_adress() %>">
 			
 			<fieldset>
 				<legend>주차</legend>

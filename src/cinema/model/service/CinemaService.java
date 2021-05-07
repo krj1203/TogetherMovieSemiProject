@@ -13,12 +13,12 @@ import cinema.model.vo.Cinema;
 
 public class CinemaService {
 
-	public ArrayList<Cinema> selectCList() {
+	public ArrayList<Cinema> selectCList(int i) {
 		CinemaDAO cineDAO = CinemaDAO.getInstance();
 		Connection conn = getConnection();
 		cineDAO.setConnection(conn);
 		System.out.println("cinemaService : DAO >>" + cineDAO);
-		ArrayList<Cinema> cList = cineDAO.getList();
+		ArrayList<Cinema> cList = cineDAO.getList(i);
 		
 		System.out.println("CineService : selectList >" + cList);
 		close(conn);
@@ -31,6 +31,7 @@ public class CinemaService {
 		CinemaDAO cineDAO = CinemaDAO.getInstance();
 		Connection conn = getConnection();
 		cineDAO.setConnection(conn);
+		
 		int result = cineDAO.insertFCinema(cinema);
 		System.out.println("CineService : insertFCinema >" + result);
 		if(result >0) {
@@ -76,6 +77,22 @@ public class CinemaService {
 		}
 		
 		close(conn);
+		return result;
+	}
+
+	public int updateFCinema(Cinema cinema) {
+		CinemaDAO cineDAO = CinemaDAO.getInstance();
+		Connection conn = getConnection();
+		cineDAO.setConnection(conn);
+		int result = cineDAO.updateFCinema(cinema);
+		
+		System.out.println("CineService : updateFCinema >" + result);
+		if(result >0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
 		return result;
 	}
 

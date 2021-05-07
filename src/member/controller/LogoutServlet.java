@@ -1,5 +1,5 @@
 package member.controller;
-//ÆÐÅ°Áö º¯°æ
+//ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 import java.io.IOException;
 
@@ -30,9 +30,6 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		
-		
-		
 //		response.sendRedirect(request.getContextPath());
 		response.sendRedirect(request.getHeader("referer"));
 		

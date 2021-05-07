@@ -26,8 +26,12 @@ public class PayServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int amount = Integer.parseInt(request.getParameter("amount"));
-		System.out.println("결재금액 출력 : " + amount);
+		String count = request.getParameter("count");
+		String title = request.getParameter("title");
+		
 		request.setAttribute("amount", amount);
+		request.setAttribute("count", count);
+		request.setAttribute("title", title);
 		
 		
 		request.getRequestDispatcher("contents/goods/pay.jsp").forward(request, response);

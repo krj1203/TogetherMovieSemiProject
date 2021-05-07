@@ -13,6 +13,8 @@
 	ArrayList<String> avail = (ArrayList<String>)request.getAttribute("aList");
 	ArrayList<String> bus = (ArrayList<String>)request.getAttribute("bList");
 	ArrayList<String> metro= (ArrayList<String>)request.getAttribute("mList");
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -51,6 +53,7 @@
 			<input type ="hidden" name = "bus" value="<%=cinema.getCn_bus()%>">
 			<input type ="hidden" name = "metro" value="<%=cinema.getCn_metro() %>">
 			<input type ="hidden" name = "code" value="<%=cinema.getCode() %>">
+			
 			<!-- 주차, 층별, 교통, 보유시설같은 다른 Array로 온 것들도 cinema로 보내야 할 것 같음 -->
 		<div style="padding-bottom: =100px;">
         	<div class="cinema">
@@ -74,8 +77,13 @@
             <div class="cinema-FacilityInfo__logo">
                 	<%for(int i = 0; i < avail.size(); i++){ %>
 		                <div class="cinema-theater">
-		                    <i class="fas fa-film fa-3x "></i>
-		                    <span><%=avail.get(i).toString() %></span>
+
+		                    <span>
+		                    <i>
+		                    <img width="107px" height="107px"src="<%=request.getContextPath() %>/contents/cinema/images/<%=avail.get(i).toString() %>">
+		                    </i>
+
+		                    </span>
 		                </div>
                     <%} %>
                   

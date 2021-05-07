@@ -37,6 +37,8 @@ public class Cinema {
 		this.cn_file_path = cn_file_path;
 		this.cn_file_name = cn_file_name;
 	}
+	
+	
 
 	public Cinema(int cn_no, String cn_name, String cn_topic, String cn_available, String cn_adress, String cn_sitelink,
 			String cn_maplink, String cn_status, String area, String cn_pConfirm, String cn_pGuide, String cn_pPay,
@@ -62,7 +64,7 @@ public class Cinema {
 		this.code = code;
 	}
 
-	public Cinema(String name, String topic, String avail, String adress, String site, Object object, String string,
+	public Cinema(String name, String topic, String avail, String adress, String site, String map, String string,
 			String area2, String pConfirm, String pGuide, String pPay, String company, String floor, String bus,
 			String metro, int i) {
 		super();
@@ -72,7 +74,7 @@ public class Cinema {
 		this.cn_available = avail;
 		this.cn_adress = adress;
 		this.cn_sitelink = site;
-		this.cn_maplink = null;
+		this.cn_maplink = map;
 		this.cn_status = string;
 		this.area = area2;
 		this.cn_pConfirm = pConfirm;

@@ -1,5 +1,5 @@
 package member.controller;
-//占쏙옙키占쏙옙 占쏙옙占쏙옙
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect(beforeUrl);
 
 		} else if (result == 0 || result == -1) {
-			request.setAttribute("message", "�븘�씠�뵒�굹 鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.");
+			request.setAttribute("message", "아이디 혹은 비밀번호를 잘못 입력하셨습니다.");
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
 
