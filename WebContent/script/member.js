@@ -146,3 +146,21 @@ function joinCheck() {
 	
 	return true;
 }
+
+function updateUserPasswordCheck(){
+	
+	if (document.frm.user_newPassword.value == "") {
+		alert("암호는 반드시 입력해야 합니다.");
+		frm.user_password.focus();
+		return false;
+	}
+	
+	if (document.frm.user_newPassword.value != document.frm.user_newPasswordCheck.value) {
+		alert("새로운 암호가 일치하지 않습니다.");
+		frm.user_password.focus();
+		return false;
+	}
+	
+	return true;
+	
+}

@@ -58,6 +58,9 @@
          		<div class="myPage_leftBox_pim">
          			개인정보 확인/수정
          		</div>
+         		<div class="myPage_leftBox_passwordChange">
+         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/updateUserPassword.do'" >비밀번호 변경</a>
+         		</div>
          		<div class="myPage_leftBox_withdrawl">
          			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/deleteMember.do'" >회원 탈퇴</a>
          		</div>
