@@ -22,9 +22,8 @@ public class PayServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		System.out.println("결재금액 출력 : " + amount);

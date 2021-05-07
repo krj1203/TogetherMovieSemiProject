@@ -148,7 +148,7 @@ public int getMovieInfoListCount(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<MovieInfo> list = null;
-		System.out.println("mList : conn >> " + conn);
+		
 		String query = prop.getProperty("selectBList");
 		
 		try {

@@ -83,8 +83,12 @@ public int getGoodsListCount() {
 		Connection conn = getConnection();
 		dao.setConnection(conn);
 		
+		
 		int result1 = dao.insertMovieInfo(conn, m);
 		int result2 = dao.insertMovieFile(conn, fileList);
+		
+	
+		
 		
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);
@@ -100,8 +104,11 @@ public int getGoodsListCount() {
 		Connection conn = getConnection();
 		dao.setConnection(conn);
 		
+		
+		
 		int result1 = dao.insertMovieInfo(conn, m);
 		int result2 = dao.insertMovieFile(conn, fileList);
+
 		
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);
@@ -119,6 +126,8 @@ public int getGoodsListCount() {
 		
 		int result1 = dao.insertMovieInfo(conn, m);
 		int result2 = dao.insertMovieFile(conn, fileList);
+		
+		
 		
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);
