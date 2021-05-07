@@ -36,11 +36,17 @@ public class FriendServlet extends HttpServlet {
 		// 리스트를 불러와서 뿌려줘야함
 		ArrayList<Cinema> clist = cService.selectCList(1);
 		String page = null;
+		String theme = "친구";
+		String comment = "친구와 함께 가기 좋은 영화관";
 		//영화관정보
 		if(clist != null) {
+			request.setAttribute("theme", theme);
+			request.setAttribute("comment", comment);
 			request.setAttribute("cList", clist);
 			page = "contents/cinema/cinema.jsp";
 		}else {
+			request.setAttribute("theme", theme);
+			request.setAttribute("comment", comment);
 			request.setAttribute("cList", clist);
 			request.setAttribute("msg", "영화관(친구)에서 요류가 발생했습니다");
 			page = "contents/cinema/cinema.jsp";

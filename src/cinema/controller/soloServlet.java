@@ -36,8 +36,12 @@ public class soloServlet extends HttpServlet {
 				// 리스트를 불러와서 뿌려줘야함
 				ArrayList<Cinema> clist = cService.selectCList(3);
 				String page = null;
+				String theme = "혼자";
+				String comment = "혼자 가기 좋은 영화관";
 				//영화관정보
 				if(clist != null) {
+					request.setAttribute("theme", theme);
+					request.setAttribute("comment", comment);
 					request.setAttribute("cList", clist);
 					page = "contents/cinema/cinema.jsp";
 				}else {
