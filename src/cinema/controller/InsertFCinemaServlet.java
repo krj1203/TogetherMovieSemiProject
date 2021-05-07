@@ -58,7 +58,7 @@ public class InsertFCinemaServlet extends HttpServlet {
 				}
 			}
 		}
-		//맵api하는 방법 알아오기
+		
 		Cinema cinema = new Cinema(name, topic, avail, adress, site, map, "Y", area, pConfirm, pGuide, pPay, company, floor, bus, metro, code);
 		
 		int result = new CinemaService().insertFCinema(cinema);

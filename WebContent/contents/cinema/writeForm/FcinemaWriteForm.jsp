@@ -5,13 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>영화관 추가</title>
+<script src="<%=request.getContextPath() %>/contents/main/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+	<%@include file="../../common/loginbar.jsp" %>
+		<main>
+		<%@include file="../../common/header.jsp" %>
+	<div style="width: 800px; position: absolute; left:25%;">
 	<form name="insertCinema" action="<%= request.getContextPath() %>/InsertFCinema.do" method="post" >
 	
 	
 		<label>지점명 : </label><input type="text" size = "50"name="cinema_name"><br>
-		<label>소개글 : </label><input type="text" size ="100" name="topic"><br>
+		<label>소개글 : </label><input type="text" size ="50" name="topic"><br>
 		<label>지역 : </label><input type="text" size ="30" name="area"><br>
 		<label>영화관 사이트 : </label><input type="text" size ="50" name="site"><br>
 		<label>길찾기 사이트 : </label><input type="text" size ="50" name="map"><br>
@@ -20,7 +25,7 @@
 			<option value="1">친구</option>
 			<option value="2">연인</option>
 			<option value="3">혼자</option>
-		</select>
+		</select><br>
 		
 		<label>영화관</label><br>
 		<select name ="company">
@@ -30,15 +35,15 @@
 		<br><br>
 		<fieldset>
 			<label>층별 안내 작성</label><br>
-			<textarea rows="10" cols="70" name="floor" id="floorarea" readonly="readonly" style="resize: none;"></textarea><br>
-					<input type="text" size = "50" id="floortext">
+			<textarea rows="10" cols="110" name="floor" id="floorarea" readonly="readonly" style="resize: none;"></textarea><br>
+					<input type="text" size = "85" id="floortext">
 			<button type="button"onclick="addFloor();">작성추가</button>
 			<button type="button"onclick="resetFloor();">초기화</button><br>
 			<br>
 			<label>교통안내 작성</label>
 			
 			<br>
-			<label>도로명 주소 : </label><input type="text" size = "100" name="adress">
+			<label>도로명 주소 : </label><input type="text" size = "90" name="adress">
 			
 			<fieldset>
 				<legend>주차</legend>
@@ -55,20 +60,6 @@
 				</div>
 			</fieldset>
 			
-			<fieldset>
-				<legend>대중교통</legend>
-				<label>버스</label><br>
-				<textarea rows="10" cols="70" name="bus" id ="busarea"readonly="readonly" style="resize: none;"></textarea><br>
-				<input type="text" size = "50" id="bustext">
-					<button type="button"onclick="addBus();">작성추가</button>
-					<button type="button"onclick="resetBus();">초기화</button>
-				<br>	
-				<label>지하철</label><br>
-				<textarea rows="10" cols="70" name="metro" id="metroarea"readonly="readonly" style="resize: none;"></textarea><br>
-				<input type="text" size = "50" id="metrotext">
-					<button type="button"onclick="addMetro();">작성추가</button>
-					<button type="button"onclick="resetMetro();">초기화</button>
-			</fieldset>
 			<br>
 			<legend>시설안내 작성</legend>
 			<label>보유 시설 작성</label><br>
@@ -78,10 +69,31 @@
 			<input type="checkbox" name="avail" value = "sofa"><label>2인소파</label>
 			<br>
 			<br>
-			<input type="submit">
 		</fieldset>
 		
+			<fieldset>
+				<legend>대중교통</legend>
+				<label>버스</label><br>
+				<textarea rows="10" cols="110" name="bus" id ="busarea"readonly="readonly" style="resize: none;"></textarea><br>
+				<input type="text" size = "85" id="bustext">
+					<button type="button"onclick="addBus();">작성추가</button>
+					<button type="button"onclick="resetBus();">초기화</button>
+				<br>	
+				<label>지하철</label><br>
+				<textarea rows="10" cols="110" name="metro" id="metroarea"readonly="readonly" style="resize: none;"></textarea><br>
+				<input type="text" size = "85" id="metrotext">
+					<button type="button"onclick="addMetro();">작성추가</button>
+					<button type="button"onclick="resetMetro();">초기화</button>
+			</fieldset>
+			<br><br>
+			<div style="text-align: center;">
+				<input type="submit">
+				<input type="button" id="cancelBtn" onclick="location.href='javascript:history.go(-1)'" value="취소하기">
+			</div>
+			<br><br>
 	</form>
+	</div>
+	</main>
 </body>
 <script>
 	//주차

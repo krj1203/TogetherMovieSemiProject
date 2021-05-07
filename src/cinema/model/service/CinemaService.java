@@ -31,6 +31,7 @@ public class CinemaService {
 		CinemaDAO cineDAO = CinemaDAO.getInstance();
 		Connection conn = getConnection();
 		cineDAO.setConnection(conn);
+		
 		int result = cineDAO.insertFCinema(cinema);
 		System.out.println("CineService : insertFCinema >" + result);
 		if(result >0) {
