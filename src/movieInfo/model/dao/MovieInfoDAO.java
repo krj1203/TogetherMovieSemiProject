@@ -99,7 +99,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("GENRE"),
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
-									   rset.getString("CONTENT")));
+									   rset.getString("CONTENT"),
+									   rset.getString("RECOM_STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +132,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("GENRE"),
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
-									   rset.getString("CONTENT")));
+									   rset.getString("CONTENT"),
+									   rset.getString("RECOM_STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -165,7 +167,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("GENRE"),
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
-									   rset.getString("CONTENT")));
+									   rset.getString("CONTENT"),
+									   rset.getString("RECOM_STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -222,6 +225,7 @@ public int getMovieInfoListCount(Connection conn) {
 			pstmt.setString(7, m.getRunningTime());
 			pstmt.setString(8, m.getAge());
 			pstmt.setString(9, m.getContent());
+			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -289,7 +293,8 @@ public int getMovieInfoListCount(Connection conn) {
 										   rset.getString("GENRE"),
 										   rset.getString("RUNNINGTIME"),
 										   rset.getString("AGE"),
-										   rset.getString("CONTENT"));
+										   rset.getString("CONTENT"),
+										   rset.getString("RECOM_STATUS"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

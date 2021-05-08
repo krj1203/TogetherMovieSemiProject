@@ -56,7 +56,7 @@
 .thumnail-list img{width:250px; height:300px; cursor:pointer; border:1px solid black;}
 
 .Smovie p{font-size:30px; padding-left:10px;}
-.lll{display:inline-block; padding-left:80px;}
+.lll{display:inline-block; padding-left:15px;}
 
 </style>
 
