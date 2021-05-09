@@ -3,19 +3,8 @@
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	Board board = (Board)request.getAttribute("board");
+	BoardInfo biList = (BoardInfo)request.getAttribute("biList");
 	ArrayList<Comment> list = (ArrayList<Comment>)request.getAttribute("list");
-	String bCate = (String)request.getAttribute("bCate");
-	int bCode = 0;
-	switch(bCate){
-		case "서울" : bCode = 0; break;
-		case "경기" : bCode = 1; break;
-		case "강원" : bCode = 2; break;
-		case "충청" : bCode = 3; break;
-		case "전라" : bCode = 4; break;
-		case "경상" : bCode = 5; break;
-		case "제주" : bCode = 6; break;
-		case "기타" : bCode = 7; break;
-	}
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,13 +25,6 @@
 			display:flex;
 			margin:30px 0 0 30px;
 		}
-		
-		
-		.side{
-			margin-left:70px;
-		}
-		
-		
 		
 		.local-box{
 			
@@ -75,29 +57,10 @@
 			margin-left: 30px;
 		}
 		
-		.sideTable{
-			width:250px;
-			text-align: center;
-			border-top: 1px solid rgb(243, 156, 18);
-			padding: 3px;
-			font-size: 15px;
-			border-collapse: collapse;
-		}
-		
-		.sideTableTitle{background-color:rgb(243, 156, 18); color: white;}
-		
-		.sideTable th, .sideTable td{
-			border: 1px solid rgb(243, 156, 18);
-			padding: 8px;
-		}
-		
-		.sideTable td:hover{
-			background-color: rgba(243, 156, 18, 0.5);
-		}
-		
 		#bulletin, #commentWriteTable, #commentSelectTable{
 			margin-bottom: 40px;
 			margin-left: 30px;
+			margin-right: 30px;
 			text-align: center;
 			border-top: 1px solid rgba(243, 156, 18, 0.5);
 			padding: 8px;
@@ -111,9 +74,9 @@
 			padding: 8px;
 		}
 		
-		#tb1{ width: 80px; }
-		#tb2{ width: 700px; }
-		#tb3{ width: 80px; }
+		#tb1{ width: 150px; }
+		#tb2{ width: 900px; }
+		#tb3{ width: 50px; }
 		
 		thead{
 			border: none; background-color: rgba(243, 156, 18, 0.5);
@@ -121,16 +84,7 @@
 			font-weight: 600;	
 		}
 		
-		#likeBtn, #commentlikeBtn{
-			background-color: rgba(243, 156, 18, 0);
-			border: none;
-		}
-		
 		#commentTitle{font-size: 20px;}
-		
-		#tc1{ width: 140px;}
-		#tc2{ border: none; }
-		#tc3{ width: 140px; }
 		
 		#textBox{ border: none;}
 		
@@ -177,6 +131,18 @@
 			margin-left: 90px;
 			margin-top: 70px;
 		}
+		
+		#image{
+		 	width: auto; height: auto;
+		 	max-width: 1000px;
+		 	max-height: 1000px;
+		}
+		
+		textarea{
+   			width:"100%";
+   			minHeight:1;
+		}
+		
     </style>
     
 </head>
@@ -188,7 +154,7 @@
     
 	    	<div class="local-box">
 				<div class="local-box1">
-					<span><%= bCate %></span>
+					<span>자유게시판</span>
 				</div>
 				<div class="local-box2">
 					<span><%= board.getBoardTitle() %></span>
@@ -199,7 +165,7 @@
 			
 		<div class="main-content">
 		  <div class="main-tableBox">	
-		  	<form action="<%= request.getContextPath() %>/boardUpdateForm.bo?bCode=<%= bCode %>" id="detailForm" method="post">
+		  	<form action="<%= request.getContextPath() %>/boardUpdateForm.fb" id="detailForm" method="post" encType="multipart/form-data">
 				<table id="bulletin">
 						<thead>
 						<tr>
@@ -233,7 +199,12 @@
 						</tr>
 						<tr>
 							<td colspan="3">
-								<textarea id="textBox" name="content" cols="110" rows="20" style="resize:none;" readonly><%= board.getBoardContent() %></textarea>
+								<% if(biList != null){ %>
+									<img id = "image" src="<%= request.getContextPath() %>/BoardInfo_uploadFiles/<%= biList.getChangeName() %>">
+									<br><br>
+								<% } %>
+								<input type="hidden" id="category" name="category" value=<%= board.getBoardCategory() %>>
+								<textarea id="textBox" name="content" cols="155" style="resize:none;" readonly><%= board.getBoardContent() %></textarea>
 							</td>
 						</tr>
 						</tbody>
@@ -251,13 +222,13 @@
 					<table id="commentWriteTable">
 					<thead>
 						<tr>
-							<td id="commentTitle" colspan="3">댓글 작성</td>
+							<td id="commentTitle" colspan="3" width="1100px">댓글 작성</td>
 						</tr>
 					</thead>
 						<tr class="row1">
-							<td id="tc1" colspan="2">
+							<td id="tc1" colspan="2" width="1000px">
 								<input type="hidden" size="80" name="nickName">
-			                    <textarea id="commentContent" name="content" cols="105" rows="2" style="resize:none;"></textarea>
+			                    <textarea id="commentContent" name="content" cols="145" rows="2" style="resize:none;"></textarea>
 							</td>
 							<td id="tc3" style="background-color: rgb(243, 156, 18);">
 							<div align="center">
@@ -281,13 +252,13 @@
 						</tr>
 					</thead>
 						<% if(list.isEmpty()){%>
-							<tr><td colspan="3" width="925px">댓글이 없습니다.</td></tr>
+							<tr><td colspan="3" width="1100px">댓글이 없습니다.</td></tr>
 						<% }else{ %>
 							<% for(int i = 0; i < list.size(); i++){ %>
 								<tr>
-									<td width="140px"><%= list.get(i).getNickName() %></td>
-									<td width="600px"><%= list.get(i).getCommentContent() %></td>
-									<td width="140px"><%= list.get(i).getCommentDate() %></td>
+									<td width="180px"><%= list.get(i).getNickName() %></td>
+									<td width="770px"><%= list.get(i).getCommentContent() %></td>
+									<td width="180px"><%= list.get(i).getCommentDate() %></td>
 								</tr>
 							<% } %>
 						<% } %>
@@ -298,38 +269,7 @@
 				
 				<input type="button" class="detailBtn" id="cancelBtn" onclick="BoardMain();" value="메인으로">
 			</div>
-			
-			<div class="side">
-				<table class="sideTable">
-					  <thead>
-					    <tr>
-					      <th scope="col" class="sideTableTitle" colspan="2">지역별</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr class="column1">
-					      <td><a href="<%= request.getContextPath() %>/list.bo?bCode=0">서울</a></td>
-					      <td><a href="<%= request.getContextPath() %>/list.bo?bCode=1">경기</a></td>
-					    </tr>
-					    <tr class="column2">
-					      <td><a href="<%= request.getContextPath() %>/list.bo?bCode=2">강원</a></td>
-					      <td><a href="<%= request.getContextPath() %>/list.bo?bCode=3">충청</a></td>
-					    </tr>
-					    <tr class="column3">
-					      <td><a href="<%= request.getContextPath() %>/list.bo?bCode=4">전라</a></td>
-					      <td><a href="<%= request.getContextPath() %>/list.bo?bCode=5">경상</a></td>
-					    </tr>
-					    <tr class="column4">
-					      <td><a href="<%= request.getContextPath() %>/list.bo?bCode=6">제주</a></td>
-					      <td><a href="<%= request.getContextPath() %>/list.bo?bCode=7">기타</a></td>
-					    </tr>
-					</tbody>
-				</table>
-			</div>	
-		</div>		
-
-
-    
+		</div>
     </main>
     
     <%@include file="../common/footer.jsp" %>
@@ -337,14 +277,19 @@
     <script>
     	function BoardDelete(){
     		var bool = confirm('정말 삭제하시겠습니까?');
+    		var cate = $('#category').val();
     		
     		if(bool){
-    			location.href='<%= request.getContextPath() %>/delete.bo?bCode=<%= bCode %>&bNo=<%= board.getBoardNo() %>';
+    			if(cate == "글"){
+    				location.href='<%= request.getContextPath() %>/otherDelete.fb?bNo=<%= board.getBoardNo() %>';
+    			} else if(cate == "사진"){    				
+    				location.href='<%= request.getContextPath() %>/delete.fb?bNo=<%= board.getBoardNo() %>';
+    			}
     		}
     	};
     	
     	function BoardMain(){
-    		location.href='<%= request.getContextPath() %>/list.bo?bCode=<%= bCode %>';
+    		location.href='<%= request.getContextPath() %>/list.fb';
     	};
     	
     	$(function(){
@@ -368,9 +313,9 @@
     					
     					for(var key in data){
     						var $tr = $('<tr>');
-    						var $writerTd = $('<td>').text(data[key].nickname).css('width', '140px');
-    						var $contentTd = $('<td>').text(data[key].commentContent).css('width', '600px');
-    						var $dateTd = $('<td>').text(data[key].commentDate).css('width', '140px');
+    						var $writerTd = $('<td>').text(data[key].nickname).css('width', '180px');
+    						var $contentTd = $('<td>').text(data[key].commentContent).css('width', '770px');
+    						var $dateTd = $('<td>').text(data[key].commentDate).css('width', '180px');
     						
     						$tr.append($writerTd);
     						$tr.append($contentTd);

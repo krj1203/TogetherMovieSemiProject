@@ -184,7 +184,7 @@ ul{list-style:none;}
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">커뮤니티<b class="caret"></b></a>
                   <div class="dropdown-menu">
                   
-                    <a class="dropdown-item" href="#">자유게시판</a>
+                    <a class="dropdown-item" href="<%= request.getContextPath() %>/list.fb"">자유게시판</a>
                     <a class="dropdown-item" href="<%= request.getContextPath() %>/contents/group/group.jsp">만남의광장</a>
                   </div> 
                 </li>

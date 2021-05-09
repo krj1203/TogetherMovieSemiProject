@@ -54,8 +54,9 @@ public class BoardInsertServlet extends HttpServlet {
 		b.setBoardTitle(title);
 		b.setBoardContent(content);
 		b.setUsersNo(writer);
+		b.setBoardCode(2);
 		b.setBoardType(1); // 일반게시판
-		
+
 		int result = new BoardService().insertBoard(b);
 		
 		if(result > 0) {
