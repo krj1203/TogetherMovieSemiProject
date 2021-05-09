@@ -55,6 +55,7 @@ public class BoardUpdateFormServlet extends HttpServlet {
 		b.setBoardCategory(category);
 		b.setBoardContent(content);
 		b.setBoardType(1);
+		b.setBoardCode(2);
 		System.out.println("BoardUpdateFormServlet : " + b);
 		request.setAttribute("b", b);
 		request.setAttribute("bCate", bCate);

@@ -33,24 +33,13 @@ public class CommentInsertServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
 		String writer = request.getParameter("writer");
 		int uNo = Integer.parseInt(request.getParameter("uNo"));
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		int bCode = Integer.parseInt(request.getParameter("bCode"));
-		String bCate = null;
-		switch(bCode) {
-			case 0: bCate = "서울"; break;
-			case 1: bCate = "경기"; break;
-			case 2: bCate = "강원"; break;
-			case 3: bCate = "충청"; break;
-			case 4: bCate = "전라"; break;
-			case 5: bCate = "경상"; break;
-			case 6: bCate = "제주"; break;
-			case 7: bCate = "기타"; break;
-		}
+		
 		String content = request.getParameter("content");
 		
 		Comment c = new Comment();

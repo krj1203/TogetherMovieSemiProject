@@ -56,6 +56,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		b.setBoardTitle(title);
 		b.setBoardContent(content);
 		b.setBoardType(1);
+		b.setBoardCode(2);
 		
 		int result = new BoardService().updateBoard(b);
 		

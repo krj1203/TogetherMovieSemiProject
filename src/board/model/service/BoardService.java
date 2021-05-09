@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import board.model.dao.BoardDAO;
 import board.model.vo.Board;
+import board.model.vo.BoardInfo;
 import board.model.vo.Comment;
 import board.model.vo.PageInfo;
 
@@ -37,7 +38,7 @@ public class BoardService {
 		
 		return list;
 	}
-	
+
 	public int insertBoard(Board b) {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		Connection con = getConnection();
@@ -82,7 +83,7 @@ public class BoardService {
 		Connection con = getConnection();
 		boardDAO.setConnection(con);
 		
-		int result = boardDAO.delectBoard(con, bNo);
+		int result = boardDAO.deleteBoard(con, bNo);
 		
 		if(result > 0) {
 			commit(con);
@@ -139,41 +140,129 @@ public class BoardService {
 		return list;
 	}
 
-	
-
-	public int getGoodsListCount() {
+	public int getfListCount() {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection con = getConnection();
+		boardDAO.setConnection(con);
 		
-		Connection conn = getConnection();
-		int listCount = new BoardDAO().getGoodsListCount(conn);
-		
-		close(conn);
+		int listCount = new BoardDAO().getfListCount(con);
+		close(con);
 		
 		return listCount;
 	}
 
-	public ArrayList<Board> selectGoodsList(PageInfo pi) {
-		Connection conn = getConnection();
+	public ArrayList<Board> selectfList(PageInfo pi) {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection con = getConnection();
+		boardDAO.setConnection(con);
 		
-		ArrayList<Board> list = new BoardDAO().selectGoodsList(conn, pi);
-		
-		close(conn);
+		ArrayList<Board> list = new BoardDAO().selectFlist(con, pi);
+		close(con);
 		
 		return list;
 	}
 
-	public int insertGoods(Board b) {
-		Connection conn = getConnection();
+	public Board selectfBoard(int bNo) {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection con = getConnection();
+		boardDAO.setConnection(con);
+		System.out.println("들어옴");
+		Board board = null;
 		
-		int result = new BoardDAO().insertGoods(conn,b);
-		
+		int result = boardDAO.updatefCount(con, bNo);
+		System.out.println("BoardService result : " + result);
 		if(result > 0) {
+			board = new BoardDAO().selectfBoard(con, bNo);
+			System.out.println("BoardService board : " + board);
+			if(board != null) {
+				commit(con);
+			} else {
+				rollback(con);
+			}
+		} else {
+			rollback(con);
+		}
+		close(con);
+		
+		return board;
+	}
+
+	public BoardInfo selectImage(int bNo) {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection con = getConnection();
+		boardDAO.setConnection(con);
+		
+		BoardInfo fList = new BoardDAO().selectImage(con, bNo);
+		return fList;
+	}
+
+	public int insertBoardInfo(Board b, ArrayList<BoardInfo> fileList) {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection conn = getConnection();
+		boardDAO.setConnection(conn);
+		
+		int result1 = boardDAO.insertBoard(conn, b);
+		int result2 = boardDAO.insertBoardInfo(conn, fileList, b);
+		System.out.println("result1 : "+result1);
+		System.out.println("result2 : "+result2);
+		if(result1 > 0 && result2 > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
-		
-		
-		return result;
+		return result1;
 	}
+
+	public int updatefBoard(Board b, ArrayList<BoardInfo> fileList) {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection conn = getConnection();
+		boardDAO.setConnection(conn);
+		BoardInfo bi = new BoardInfo();
+		
+		int result1 = boardDAO.updateBoard(conn, b);
+		int result2 = boardDAO.updateBoardInfo(conn, fileList);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result1;
+	}
+
+	public int deletefBoard(int bNo) {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection conn = getConnection();
+		boardDAO.setConnection(conn);
+		
+		int result1 = boardDAO.deleteBoard(conn, bNo);
+		int result2 = boardDAO.deleteImg(conn, bNo);
+
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result1;
+	}
+
+	public int updatefBoard2(Board b, ArrayList<BoardInfo> fileList) {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection conn = getConnection();
+		boardDAO.setConnection(conn);
+		
+		int result1 = boardDAO.updateBoard(conn, b);
+		int result2 = boardDAO.insertBoardInfo(conn, fileList, b);
+		System.out.println("result1 : "+result1);
+		System.out.println("result2 : "+result2);
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result1;
+	}
+
+	
 
 }
