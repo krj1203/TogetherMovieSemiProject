@@ -16,6 +16,17 @@ public int confirm(String userid) {
 		
 		int result = idCheckDAO.confirm(userid);
 		
+		if(result > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		
+		close(con);
+		
+		
+		
 		close(con);
 		
 		return result;

@@ -4,6 +4,8 @@
 <%@ page import = "java.util.ArrayList, cinema.model.vo.*" %>
 <%
 	ArrayList<Cinema> cList = (ArrayList<Cinema>)request.getAttribute("cList");
+	String theme = (String)request.getAttribute("theme");
+	String com = (String)request.getAttribute("comment");
 	String msg = "오늘의 추천 영화가 없습니다.";
 	if(request.getAttribute("msg") != null){
 	msg = (String)request.getAttribute("msg");
@@ -31,8 +33,8 @@
 		<main>
 		<%@include file="../common/header.jsp" %>
           <div class="cinema">
-              <div class="cinema-title">친구</div>
-              <div class="cinema-subTitle">친구와 함께 가기 좋은 영화관</div>
+              <div class="cinema-title"><%=theme %></div>
+              <div class="cinema-subTitle"><%=com %></div>
           </div>
           <div style="text-align: right;">
             <c:if test="${sessionScope.loginUser.user_id == 'admin'}">

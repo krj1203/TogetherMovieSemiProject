@@ -91,9 +91,16 @@
 				var amount = $('input[name=amount]').val();
 				var count = $('input[name=count]').val();
 				var title = $('input[name=title]').val();
+
 				var gNo = <%= gNo %>;
 				
 				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + "title" + '&gNo=' +gNo;
+
+				console.log(amount);
+				consloe.log(title);
+				console.log(count);
+				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + title;
+
 			});
 		});
 		0

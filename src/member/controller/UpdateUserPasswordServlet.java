@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.model.service.DeleteMemberServcie;
+import member.model.service.UpdateUserPasswordService;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class DeleteMemberSeverlet
+ * Servlet implementation class UpdateUserPasswordServlet
  */
-@WebServlet("/deleteMember.do")
-public class DeleteMemberSeverlet extends HttpServlet {
+@WebServlet("/updateUserPassword.do")
+public class UpdateUserPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteMemberSeverlet() {
+    public UpdateUserPasswordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +32,9 @@ public class DeleteMemberSeverlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("contents/deleteMember/deleteMember.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("contents/updateUserPassword/updateUserPassword.jsp");
 		dispatcher.forward(request, response);
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -43,30 +42,24 @@ public class DeleteMemberSeverlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); 
 		
-		String user_password = request.getParameter("user_password");
+		String user_newPassword = request.getParameter("user_newPassword");
 		
-		
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();
 		
 		Member member = (Member)session.getAttribute("loginUser");
 		String user_id = member.getUser_id();
-
-		DeleteMemberServcie deleteMemberService = new	DeleteMemberServcie();
 		
-		int result = deleteMemberService.deleteMember(user_id,user_password);
+		UpdateUserPasswordService updateUserPasswordService = new UpdateUserPasswordService();
+		
+		int result = updateUserPasswordService.updateUserPassword(user_id,user_newPassword);
+		
 		
 		if(result == 1) {
-			HttpSession sesssion = request.getSession();
-			session.invalidate();
-			
 			response.sendRedirect(request.getContextPath());
 		}
 		
-		System.out.println(user_id);
-		System.out.println(user_password);
 		
 		
-	
 		
 		
 	}

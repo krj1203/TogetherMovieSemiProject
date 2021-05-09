@@ -9,14 +9,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../cinema/css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="myPage.css?ver=1.2" />
+	 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/contents/cinema/css/style.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/contents/myPage/myPage.css">
         
     
     
 	<script src="contents/main/js/jquery-3.6.0.min.js"></script>
 	<script src="contents/main/js/lightslider.js"></script>
-    <title>만남의 광장</title>
+    <title>마이 페이지</title>
     
     
 </head>
@@ -56,25 +56,16 @@
          	<div class="myPage-leftBox">
          		<div class="myPage_leftBox_myInfo">my 정보</div>
          		<div class="myPage_leftBox_pim">
-         			개인정보 확인/수정
+         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/updateMember.do'" >회원정보 수정 </a>
          		</div>
-         		<div class="myPage_leftBox_withdrawl" style="cursor: pointer;"   onclick="location.href ='<%=request.getContextPath()%>/deleteMember.do'">
-         			회원탈퇴
+         		<div class="myPage_leftBox_passwordChange">
+         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/updateUserPassword.do'" >비밀번호 변경</a>
+         		</div>
+         		<div class="myPage_leftBox_withdrawl">
+         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/deleteMember.do'" >회원 탈퇴</a>
          		</div>
          	</div>
-         	
-         
-         
-         
-         
          </div>
-         
-         
-         
-         
-         
-         
-         
     </main>
     
     
