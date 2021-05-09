@@ -5,6 +5,7 @@
 	int amount = (int)request.getAttribute("amount");
 	String count = (String)request.getAttribute("count");
 	String title = (String)request.getAttribute("title");
+	int gNo = (int)request.getAttribute("gNo");
 %>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script src="contents/main/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
@@ -64,7 +65,8 @@
                 var amount = <%= amount %>;
                 var count = <%= count %>;
                 var title = <%= title %>;
-                location.href='<%=request.getContextPath()%>/insertpay.gs?amount=' + amount + '&count=' + count + '&title=' + title;
+                var gNo = <%= gNo%>;
+                location.href='<%= request.getContextPath()%>/insertPay.gs?amount='+ amount + '&count=' + count + '&title=' + "title" + '&gNo=' + gNo;
                 
             } else {
                 msg = '결제에 실패하였습니다.';

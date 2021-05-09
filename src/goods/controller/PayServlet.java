@@ -1,6 +1,7 @@
 package goods.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,13 +27,18 @@ public class PayServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		String count = request.getParameter("count");
 		String title = request.getParameter("title");
+		int gNo = Integer.parseInt(request.getParameter("gNo"));
+		
+		System.out.println("넘어오나? : " + title);
 		
 		request.setAttribute("amount", amount);
 		request.setAttribute("count", count);
 		request.setAttribute("title", title);
+		request.setAttribute("gNo", gNo);
 		
 		
 		request.getRequestDispatcher("contents/goods/pay.jsp").forward(request, response);

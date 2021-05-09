@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import goods.model.dao.GoodsDAO;
 import goods.model.vo.Goods;
 import goods.model.vo.GoodsInfo;
+import goods.model.vo.Pay;
 
 public class GoodsService {
 
@@ -91,6 +92,22 @@ public int getGoodsListCount() {
 		
 				
 		return list;
+	}
+
+	public int insertPay(Pay p) {
+Connection conn = getConnection();
+		
+		GoodsDAO dao = new GoodsDAO();
+		
+		int result = dao.insertGoods(conn, p);
+		
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
 	}
 
 

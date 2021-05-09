@@ -16,6 +16,7 @@ import java.util.Properties;
 import board.model.vo.PageInfo;
 import goods.model.vo.Goods;
 import goods.model.vo.GoodsInfo;
+import goods.model.vo.Pay;
 
 public class GoodsDAO {
 	private Properties prop = new Properties();
@@ -304,6 +305,33 @@ public class GoodsDAO {
 	
 		
 		return list;
+	}
+
+	public int insertGoods(Connection conn, Pay p) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertPay");
+//		insertPay = INSERT INTO PAY VALUES(SQE_PNO.NEXTVAL, ?, ?, ?, ?, ? ,? , DEFAULT)
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, p.getGoodsNo());
+			pstmt.setString(2, p.getTitle());
+			pstmt.setString(3, p.getUserId());
+			pstmt.setInt(4, p.getAmount());
+			pstmt.setInt(5, p.getCount());
+			pstmt.setString(6, p.getEmail());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
 	}
 
 
