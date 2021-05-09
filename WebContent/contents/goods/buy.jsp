@@ -88,6 +88,8 @@
 				var amount = $('input[name=amount]').val();
 				var count = $('input[name=count]').val();
 				var title = $('input[name=title]').val();
+				console.log(amount);
+				consloe.log(title);
 				console.log(count);
 				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + title;
 			});
