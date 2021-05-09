@@ -4,6 +4,8 @@
 	Goods g = (Goods)request.getAttribute("goods");
 	ArrayList<GoodsInfo> fileList = (ArrayList<GoodsInfo>)request.getAttribute("fileList");
 	GoodsInfo titleImg = fileList.get(0);
+	int gNo = (int)request.getAttribute("gNo");
+	
 
 %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -20,7 +22,6 @@
 	<script src="contents/main/js/jquery-3.6.0.min.js"></script>
     <title>buy 초안</title>
     
- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 
@@ -33,7 +34,7 @@
 			   <div align="center">
 				<div class="product_view">
 					<h2><%= g.getGoods_title() %></h2>
-					<input type="hidden" name="title" value="<%= g.getGoods_title() %>">
+					<input type="hidden" name="title" value="<%= g.getGoods_title()%>">
 					<table>
 						<colgroup>
 						<col style="width:173px;">
@@ -83,21 +84,26 @@
 				console.log(amount);
 			});
 		});
+		</script>
+		<script>
 		$(function () {
-			$('.btns').click(function () {
+			$('.btn2').click(function () {
 				var amount = $('input[name=amount]').val();
 				var count = $('input[name=count]').val();
 				var title = $('input[name=title]').val();
+
+				var gNo = <%= gNo %>;
+				
+				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + "title" + '&gNo=' +gNo;
+
 				console.log(amount);
 				consloe.log(title);
 				console.log(count);
 				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + title;
+
 			});
 		});
-
-		
-
-
+		0
 	</script>
 </body>
 </html>

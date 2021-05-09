@@ -46,6 +46,7 @@ public class GoodsDetailServlet extends HttpServlet {
 		if(fileList != null) {
 			request.setAttribute("goods", goods);
 			request.setAttribute("fileList", fileList);
+			request.setAttribute("gNo", gNo);
 			page="contents/goods/buy.jsp";
 			
 		} else {
