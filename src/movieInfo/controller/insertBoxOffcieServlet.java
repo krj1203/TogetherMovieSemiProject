@@ -87,6 +87,7 @@ public class insertBoxOffcieServlet extends HttpServlet {
 			String content = multipartRequest.getParameter("content");
 			
 			
+			
 			MovieInfo m = new MovieInfo();
 			m.setMovieCode(1);
 			m.setMovieTitle(title);
@@ -97,6 +98,7 @@ public class insertBoxOffcieServlet extends HttpServlet {
 			m.setRunningTime(runningTime);
 			m.setAge(age);
 			m.setContent(content);
+			
 			
 			
 			

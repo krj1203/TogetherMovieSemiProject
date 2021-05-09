@@ -37,8 +37,7 @@ public class scheduledMovieListServlet extends HttpServlet {
 		ArrayList<MovieInfo> SmList = mService.selectSList(1);
 		ArrayList<MovieFile> fList = mService.selectSList(2);
 		
-		System.out.println("SMovieList : " + SmList);
-		System.out.println(fList);
+
 		
 		String page = null;
 		if(SmList != null && fList != null) {

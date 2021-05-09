@@ -12,7 +12,7 @@
 <style>
 
 	.outer {
-		width:1000px; height:650px; background: rgba(255, 255, 255, 0.4); border: 5px solid white;
+		width:1100px; height:650px; background: rgba(255, 255, 255, 0.4); border: 5px solid white;
 		margin-left:auto; margin-right:auto; margin-top:50px;
 	}
 	.insertArea {width:350px; height:310px; margin-left:auto; margin-right:auto;}
@@ -25,7 +25,7 @@
 	}
 	#insertThumbTable{margin: auto;}
 
-.pro{
+.movieInfo{
 
 	margin-top: 100px;
 }
@@ -34,27 +34,28 @@
 	padding: 0;
 	list-style: none;
 }
-.product_view { position: relative;padding: 0 0 0 395px; width: 962px; box-sizing: border-box;}
-.product_view .img { position: absolute; left: 0; top: 0;}
-.product_view .img > img { width: 368px; height: 370px; border:1px solid #e8e8e8; }
-.product_view .img li:after { content: ""; display: block; clear: both;}
-.product_view .img li { float: left; padding: 10px 10px 0 0;}
-.product_view .img li.on img { border-color:#0a56a9;}
-.product_view .img li img { width: 68px; height: 68px; border:3px solid #e8e8e8;}
-.product_view h2 { margin: 0 0 15px; padding: 0 0 20px; border-bottom:2px solid #333; font-size:24px; color:#232323; line-height: 26px;}
-.product_view table th,
-.product_view table td { padding:14px 0; font-size: 15px; color:#444; text-align: left;}
-.product_view table td.price { font-size: 22px;}
-.product_view table td.total { font-size:19px; color:#0a56a9;}
-.product_view table td.total b { font-size: 22px;}
-.product_view table .length input { width:45px; height: 30px; border: 1px solid black; text-align:center; }
-.product_view table select { width:100%; border:1px solid #c6c6c6; box-sizing: border-box;  background: url("../images/ico_select.png") no-repeat right 11px center;appearance:none; -webkit-appearance:none; -moz-appearance:none;}
-.product_view table select::-ms-expand { display: none;}
-.product_view .btns { padding: 45px 0 0; text-align: center;}
-.product_view .btns .btn1 { background: #666; color:white; width: 136px; height: 42px; border-radius: 2px; font-size: 16px; color:#fff; line-height: 42px;}
-.product_view .btns .btn2 { background: #0a56a9; color:white; width: 136px; height: 42px; border-radius: 2px; font-size: 16px; color:#fff; line-height: 42px;}
+.movieInfo_view { position: relative;padding: 0 0 0 395px; width: 962px; box-sizing: border-box;}
+.movieInfo_view .img { position: absolute; left: 0; top: 0;}
+.movieInfo_view .img > img { width: 368px; height: 370px; border:1px solid #e8e8e8; }
+.movieInfo_view .img li:after { content: ""; display: block; clear: both;}
+.movieInfo_view .img li { float: left; padding: 10px 10px 0 0;}
+.movieInfo_view .img li.on img { border-color:#0a56a9;}
+.movieInfo_view .img li img { width: 68px; height: 68px; border:3px solid #e8e8e8;}
+.movieInfo_view h2 { margin: 0 0 15px; padding: 0 0 20px; border-bottom:2px solid #333; font-size:24px; color:#232323; line-height: 26px;}
+.movieInfo_view table th,
+.movieInfo_view table td { padding:14px 0; font-size: 15px; color:#444; text-align: left;}
+.movieInfo_view table td.price { font-size: 22px;}
+.movieInfo_view table td.total { font-size:19px; color:#0a56a9;}
+.movieInfo_view table td.total b { font-size: 22px;}
+.movieInfo_view table .length input { width:45px; height: 30px; border: 1px solid black; text-align:center; }
+.movieInfo_view table select { width:100%; border:1px solid #c6c6c6; box-sizing: border-box;  background: url("../images/ico_select.png") no-repeat right 11px center;appearance:none; -webkit-appearance:none; -moz-appearance:none;}
+.movieInfo_view table select::-ms-expand { display: none;}
+.movieInfo_view .btns { padding: 45px 0 0; text-align: center;}
+.movieInfo_view.btns .btn1 { background: #666; color:white; width: 136px; height: 42px; border-radius: 2px; font-size: 16px; color:#fff; line-height: 42px;}
+.movieInfo_view.btns .btn2 { background: #0a56a9; color:white; width: 136px; height: 42px; border-radius: 2px; font-size: 16px; color:#fff; line-height: 42px;}
 
-</style>   
+</style> 
+    
     
     
 	<script src="contents/main/js/jquery-3.6.0.min.js"></script>
@@ -109,7 +110,7 @@
 						</tr>
 						<tr>
 							<th width="100px">줄거리</th>
-							<td colspan="3"><textarea name="content" rows="5" cols="50" style="resize:none;"></textarea>
+							<td colspan="3"><textarea name="content" rows="30" cols="60" style="resize:none;"></textarea>
 						</tr>
 					<tr>
 						<th>스틸컷</th>

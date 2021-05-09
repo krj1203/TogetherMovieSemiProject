@@ -40,12 +40,12 @@ public class BoardListServlet extends HttpServlet {
 		switch(bCode) {
 			case 0: bCate = "서울"; break;
 			case 1: bCate = "경기"; break;
-			case 2: bCate = "지역2"; break;
-			case 3: bCate = "지역3"; break;
-			case 4: bCate = "지역4"; break;
-			case 5: bCate = "지역5"; break;
-			case 6: bCate = "지역6"; break;
-			case 7: bCate = "제주"; break;
+			case 2: bCate = "강원"; break;
+			case 3: bCate = "충청"; break;
+			case 4: bCate = "전라"; break;
+			case 5: bCate = "경상"; break;
+			case 6: bCate = "제주"; break;
+			case 7: bCate = "기타"; break;
 		}
 		System.out.println("bCode : " + bCode);
 		System.out.println("bCate : " + bCate);

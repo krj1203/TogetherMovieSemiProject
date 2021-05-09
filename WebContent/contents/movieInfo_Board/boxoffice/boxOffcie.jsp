@@ -7,7 +7,8 @@
 <%
 	ArrayList<MovieInfo> BmList = (ArrayList<MovieInfo>)request.getAttribute("BmList");
 	ArrayList<MovieFile> fList = (ArrayList<MovieFile>)request.getAttribute("fList");
-
+	System.out.println("B:" + BmList);
+	System.out.println("B_F:" + fList);
 %>
 
 
@@ -50,11 +51,14 @@
 
 
 
-.thumbnailArea {width:1100px; height:950px; 
-                margin:20px; padding-left:160px; margin-top: 50px;}
+.thumbnailArea {width:1100px; height:1600px;
+                margin:20px; padding-left:160px; margin-top: 50px;
+                line-height: 150%;}
                 
 .thumb-list{width:300px; height:400px;  display:inline-block;  border:1px solid black;}
 .thumnail-list img{width:250px; height:300px; cursor:pointer; border:1px solid black;}
+.Smovie p{font-size:30px; padding-left:10px;}
+.lll{display:inline-block; padding-left:80px;}
 </style>
 
 
@@ -91,14 +95,15 @@
 							<% MovieInfo b = BmList.get(i); %>
 							<div class="thumb-list">
 								<div>	
-									<input type="hidden" name="mNo" value="<%=b.getMovieNo() %>">
-									<%for(int j=0; j < BmList.size(); j++) {%>
+									<input type="hidden" id="sNo" name="sNo" value="<%=b.getMovieNo()%>">
+									<%for(int j=0; j < fList.size(); j++) {%>
 										<%MovieFile a = fList.get(j); %>
 										<% if(b.getMovieNo() == a.getMovieNo()){ %>
-											<ul class='Bmovie'>
-												<li><img src ="<%=request.getContextPath() %>/BoxOffcie_uploadFiles/<%=a.getChangeName() %>" style="max-width: 100%; height: auto;"></li>	
-												<li><p style="text-align: left" ><strong><%=b.getMovieTitle() %></strong></p></li>
-												<li><input  class='button' type="button" onclick="" id="detailtBtn" value="+상세보기"></li>	
+											<ul class='Smovie'>
+												<li><img src ="<%=request.getContextPath() %>/BoxOffcie_uploadFiles/<%=a.getChangeName() %>"
+												               style="max-width: 100%; height: 310px;"></li>
+												<li><p style="text-align: left" ><%=b.getMovieTitle() %></p></li>
+												<li class="lll"><input  class='button' type="button" onclick="" id="detailtBtn" value="+상세보기"	></li>	
 											</ul>
 										<% } %>
 									<% } %>	
@@ -108,7 +113,6 @@
 						<% } %>
 					<% } %>	
 				</div>
-				
 			
 	</section>
   </main>
@@ -118,16 +122,31 @@
     
     
     
+      
     <script>
-    $(function() {
-		$('.Bmovie').click(function () {
-			location.href="<%= request.getContextPath()%>/detail.lmovie";
-		});
-	});
+    $(function name() {
+		$('.thumb-list').click(function () {
+			var w = window.open("about:blank", '영화 상세정보',
+								'width=900, height=800, left=200,  menubar=no, status=no, toolbar=no, location=no');
+			var sNo = $(this).children().children().eq(0).val();
+			 console.log(sNo);
+			 
+			 url='<%= request.getContextPath()%>/BMoviedetail.mo?sNo=' + sNo;
+			   
+			 
+			 $.ajax({
+	                url:'BMoviedetail.mo',
+	                data:{sNo : sNo},
+	                success:function(data){
+	                   console.log('통신성공');
+	                   w.location.href=url;
+	                }
+	             });
+	          });
+	       
+	       });
     
-   
     </script>
-   
    
     
 </body>

@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" src="script/member.js"></script>
 <head>
     <meta charset="UTF-8">
 <style>
@@ -602,6 +603,7 @@ ul {
 </style>
 </head>
 <body>
+  <form action="insertMember.do" method="post" name="frm">
 	<div class="wrap wd668">
 		<div class="container">
 			<div class="form_txtInput">
@@ -615,29 +617,45 @@ ul {
 						<tbody>
 							<tr>
 								<th><span>아이디</span></th>
-								<td><input type="text" placeholder="ID 를 입력하세요."></td>
+								<td><input type="text" placeholder="ID 를 입력하세요." name="user_id"></td>
+								<td><input type="hidden" name="reid" size="20">
+								<td><input type="button" value="아이디 중복체크" style="margin-left: 30px"  onclick="idCheck()"></td>
+							</tr>
+							<tr>
+								<th><span>닉네임</span></th>
+								<td><input type="text" placeholder="닉네임을 입력하세요" name="user_nickName"></td>
+								<td><input type="hidden" name="reid_nickName" size="20">
+								<td><input type="button" value="닉네임 중복체크" style="margin-left: 30px" onclick="nickNmaeCheck()"></td>
+								
 							</tr>
 							<tr>
 								<th><span>이름</span></th>
-								<td><input type="text" placeholder=""></td>
+								<td><input type="text" placeholder="이름을 입력하세요" name="user_name"></td>
 							</tr>
 							<tr>
 								<th><span>비밀번호</span></th>
-								<td><input type="text" placeholder="비밀번호를 입력해주세요."></td>
+								<td><input type="password" placeholder="비밀번호를 입력해주세요." name="user_password"></td>
 							</tr>
 							<tr>
 								<th><span>비밀번호 확인</span></th>
-								<td><input type="text" placeholder="비밀번호를 확인하세요"></td>
-							</tr>
-							<tr class="email">
-								<th><span>이메일</span></th>
-								<td><input type="text" class="email" placeholder=""><span
-									class="mar10">@</span> <input type="text" class="email email2" placeholder="">
+								<td><input type="password" placeholder="비밀번호를 확인하세요" name="user_passwordCheck"></td>
 							</tr>
 							<tr>
-								<th><span>휴대폰 번호</span></th>
-								<td><input type="text" placeholder="010-0000-0000"></td>
+								<th><span>휴대전화</span></th>
+								<td><input type="text" placeholder="(-를빼고 입력해주세요)" name="phone"></td>
+							
 							</tr>
+							
+								
+							<tr class="email">
+								<th><span>이메일</span></th>
+								<td><input type="text" class="email" placeholder="이메일을 입력하세요" name="user_email">		
+							</tr>
+							<tr>
+								<th><span>주소</span></th>
+								<td><input type="text" placeholder="주소를 입력하세요" name="address"></td>
+							</tr>
+						
 						</tbody>
 					</table>
 					<div class="exform_txt">
@@ -647,7 +665,7 @@ ul {
 				<!-- join_form E  -->
 				
 				<div class="btn_wrap">
-					<a href="javascript:;">회원가입</a>
+					<input type="submit" value="회원가입" onclick="return joinCheck()" style="width: 180px; height: 55px; border-style: none; background-color: rgb(243, 156, 18); color: white"  >
 					<br><br>
 				</div>
 			</div>
@@ -656,5 +674,6 @@ ul {
 		<!-- content E-->
 	</div>
 	<!-- container E -->
+  </form>	
 </body>
 </html>

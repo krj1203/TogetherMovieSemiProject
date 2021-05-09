@@ -99,7 +99,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("GENRE"),
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
-									   rset.getString("CONTENT")));
+									   rset.getString("CONTENT"),
+									   rset.getString("RECOM_STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,7 +116,6 @@ public int getMovieInfoListCount(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<MovieInfo> list = null;
-		System.out.println("mList : conn >> " + conn);
 		String query = prop.getProperty("selectLList");
 		
 		try {
@@ -132,7 +132,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("GENRE"),
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
-									   rset.getString("CONTENT")));
+									   rset.getString("CONTENT"),
+									   rset.getString("RECOM_STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -149,7 +150,7 @@ public int getMovieInfoListCount(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<MovieInfo> list = null;
-		System.out.println("mList : conn >> " + conn);
+		
 		String query = prop.getProperty("selectBList");
 		
 		try {
@@ -166,7 +167,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("GENRE"),
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
-									   rset.getString("CONTENT")));
+									   rset.getString("CONTENT"),
+									   rset.getString("RECOM_STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -223,6 +225,7 @@ public int getMovieInfoListCount(Connection conn) {
 			pstmt.setString(7, m.getRunningTime());
 			pstmt.setString(8, m.getAge());
 			pstmt.setString(9, m.getContent());
+			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -290,7 +293,8 @@ public int getMovieInfoListCount(Connection conn) {
 										   rset.getString("GENRE"),
 										   rset.getString("RUNNINGTIME"),
 										   rset.getString("AGE"),
-										   rset.getString("CONTENT"));
+										   rset.getString("CONTENT"),
+										   rset.getString("RECOM_STATUS"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -309,7 +313,7 @@ public int getMovieInfoListCount(Connection conn) {
 		ResultSet rset = null;
 		ArrayList<MovieFile> list = null;
 		
-		String query = prop.getProperty("selectGoodsInfo");
+		String query = prop.getProperty("selectMovieFile");
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -320,12 +324,13 @@ public int getMovieInfoListCount(Connection conn) {
 			list = new ArrayList<MovieFile>();
 			while(rset.next()) {
 				MovieFile sm = new MovieFile();
-				sm.setFiledId(rset.getInt("FILE_ID"));
-				sm.setOriginName(rset.getString("ORIGIN_NAME"));
-				sm.setChangeName(rset.getString("CHANGE_NAME"));
-				sm.setFilePath(rset.getString("FILE_PATH"));
+						sm.setFiledId(rset.getInt("FILE_NO"));
+						sm.setOriginName(rset.getString("ORIGIN_NAME"));
+						sm.setChangeName(rset.getString("CHANGE_NAME"));
+						sm.setFilePath(rset.getString("FILE_PATH"));
 				
 				list.add(sm);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

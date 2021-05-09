@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../cinema/css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="group.css?ver=1.0" />
+    <link rel="stylesheet" type="text/css" href="group.css" />
     
     
 	<script src="contents/main/js/jquery-3.6.0.min.js"></script>
@@ -61,18 +61,18 @@
 							<a href="<%= request.getContextPath() %>/list.bo?bCode=2">
 								<span class="thumbSpan">
 									<img src="<%= request.getContextPath() %>/contents/main/img/movie.jpg">
-									<em>지역2</em>
+									<em>강원</em>
 								</span>
-							<p class="info" id="M_info2">지역2</p>
+							<p class="info" id="M_info2">강원</p>
 							</a>
 						</div>
 						<div class="thumb" id="thumnail3">
 							<a href="<%= request.getContextPath() %>/list.bo?bCode=3">
 								<span class="thumbSpan">
 									<img src="<%= request.getContextPath() %>/contents/main/img/movie.jpg">
-									<em>지역3</em>
+									<em>충청</em>
 								</span>
-							<p class="info" id="M_info3">지역3</p>
+							<p class="info" id="M_info3">충청</p>
 							</a>
 						</div>
 					</div>
@@ -83,36 +83,36 @@
 							<a href="<%= request.getContextPath() %>/list.bo?bCode=4">
 								<span class="thumbSpan">
 									<img src="<%= request.getContextPath() %>/contents/main/img/movie.jpg">
-									<em>지역4</em>
+									<em>전라</em>
 								</span>
-							<p class="info" id="M_info4">지역4</p>
+							<p class="info" id="M_info4">전라</p>
 							</a>
 						</div>
 						<div class="thumb" id="thumnail5">
 							<a href="<%= request.getContextPath() %>/list.bo?bCode=5">
 								<span class="thumbSpan">
 									<img src="<%= request.getContextPath() %>/contents/main/img/movie.jpg">
-									<em>지역5</em>
+									<em>경상</em>
 								</span>
-							<p class="info" id="M_info5">지역5</p>
+							<p class="info" id="M_info5">경상</p>
 							</a>
 						</div>
 						<div class="thumb" id="thumnail6">
 							<a href="<%= request.getContextPath() %>/list.bo?bCode=6">
 								<span class="thumbSpan">
 									<img src="<%= request.getContextPath() %>/contents/main/img/movie.jpg">
-									<em>지역6</em>
+									<em>제주</em>
 								</span>
-							<p class="info" id="M_info6">지역6</p>
+							<p class="info" id="M_info6">제주</p>
 							</a>
 						</div>
 						<div class="thumb" id="thumnail7">
 							<a href="<%= request.getContextPath() %>/list.bo?bCode=7">
 								<span class="thumbSpan">
 									<img src="<%= request.getContextPath() %>/contents/main/img/movie.jpg">
-									<em>제주</em>
+									<em>기타</em>
 								</span>
-							<p class="info" id="M_info7">제주</p>
+							<p class="info" id="M_info7">기타</p>
 							</a>
 						</div>
 					</div>

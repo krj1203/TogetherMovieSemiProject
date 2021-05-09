@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import goods.model.service.GoodsService;
 import goods.model.vo.Goods;
@@ -40,10 +41,12 @@ public class GoodsDetailServlet extends HttpServlet {
 		Goods goods = service.selectGoods(gNo);
 		ArrayList<GoodsInfo> fileList = service.selectGoodsInfo(gNo);
 		
+		
 		String page = null;
 		if(fileList != null) {
 			request.setAttribute("goods", goods);
 			request.setAttribute("fileList", fileList);
+			request.setAttribute("gNo", gNo);
 			page="contents/goods/buy.jsp";
 			
 		} else {
