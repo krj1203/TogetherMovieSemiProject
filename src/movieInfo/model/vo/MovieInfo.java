@@ -11,11 +11,14 @@ public class MovieInfo {
 	private String runningTime;
 	private String age;
 	private String content;
+	private String recom_status;
 	
 	public MovieInfo() {}
 	
+
+
 	public MovieInfo(int movieNo, int movieCode, String movieDate, String movieTitle, String director, String actor,
-			String genre, String runningTime, String age, String content) {
+			String genre, String runningTime, String age, String content, String recom_status) {
 		super();
 		this.movieNo = movieNo;
 		this.movieCode = movieCode;
@@ -27,7 +30,9 @@ public class MovieInfo {
 		this.runningTime = runningTime;
 		this.age = age;
 		this.content = content;
+		this.recom_status = recom_status;
 	}
+
 
 
 	public int getMovieNo() {
@@ -128,13 +133,27 @@ public class MovieInfo {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	
+
+	public String getRecom_status() {
+		return recom_status;
+	}
+
+
+
+	public void setRecom_status(String recom_status) {
+		this.recom_status = recom_status;
+	}
+
 
 
 	@Override
 	public String toString() {
 		return "MovieInfo [movieNo=" + movieNo + ", movieCode=" + movieCode + ", movieDate=" + movieDate
 				+ ", movieTitle=" + movieTitle + ", director=" + director + ", actor=" + actor + ", genre=" + genre
-				+ ", runningTime=" + runningTime + ", age=" + age + ", content=" + content + "]";
+				+ ", runningTime=" + runningTime + ", age=" + age + ", content=" + content + ", recom_status="
+				+ recom_status + "]";
 	}
 	
 	
