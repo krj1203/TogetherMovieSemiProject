@@ -96,10 +96,7 @@
 				
 				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + "title" + '&gNo=' +gNo;
 
-				console.log(amount);
-				consloe.log(title);
-				console.log(count);
-				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + title;
+		
 
 			});
 		});
