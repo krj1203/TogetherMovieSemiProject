@@ -34,15 +34,29 @@
 		<%@include file="../common/header.jsp" %>
 			    	<!-- 상품 상세 정보 -->
 			   <div align="center">
+					<div align="right">
+						<c:if test="${sessionScope.loginUser.user_id == 'admin'}">
+							<input type="button" class="detailBtn" id="update" onclick="updateBtn();" value="수정">
+							<input type="button" class="detailBtn" onclick="goodsDelete();" id="deleteBtn" value="삭제">
+						</c:if>
+					</div>
 				<div class="product_view">
 					<h2><%= g.getGoods_title() %></h2>
 					<input type="hidden" name="title" value="<%= g.getGoods_title()%>">
+					<input type="hidden" name="contents" value="<%= g.getGoods_contents() %>">
+					<input type="hidden" name="price" value="<%= g.getGoods_price() %>">
+					<input type="hidden" name="img" value="<%= titleImg.getChangeName()%>">
+					
 					<table>
 						<colgroup>
 						<col style="width:173px;">
 						<col>
 						</colgroup>
 						<tbody>
+						<tr>
+							<th>상품 설명</th>
+							<td class="contents"><%= g.getGoods_contents() %></td>
+						</tr>
 						<tr>
 							<th>판매가</th>
 							<td class="price"><%= g.getGoods_price() %></td>
@@ -104,6 +118,36 @@
 
 			});
 		});
+		
+		function goodsDelete(){
+    		var bool = confirm('정말 삭제하시겠습니까?');
+    		var gNo = <%= gNo %>;
+    		if(bool){
+    			location.href='<%= request.getContextPath() %>/delete.gs?gNo=' + gNo;
+    		}
+    	};
+    	
+    	$(function () {
+    		$('#update').click(function () {
+				
+    		var gNo = <%= gNo %>;
+    		var price = $('input[name=price]').val();
+    		var contents = $('input[name=contents]').val();
+    		var title = $('input[name=title]').val();
+    		var img = $('input[name=img]').val();
+    		
+    		location.href='<%= request.getContextPath() %>/update.gs?gNo=' + gNo + '&price=' + price + '&title=' + title + '&contents=' + contents +'&img=' + img;
+			});
+		});
+    	
+//     	function updateBtn(){
+<%--     		var gNo = <%= gNo %>; --%>
+//     		var price = $('input[name=price]').val();
+//     		var contents = $('input[name=contents]').val();
+//     		var title = $('input[name=title]').val();
+<%--     		location.href='<%= request.getContextPath() %>/update.gs?gNo=' + gNo + '&price=' + price + '&title=' + "title" + '&contents=' +"contents"; --%>
+//     	};
+    	
 	</script>
 </body>
 </html>
