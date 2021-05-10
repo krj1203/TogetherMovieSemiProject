@@ -43,12 +43,18 @@
 	<div class="movieInfo_view">
 		
 		<div class="img">
-			<img src="<%= request.getContextPath() %>/latestMovie_uploadFiles/<%= titleImg.getChangeName()%>">
+			<img src="<%= request.getContextPath() %>/uploadFiles/<%= titleImg.getChangeName()%>">
 		</div>
 		
 		
 		
 		<div class="movieInfo">
+		<c:if test="${sessionScope.loginUser.user_id == 'admin'}">
+				<input type ="submit" id ="RecomButton" style="border:0px; background-color: rgb(243, 156, 18, 0.5);"value="오늘의 영화로 선정">
+				<%if(m.getRecom_status().equals("Y")){ %>
+				<input type ="submit" id ="RecomdeleteButton" style="border:0px; background-color: rgb(195, 195, 195, 0.5);"value="오늘의 영화로 취소">
+				<%} %>
+		</c:if>
 			<h1><%=m.getMovieTitle() %></h1>
 			<table>
 				<tr>
@@ -85,7 +91,7 @@
 				<%for(int i=1; i<fileList.size(); i++){ %>
 					<td>
 						<div class="stillShotImgArea">
-							 	<img id="stillShotImg<%=i%>" class="stillShotImg" src="<%=request.getContextPath() %>/latestMovie_uploadFiles/<%=fileList.get(i).getChangeName() %>">
+							 	<img id="stillShotImg<%=i%>" class="stillShotImg" src="<%=request.getContextPath() %>/uploadFiles/<%=fileList.get(i).getChangeName() %>">
 						</div>
 					</td>
 				<%} %>
@@ -93,7 +99,23 @@
 		
 	</div>
 		
-		
+		<script>
+    	$('#RecomButton').on('click', function(){
+    		var bool = confirm('오늘의 영화로 선정 하시겠습니까?');
+    		
+    		if(bool){
+    			location.href ='<%= request.getContextPath()%>/insertRecomMovie.ma?no=' + <%=m.getMovieNo()%>;
+    		}
+    	});
+    	
+    	$('#RecomdeleteButton').on('click', function(){
+    		var bool = confirm('오늘의 영화에서 취소 하시겠습니까?');
+    		
+    		if(bool){
+    			location.href ='<%= request.getContextPath()%>/cancleRecomMovie.ma?no=' + <%=m.getMovieNo()%>;
+    		}
+    	});
+    </script>
 	
 </body>
 </html>

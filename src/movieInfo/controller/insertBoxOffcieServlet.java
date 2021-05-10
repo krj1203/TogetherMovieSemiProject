@@ -45,7 +45,7 @@ public class insertBoxOffcieServlet extends HttpServlet {
 			
 			int maxSize = 1024*1024*10;
 			String root = request.getSession().getServletContext().getRealPath("/");
-			String savePath = root + "BoxOffcie_uploadFiles/"; 
+			String savePath = root + "uploadFiles/"; 
 			
 			File f = new File(savePath);
 			if(!f.exists()) {

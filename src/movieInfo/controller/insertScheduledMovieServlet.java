@@ -45,7 +45,7 @@ public class insertScheduledMovieServlet extends HttpServlet {
 			
 			int maxSize = 1024*1024*10;
 			String root = request.getSession().getServletContext().getRealPath("/");
-			String savePath = root + "scheduledMovie_uploadFiles/";
+			String savePath = root + "uploadFiles/";
 			System.out.println(savePath); 
 			
 			File f = new File(savePath);

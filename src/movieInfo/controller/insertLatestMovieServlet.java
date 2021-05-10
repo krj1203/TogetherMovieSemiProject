@@ -44,7 +44,7 @@ public class insertLatestMovieServlet extends HttpServlet {
 			
 			int maxSize = 1024*1024*10;
 			String root = request.getSession().getServletContext().getRealPath("/");
-			String savePath = root + "latestMovie_uploadFiles/";
+			String savePath = root + "uploadFiles/";
 			System.out.println(savePath); 
 			
 			File f = new File(savePath);

@@ -33,6 +33,23 @@ public class MovieInfo {
 		this.recom_status = recom_status;
 	}
 
+	
+
+	public MovieInfo(int movieNo, int movieCode, String movieDate, String movieTitle, String director, String actor,
+			String genre, String runningTime, String age, String content) {
+		super();
+		this.movieNo = movieNo;
+		this.movieCode = movieCode;
+		this.movieDate = movieDate;
+		this.movieTitle = movieTitle;
+		this.director = director;
+		this.actor = actor;
+		this.genre = genre;
+		this.runningTime = runningTime;
+		this.age = age;
+		this.content = content;
+	}
+
 
 
 	public int getMovieNo() {

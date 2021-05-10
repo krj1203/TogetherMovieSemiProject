@@ -99,7 +99,7 @@
 										<%MovieFile a = fList.get(j); %>
 										<% if(b.getMovieNo() == a.getMovieNo()){ %>
 											<ul class='Smovie'>
-												<li><img src ="<%=request.getContextPath() %>/scheduledMovie_uploadFiles/<%=a.getChangeName() %>"
+												<li><img src ="<%=request.getContextPath() %>/uploadFiles/<%=a.getChangeName() %>"
 												               style="max-width: 100%; height: 310px;"></li>
 												<li><p style="text-align: left" ><%=b.getMovieTitle() %></p></li>
 												<li class="lll"><input  class='button' type="button" onclick="" id="detailtBtn" value="+상세보기"	></li>	
