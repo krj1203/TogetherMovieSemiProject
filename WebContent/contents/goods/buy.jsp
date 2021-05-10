@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="goods.model.vo.*, java.util.*"%>
+    
 <% 
 	Goods g = (Goods)request.getAttribute("goods");
 	ArrayList<GoodsInfo> fileList = (ArrayList<GoodsInfo>)request.getAttribute("fileList");
@@ -8,6 +9,7 @@
 	
 
 %>
+
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -67,9 +69,11 @@
 					<div class="img">
 						<img src="<%= request.getContextPath() %>/goods_uploadFiles/<%= titleImg.getChangeName()%>">
 					</div>
+					<c:if test="${not empty sessionScope.loginUser}">
 					<div class="btns">
 						<a class="btn2">구매하기</a>
 					</div>
+					</c:if>
 				</div>
 			</div>
     </main>
@@ -100,7 +104,6 @@
 
 			});
 		});
-		0
 	</script>
 </body>
 </html>

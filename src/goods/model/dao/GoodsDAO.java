@@ -96,7 +96,8 @@ public class GoodsDAO {
 									rset.getInt("GOODS_PRICE"),
 									rset.getInt("GOODS_COUNT"),
 									rset.getString("GOODS_CONTENTS"),
-									rset.getString("STATUS"));
+									rset.getString("STATUS"),
+									rset.getDate("CREATE_DATE"));
 				list.add(g);
 			}
 			
@@ -152,7 +153,8 @@ public class GoodsDAO {
 									rset.getInt("GOODS_PRICE"),
 									rset.getInt("GOODS_COUNT"),
 									rset.getString("GOODS_CONTENTS"),
-									rset.getString("STATUS")));
+									rset.getString("STATUS"),
+									rset.getDate("CREATE_DATE")));
 				
 			}
 			
@@ -260,7 +262,8 @@ public class GoodsDAO {
 									rset.getInt("GOODS_PRICE"),
 									rset.getInt("GOODS_COUNT"),
 									rset.getString("GOODS_CONTENTS"),
-									rset.getString("STATUS"));
+									rset.getString("STATUS"),
+									rset.getDate("CREATE_DATE"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -332,6 +335,68 @@ public class GoodsDAO {
 		
 		return result;
 		
+	}
+
+	public ArrayList selectGList2(Connection conn) {
+		Statement stmt =null;
+		ResultSet rset = null;
+		ArrayList<Goods> list = null;
+		
+		String query = prop.getProperty("selectGList2");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<Goods>();
+			
+			while(rset.next()) {
+				list.add(new Goods(rset.getInt("GOODS_NO"),
+									rset.getString("GOODS_NAME"),
+									rset.getInt("GOODS_PRICE"),
+									rset.getInt("GOODS_COUNT"),
+									rset.getString("GOODS_CONTENTS"),
+									rset.getString("STATUS"),
+									rset.getDate("CREATE_DATE")));
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList selectFList2(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<GoodsInfo> list = null;
+		
+		String query = prop.getProperty("selectFList2");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			list = new ArrayList<GoodsInfo>();
+			
+			while(rset.next()) {
+				list.add(new GoodsInfo(rset.getInt("GOODS_NO"),
+									    rset.getString("CHANGE_NAME")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;
 	}
 
 

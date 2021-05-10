@@ -42,6 +42,22 @@ public int getGoodsListCount() {
 		
 		return list;
 	}
+	public ArrayList selectGoodsList2(int i) {
+		Connection conn = getConnection();
+		
+		ArrayList list = null;
+		
+		GoodsDAO gDAO = new GoodsDAO();
+		if(i == 1) {
+			list = gDAO.selectGList2(conn);
+		} else {
+			list = gDAO.selectFList2(conn);
+		}
+		
+		close(conn);
+		
+		return list;
+	}
 
 	public int insertGoods(Goods g, ArrayList<GoodsInfo> fileList) {
 		
@@ -58,6 +74,7 @@ public int getGoodsListCount() {
 		} else {
 			rollback(conn);
 		}
+		close(conn);
 		return result1;
 	}
 
@@ -81,7 +98,7 @@ public int getGoodsListCount() {
 		} else {
 			rollback(conn);
 		}
-		
+		close(conn);
 		return goods;
 	}
 
@@ -107,8 +124,10 @@ Connection conn = getConnection();
 		} else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
+
 
 
 }

@@ -3,11 +3,11 @@
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <% 
-	ArrayList<Goods> gList = (ArrayList<Goods>)request.getAttribute("gList");
-	ArrayList<GoodsInfo> fList = (ArrayList<GoodsInfo>)request.getAttribute("fList");
+	ArrayList<Goods> gList2 = (ArrayList<Goods>)request.getAttribute("gList2");
+	ArrayList<GoodsInfo> fList2 = (ArrayList<GoodsInfo>)request.getAttribute("fList2");
 
-	System.out.println(gList);
-	System.out.println(fList);
+	System.out.println(gList2);
+	System.out.println(fList2);
 	
 %>
 <!DOCTYPE html>
@@ -181,20 +181,20 @@ ul{
 				<div class="middle-subtitle">
 					<div><span>상품 목록</span></div>
 				</div>
-				<div align="right" class="newList" style="cursor:default"><a>최신 상품순</a></div>
+				<div align="right" class="countList" style="cursor:default"><a>조회순</a></div>
 				<div>
 				</div>
 			<div class="clear"></div>
-			<%if(gList.isEmpty() || fList.isEmpty()){ %>
+			<%if(gList2.isEmpty() || fList2.isEmpty()){ %>
 			<div> 등록된 상품이 없습니다.</div>
 			<% } else {%>
-				<% for(int i = 0; i < gList.size(); i++){ %>
-					<% Goods g = gList.get(i); %>
+				<% for(int i = 0; i < gList2.size(); i++){ %>
+					<% Goods g = gList2.get(i); %>
 					<div class="thumb-list">
 						<div>
 							<input type="hidden" id="gNo" name="gNo" value="<%= g.getGoods_no() %>">
-								<% for(int j = 0; j < fList.size(); j++){ %>
-									<% GoodsInfo a = fList.get(j); %>
+								<% for(int j = 0; j < fList2.size(); j++){ %>
+									<% GoodsInfo a = fList2.get(j); %>
 									<% if(g.getGoods_no() == a.getGoodsNo()) {%>
 										<ul	class="items">
 											<li><img class="imgs" src="<%= request.getContextPath()%>/goods_uploadFiles/<%= a.getChangeName()%>"></li>
@@ -227,15 +227,12 @@ ul{
 				location.href='<%= request.getContextPath()%>/detail.gs?gNo=' + gNo;
 			});
 		});
-		
-		
 		</script>
-		<script>
-	        $('.newList').on('click', function () {
-				location.href="<%= request.getContextPath() %>/newList.gs";
+		   <script>
+	        $('.countList').on('click', function () {
+				location.href="<%= request.getContextPath() %>/list.gs";
 			});
-        </script>
-        
+          </script>
 	 <%@include file="../common/footer.jsp" %>
 		
 		

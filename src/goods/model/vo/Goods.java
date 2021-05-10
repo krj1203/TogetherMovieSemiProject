@@ -1,5 +1,7 @@
 package goods.model.vo;
 
+import java.sql.Date;
+
 public class Goods {
 	
 	private int goods_no; // 상품번호
@@ -8,13 +10,14 @@ public class Goods {
 	private int goods_count; // 상품 갯수
 	private String goods_contents; // 상풍 내용
 	private String status;
+	private Date create_date;
 	
 	
 	public Goods() {}
 
 
 	public Goods(int goods_no, String goods_title, int goods_price, int goods_count, String goods_contents,
-			String status) {
+			String status, Date create_date) {
 		super();
 		this.goods_no = goods_no;
 		this.goods_title = goods_title;
@@ -22,7 +25,10 @@ public class Goods {
 		this.goods_count = goods_count;
 		this.goods_contents = goods_contents;
 		this.status = status;
+		this.create_date = create_date;
 	}
+
+
 
 
 	public int getGoods_no() {
@@ -83,12 +89,26 @@ public class Goods {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+
+
+	public Date getCreate_date() {
+		return create_date;
+	}
+
+
+	public void setCreate_date(Date create_date) {
+		this.create_date = create_date;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Goods [goods_no=" + goods_no + ", goods_name=" + goods_title + ", goods_price=" + goods_price
-				+ ", goods_count=" + goods_count + ", goods_contents=" + goods_contents + ", status=" + status + "]";
+		return "Goods [goods_no=" + goods_no + ", goods_title=" + goods_title + ", goods_price=" + goods_price
+				+ ", goods_count=" + goods_count + ", goods_contents=" + goods_contents + ", status=" + status
+				+ ", create_date=" + create_date + "]";
 	}
+
+	
 
 }

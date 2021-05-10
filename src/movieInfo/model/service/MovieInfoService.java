@@ -39,7 +39,7 @@ public int getGoodsListCount() {
 		}else {
 			list = mDAO.selectfList(conn);
 		}
-		
+		close(conn);
 		return list;
 	}
 	
@@ -57,7 +57,7 @@ public int getGoodsListCount() {
 		}else {
 			list = mDAO.selectfList(conn);
 		}
-		
+		close(conn);
 		return list;
 	}
 
@@ -73,7 +73,7 @@ public int getGoodsListCount() {
 		}else {
 			list = mDAO.selectfList(conn);
 		}
-		
+		close(conn);
 		return list;
 		
 	}
@@ -95,6 +95,7 @@ public int getGoodsListCount() {
 		}else {
 			rollback(conn);	
 		}
+		close(conn);
 		return result1;
 	}
 
@@ -115,6 +116,7 @@ public int getGoodsListCount() {
 		}else {
 			rollback(conn);	
 		}
+		close(conn);
 		return result1;
 	}
 	
@@ -134,6 +136,7 @@ public int getGoodsListCount() {
 		}else {
 			rollback(conn);	
 		}
+		close(conn);
 		return result1;
 	}
 
@@ -154,7 +157,7 @@ public int getGoodsListCount() {
 		} else {
 			rollback(conn);
 		}
-			
+		close(conn);	
 		return movieInfo;
 	}
 
@@ -166,7 +169,7 @@ public int getGoodsListCount() {
 		dao.setConnection(conn);
 		
 		ArrayList<MovieFile> list = new MovieInfoDAO().selectMovieFile(conn, sNo);
-		
+		close(conn);
 		return list;
 	}
 	
