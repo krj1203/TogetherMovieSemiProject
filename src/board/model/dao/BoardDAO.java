@@ -59,8 +59,8 @@ public class BoardDAO {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, bCate);
 			rset = pstmt.executeQuery();
-			if(rset.next()) { // rset에 다음 값 있으면
-				result = rset.getInt(1); // 첫번째 값 가져옴
+			if(rset.next()) { 
+				result = rset.getInt(1); 
 			}
 			
 		} catch (SQLException e) {
@@ -540,6 +540,131 @@ public class BoardDAO {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Board> selectQList(Connection con, PageInfo pi) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			ArrayList<Board> list = null;
+			
+			String query = prop.getProperty("selectQList");
+			
+			try {
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+			
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+				
+				rset = pstmt.executeQuery();
+				list = new ArrayList<Board>();
+				while(rset.next()) {
+					Board b = new Board(rset.getInt("BOARD_NO"),
+										rset.getInt("BOARD_TYPE"),
+										rset.getString("BOARD_TITLE"),
+										rset.getString("BOARD_CONTENT"),
+										rset.getDate("BOARD_DATE"),
+										rset.getInt("BOARD_VIEW"),
+										rset.getString("BOARD_CATEGORY"),
+										rset.getInt("BOARD_CODE"),
+										rset.getString("STATUS"),
+										rset.getInt("USERS_NO"),
+										rset.getString("USERS_NICKNAME"));
+					
+					list.add(b);
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+
+	public int getQListCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("getQListCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return result;
+	}
+
+	public int updateQCount(Connection con, int bNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateQCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, bNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Board selectQBoard(Connection con, int bNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String query = prop.getProperty("selectQBoard");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, bNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b = new Board(rset.getInt("BOARD_NO"),
+						rset.getInt("BOARD_TYPE"),
+						rset.getString("BOARD_TITLE"),
+						rset.getString("BOARD_CONTENT"),
+						rset.getDate("BOARD_DATE"),
+						rset.getInt("BOARD_VIEW"),
+						rset.getString("BOARD_CATEGORY"),
+						rset.getInt("BOARD_CODE"),
+						rset.getString("STATUS"),
+						rset.getInt("USERS_NO"),
+						rset.getString("USERS_NICKNAME"));
+				System.out.println("BoardDAO : "+ b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
 	}
 
 }
