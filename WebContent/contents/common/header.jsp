@@ -194,15 +194,14 @@ ul{list-style:none;}
                 <li class="nav-item">
                   <a class="nav-link" id="goods" style="cursor:default">굿즈</a>
                 </li>
-                <li>
-	                <form class="navSearch">
-	                    <div class="navSearchDiv">
-	                      <input class="form-control" type="text" placeholder="영화 검색">
-	                      <button class="navSearchBtn" type="submit">검색</button>
-	                  </div>
-	                </form>
                 
+                 <li class="dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" onclick="location.href ='<%=request.getContextPath()%>/list.qna'" role="button" aria-haspopup="true" aria-expanded="false">고객센터<b class="caret"></b></a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/list.qna'">1:1문의</a>
+                  </div> 
                 </li>
+                
               </ul>
             </div>
           </nav>

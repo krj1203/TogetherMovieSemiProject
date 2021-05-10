@@ -263,6 +263,58 @@ public class BoardService {
 		return result1;
 	}
 
+	public ArrayList<Board> selectQList(PageInfo pi) {
+		
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection con = getConnection();
+		boardDAO.setConnection(con);
+		
+		
+		ArrayList<Board> list = new BoardDAO().selectQList(con, pi);
+		
+		close(con);
+		
+		
+		return list;
+	}
+
+	public int getQListCount() {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection con = getConnection();
+		boardDAO.setConnection(con);
+		
+		int listCount = new BoardDAO().getQListCount(con);
+		close(con);
+		
+		return listCount;
+	}
+
+	public Board selectQBoard(int bNo) {
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		Connection con = getConnection();
+		boardDAO.setConnection(con);
+		
+		Board board = null;
+		
+		int result = boardDAO.updateQCount(con, bNo);
+		if(result > 0) {
+			board = new BoardDAO().selectQBoard(con, bNo);
+			if(board != null) {
+				commit(con);
+			} else {
+				rollback(con);
+			}
+		} else {
+			rollback(con);
+		}
+		close(con);
+		
+		return board;
+	}
+
+	
+	
+
 	
 
 }

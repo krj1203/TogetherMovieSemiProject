@@ -44,7 +44,6 @@
             <li class="header-bar__menu"><a href="<c:url value='/' />/login.do">마이페이지</a></li>
             <li class="header-bar__menu"><a href="<c:url value='/' />/login.do">로그인</a></li>
             <li class="header-bar__menu"><a href="insertMember.do">회원가입</a></li>
-            <li class="header-bar__menu"><a href="#">고객센터</a></li>
        </ul>
     </c:if>
     <c:if test="${not empty sessionScope.loginUser}">
@@ -52,7 +51,6 @@
        		<li class="header-bar__menu"><a href="#"><c:out value="${loginUser.user_nickName }"></c:out></a></li>
             <li class="header-bar__menu"><a href="<c:url value='/' />/mypage.mp">마이페이지</a></li>
             <li class="header-bar__menu"><a href="<c:url value='/' />/logout.do">로그아웃</a></li>
-            <li class="header-bar__menu"><a href="#">고객센터</a></li>
        </ul>
     </c:if>
     </header>
