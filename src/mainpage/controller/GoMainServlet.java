@@ -1,7 +1,6 @@
 package mainpage.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -10,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Attachment.model.vo.Attachment;
 import mainpage.model.service.MainService;
-import mainpage.model.vo.MainPage;
+import movieInfo.model.vo.MovieFile;
+import movieInfo.model.vo.MovieInfo;
 
 /**
- * Servlet implementation class mainImage
+ * Servlet implementation class GoMainServlet
  */
-@WebServlet("/ImageLoad.do")
-public class mainImage extends HttpServlet {
+@WebServlet("/goMain.ma")
+public class GoMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public mainImage() {
+    public GoMainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,24 +33,32 @@ public class mainImage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("서버에서 전송한 값입니다");
 		
 		
-		MainService mService = new MainService();
-		ArrayList<MainPage> mlist = mService.selectList();
+		MainService mservice = new MainService();
 		
-		
+		ArrayList<MovieInfo> RIList = mservice.selectRList(1);
+		ArrayList<MovieInfo> SList = mservice.selectSList(1);
+		ArrayList<MovieFile> RFList = mservice.selectRList(2);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("Gomain : SList : " + SList);
+		System.out.println("Gomain : RFList : " + RFList);
 		String page = null;
-		if(mlist != null) {
-			request.setAttribute("mList", mlist);
-			page = "index.jsp";
+		if(RIList != null && RFList != null && SList !=null) {
+			request.setAttribute("RIList", RIList);
+			request.setAttribute("FList", RFList);
+			request.setAttribute("SList", SList);
+			page = "contents/main/Mainpage.jsp";
 		}else {
-			request.setAttribute("mList", mlist);
+			request.setAttribute("RIList", RIList);
+			request.setAttribute("RFList", RFList);
+			request.setAttribute("RFList", RFList);
 			request.setAttribute("msg", "오늘의 추천영화에서 오류가 발생햇습니다");
-			page = "index.jsp";
+			page = "contents/main/Mainpage.jsp";
 		}
-		
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

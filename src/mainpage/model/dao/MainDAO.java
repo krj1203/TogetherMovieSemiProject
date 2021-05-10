@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import mainpage.model.vo.MainPage;
+import movieInfo.model.vo.MovieFile;
+import movieInfo.model.vo.MovieInfo;
 
 public class MainDAO {
 	private static MainDAO mainDAO;
@@ -46,43 +48,143 @@ public class MainDAO {
 		this.con = con2;
 	}
 
-	public ArrayList<MainPage> getRecomList() {
-		// 메인 페이지의 추천 목록을 가져오는 메소드
-		// 메인페이지의 추천 목록을 가져오기 위해서 DB에 만들어둔 MAIN_LIST를 연결해서 사용해야함
-		System.out.println("getRecomList 실행");
-		
-		//stmt와 rset이 필요함
+
+	
+	public ArrayList selectfList(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = prop.getProperty("getMainList");
-		System.out.println(con);
-		//rset을 받아온 것을 MainPage에 리스트형태로 set해줌
-		ArrayList<MainPage> list = null;
+		ArrayList<MovieFile> list = null;
+		
+		String query = prop.getProperty("selectFList");
+		
 		try {
-			stmt = con.createStatement();
+			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
-			System.out.println(rset);
 			
-			list = new ArrayList<MainPage>();
-			// FILE_NO, ORIGIN_NAME, CHANGE_NAME, FILE_PATH, STATUS, MOVIE_SCORE, MOVIE_TITLE
+			list = new ArrayList<MovieFile>();
 			while(rset.next()) {
-				MainPage mp = new MainPage(rset.getInt("FILE_NO"),
-										rset.getString("ORIGIN_NAME"),
-										rset.getString("CHANGE_NAME"),
-										rset.getString("FILE_PATH"),
-										rset.getString("MOVIE_SCORE"),
-										rset.getString("MOVIE_TITLE")
-						);
-				list.add(mp);
+				list.add(new MovieFile (rset.getInt("MOVIE_NO"),
+										rset.getString("CHANGE_NAME")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+	
+		return list;
+	}
+
+	public ArrayList selectrList(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<MovieInfo> list = null;
+		
+		String query = prop.getProperty("selectRList");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<MovieInfo>();
+			while(rset.next()) {
+				list.add(new MovieInfo(rset.getInt("MOVIE_NO"),
+						   rset.getInt("MOVIE_CODE"),
+						   rset.getString("MOVIE_DATE"),
+						   rset.getString("MOVIE_TITLE"),
+						   rset.getString("DIRECTOR"),
+						   rset.getString("ACTOR"),
+						   rset.getString("GENRE"),
+						   rset.getString("RUNNINGTIME"),
+						   rset.getString("AGE"),
+						   rset.getString("CONTENT")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		}finally {
 			close(rset);
 			close(stmt);
 		}
-		// 그 리스트를 리턴해
 		return list;
+	}
+
+	public ArrayList selectSList(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<MovieInfo> list = null;
+		
+		String query = prop.getProperty("selectSList");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<MovieInfo>();
+			while(rset.next()) {
+				list.add(new MovieInfo(rset.getInt("MOVIE_NO"),
+						   rset.getInt("MOVIE_CODE"),
+						   rset.getString("MOVIE_DATE"),
+						   rset.getString("MOVIE_TITLE"),
+						   rset.getString("DIRECTOR"),
+						   rset.getString("ACTOR"),
+						   rset.getString("GENRE"),
+						   rset.getString("RUNNINGTIME"),
+						   rset.getString("AGE"),
+						   rset.getString("CONTENT")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		System.out.println("DAO SList : " + list);
+		return list;
+	}
+
+	public int insertRecom(int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertRecom");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int cancleRecom(int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("cancleRecom");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 }

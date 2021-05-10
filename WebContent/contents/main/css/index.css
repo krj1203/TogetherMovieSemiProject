@@ -62,7 +62,7 @@
 
 .mid{
 	margin-top:40px;
-	display: flex;
+	display: inline-block;
 	
 }
 .mid-item{
