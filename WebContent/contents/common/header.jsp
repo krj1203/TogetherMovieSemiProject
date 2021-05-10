@@ -121,6 +121,9 @@ main {
 .dropdown-menu a:hover {
   background-color: #ddd;
 }
+.nav-item a:hover{
+	 background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-menu {
@@ -189,7 +192,7 @@ ul{list-style:none;}
                   </div> 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="goods">굿즈</a>
+                  <a class="nav-link" id="goods" style="cursor:default">굿즈</a>
                 </li>
                 <li>
 	                <form class="navSearch">
@@ -207,8 +210,6 @@ ul{list-style:none;}
 	        $('#goods').on('click', function () {
 				location.href="<%= request.getContextPath() %>/list.gs";
 			});
-	        
-	        
           </script>
 </body>
 </html>
