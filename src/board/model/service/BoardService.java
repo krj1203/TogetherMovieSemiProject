@@ -217,7 +217,6 @@ public class BoardService {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		Connection conn = getConnection();
 		boardDAO.setConnection(conn);
-		BoardInfo bi = new BoardInfo();
 		
 		int result1 = boardDAO.updateBoard(conn, b);
 		int result2 = boardDAO.updateBoardInfo(conn, fileList);
@@ -238,23 +237,6 @@ public class BoardService {
 		int result1 = boardDAO.deleteBoard(conn, bNo);
 		int result2 = boardDAO.deleteImg(conn, bNo);
 
-		if(result1 > 0 && result2 > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		return result1;
-	}
-
-	public int updatefBoard2(Board b, ArrayList<BoardInfo> fileList) {
-		BoardDAO boardDAO = BoardDAO.getInstance();
-		Connection conn = getConnection();
-		boardDAO.setConnection(conn);
-		
-		int result1 = boardDAO.updateBoard(conn, b);
-		int result2 = boardDAO.insertBoardInfo(conn, fileList, b);
-		System.out.println("result1 : "+result1);
-		System.out.println("result2 : "+result2);
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);
 		} else {
