@@ -96,8 +96,8 @@
 		}
 		
 		#bulletin, #commentWriteTable, #commentSelectTable{
+			width:100%;
 			margin-bottom: 40px;
-			margin-left: 30px;
 			text-align: center;
 			border-top: 1px solid rgba(243, 156, 18, 0.5);
 			padding: 8px;
@@ -127,10 +127,6 @@
 		}
 		
 		#commentTitle{font-size: 20px;}
-		
-		#tc1{ width: 140px;}
-		#tc2{ border: none; }
-		#tc3{ width: 140px; }
 		
 		#textBox{ border: none;}
 		
@@ -177,6 +173,15 @@
 			margin-left: 90px;
 			margin-top: 70px;
 		}
+		
+		textarea{
+   			width:100%;
+   			minHeight:1;
+		}
+		
+		.footer{
+			margin-top: 200px;
+		}	
     </style>
     
 </head>
@@ -196,7 +201,7 @@
 			</div>
 			
 			<br><br><br><br>
-			
+	<section>		
 		<div class="main-content">
 		  <div class="main-tableBox">	
 		  	<form action="<%= request.getContextPath() %>/boardUpdateForm.bo?bCode=<%= bCode %>" id="detailForm" method="post">
@@ -255,9 +260,9 @@
 						</tr>
 					</thead>
 						<tr class="row1">
-							<td id="tc1" colspan="2">
+							<td colspan="2" width="750px">
 								<input type="hidden" size="80" name="nickName">
-			                    <textarea id="commentContent" name="content" cols="105" rows="2" style="resize:none;"></textarea>
+			                    <textarea id="commentContent" name="content" style="resize:none; border:none;"></textarea>
 							</td>
 							<td id="tc3" style="background-color: rgb(243, 156, 18);">
 							<div align="center">
@@ -272,14 +277,8 @@
 					    </tr>
 					</table>
 				</div>
-				<br>
 				<div class="commentSelect">
 					<table id="commentSelectTable">
-					<thead>
-						<tr>
-							<td id="commentTitle" colspan="3">Comment</td>
-						</tr>
-					</thead>
 						<% if(list.isEmpty()){%>
 							<tr><td colspan="3" width="925px">댓글이 없습니다.</td></tr>
 						<% }else{ %>
@@ -329,11 +328,11 @@
 		</div>		
 
 
-    
+    </section>
     </main>
-    
+    <div class="footer">
     <%@include file="../common/footer.jsp" %>
-    
+    </div>
     <script>
     	function BoardDelete(){
     		var bool = confirm('정말 삭제하시겠습니까?');
