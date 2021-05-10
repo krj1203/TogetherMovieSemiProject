@@ -190,13 +190,7 @@
     <%@include file="../common/footer.jsp" %>
     <script>
 		$(function(){
-			<%
-				for(Board b : bList){
-			%>
-					var bNo = <%= b.getBoardNo() %>;
-			<%
-				}
-			%>
+			
 			$('#myPage_myWrite_table td').not("#nullTd").on({'mouseenter':function(){
 				$(this).parent().css({'background':'rgba(243, 156, 18, 0.5)', 'cursor':'pointer'});
 			}, 'mouseout':function(){
@@ -225,7 +219,41 @@
 			}});
 			
 			
-			
+			$('#myPage_myComment_table td').not("#nullTd").on({'mouseenter':function(){
+				$(this).parent().css({'background':'rgba(243, 156, 18, 0.5)', 'cursor':'pointer'});
+			}, 'mouseout':function(){
+				$(this).parent().css('background', 'none');
+			}, 'click':function(){
+				var num = $(this).parent().children().eq(0).find("input").val();
+				<%
+					for(Board b : bList){
+				%>
+						var bNo = <%= b.getBoardNo() %>
+						if(num == bNo){
+							var cate = "<%= b.getBoardCategory() %>";
+							var bCode = <%= b.getBoardCode() %>;
+						}
+				<%
+					}
+				%>
+				var Code = 0;
+				switch(cate) {
+					case "서울": Code = 0; break;
+					case "경기": Code = 1; break;
+					case "강원": Code = 2; break;
+					case "충청": Code = 3; break;
+					case "전라": Code = 4; break;
+					case "경상": Code = 5; break;
+					case "제주": Code = 6; break;
+					case "기타": Code = 7; break;
+				}
+				
+				if(bCode == 2){
+					location.href='<%= request.getContextPath() %>/detail.bo?bCode='+Code+'&bNo=' + num;
+				} else if(bCode == 1){
+					location.href='<%= request.getContextPath() %>/detail.fb?bNo=' + num;
+				}
+			}});
 			
 		});
 	</script>
