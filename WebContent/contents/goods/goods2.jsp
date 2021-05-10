@@ -165,6 +165,26 @@ ul{
 	size: 20px;
 	
 }
+
+    .btn{
+      text-decoration: none;
+      font-size:1rem;
+      color:white;
+      padding:10px 20px 10px 20px;
+      margin:20px;
+      display:inline-block;
+      border-radius: 10px;
+      transition:all 0.1s;
+      font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+    }
+    .btn:active{
+      transform: translateY(3px);
+    }
+    .btn.blue{
+      background-color: rgb(243, 156, 18);
+      border-bottom:5px solid rgb(243, 156, 18);
+    }
+
 </style>
 </head>
 
@@ -181,9 +201,7 @@ ul{
 				<div class="middle-subtitle">
 					<div><span>상품 목록</span></div>
 				</div>
-				<div align="right" class="countList" style="cursor:default"><a>조회순</a></div>
-				<div>
-				</div>
+				<div align="right" class="countList" style="cursor:default"><a class="btn blue">조회순</a></div>
 			<div class="clear"></div>
 			<%if(gList2.isEmpty() || fList2.isEmpty()){ %>
 			<div> 등록된 상품이 없습니다.</div>
@@ -229,7 +247,7 @@ ul{
 		});
 		</script>
 		   <script>
-	        $('.countList').on('click', function () {
+	        $('.btn').on('click', function () {
 				location.href="<%= request.getContextPath() %>/list.gs";
 			});
           </script>
