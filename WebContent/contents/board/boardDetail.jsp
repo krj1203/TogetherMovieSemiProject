@@ -242,7 +242,7 @@
 					</table>
 					
 					<div align="right">
-						<c:if test="${not empty sessionScope.loginUser  && sessionScope.loginUser.user_no == board.getUsersNo()}">
+						<c:if test="${sessionScope.loginUser.user_id == 'admin'}">
 							<input type="submit" class="detailBtn" id="updateBtn" value="수정">
 							<input type="button" class="detailBtn" onclick="BoardDelete();" id="deleteBtn" value="삭제">
 						</c:if>

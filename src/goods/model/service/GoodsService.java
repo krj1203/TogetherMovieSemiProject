@@ -8,6 +8,8 @@ import static db.JdbcUtil.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import board.model.dao.BoardDAO;
+import board.model.vo.BoardInfo;
 import goods.model.dao.GoodsDAO;
 import goods.model.vo.Goods;
 import goods.model.vo.GoodsInfo;
@@ -112,7 +114,7 @@ public int getGoodsListCount() {
 	}
 
 	public int insertPay(Pay p) {
-Connection conn = getConnection();
+		Connection conn = getConnection();
 		
 		GoodsDAO dao = new GoodsDAO();
 		
@@ -128,6 +130,36 @@ Connection conn = getConnection();
 		return result;
 	}
 
+	public int deleteGoods(int gNo) {
+		Connection conn = getConnection();
+		GoodsDAO dao = new GoodsDAO();
+		
+		int result1 = dao.deleteGoods(conn, gNo);
+		int result2 = dao.deleteImg(conn, gNo);
+		if(result1 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1;
+	}
 
+	public int updateGoods(Goods g, ArrayList<GoodsInfo> fileList) {
+		GoodsDAO dao = new GoodsDAO();
+		Connection conn = getConnection();
+		
+		GoodsInfo gi = new GoodsInfo();
+		
+		int result1 = dao.updateBoard(conn, g);
+		int result2 = dao.updateBoardInfo(conn, g,  fileList);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result1;
+	}
 
 }

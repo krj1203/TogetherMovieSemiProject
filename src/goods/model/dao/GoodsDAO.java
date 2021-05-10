@@ -13,13 +13,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import board.model.vo.BoardInfo;
 import board.model.vo.PageInfo;
 import goods.model.vo.Goods;
 import goods.model.vo.GoodsInfo;
 import goods.model.vo.Pay;
 
 public class GoodsDAO {
-	private Properties prop = new Properties();
+	private static Properties prop = new Properties();
 	private Connection conn;
 	private static GoodsDAO goodsDAO;
 	
@@ -397,6 +398,92 @@ public class GoodsDAO {
 		}
 		
 		return list;
+	}
+
+	public static int deleteGoods(Connection conn, int gNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("deleteGoods");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, gNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteImg(Connection conn, int gNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("deleteImg");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, gNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateBoard(Connection conn, Goods g) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateGoods");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, g.getGoods_title());
+			pstmt.setInt(2, g.getGoods_price());
+			pstmt.setString(3, g.getGoods_contents());
+			pstmt.setInt(4, g.getGoods_no());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		 
+		return result;
+	}
+
+	public int updateBoardInfo(Connection conn, Goods g, ArrayList<GoodsInfo> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updatefGoods");
+		
+		try {
+			for(int i = 0; i < fileList.size(); i++) {
+				GoodsInfo gi = fileList.get(i);
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, gi.getOriginName());
+				pstmt.setString(2, gi.getChangeName());
+				pstmt.setInt(3, g.getGoods_no());
+				
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 
