@@ -37,12 +37,9 @@
 			margin:30px 0 0 30px;
 		}
 		
-		
 		.side{
 			margin-left:70px;
 		}
-		
-		
 		
 		.local-box{
 			

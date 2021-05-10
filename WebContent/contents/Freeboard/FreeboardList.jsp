@@ -128,7 +128,6 @@
 				var num = $(this).parent().children().eq(0).find("input").val();
 				location.href='<%= request.getContextPath() %>/detail.fb?bNo=' + num;
 			}});
-			
 		});
 	</script>
 </body>

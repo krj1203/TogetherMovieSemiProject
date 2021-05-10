@@ -250,6 +250,7 @@
 					    </tr>
 					</table>
 				</div>
+				
 				<div class="commentSelect">
 					<table id="commentSelectTable">
 						<% if(list.isEmpty()){%>
