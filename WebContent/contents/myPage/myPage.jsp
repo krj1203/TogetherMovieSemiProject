@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, board.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, board.model.vo.*, goods.model.vo.*"%>
 
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.*" %>
@@ -8,7 +8,8 @@
 <% 
 	ArrayList<Board> bList = (ArrayList<Board>)request.getAttribute("bList");
 	ArrayList<Comment> cList = (ArrayList<Comment>)request.getAttribute("cList");
-	ArrayList<Board> qList = (ArrayList<Board>)request.getAttribute("qList");	
+	ArrayList<Board> qList = (ArrayList<Board>)request.getAttribute("qList");
+	ArrayList<Pay> pList = (ArrayList<Pay>)request.getAttribute("pList");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,11 @@
     <title>마이 페이지</title>
     
     
+  <style>
+  	.myTable { table-layout: auto; width: 100%; min-width: 320px; max-width: 100%; overflow: hidden; border: 0; border-collapse: collapse; background-color: #FAFAFA; margin: auto; margin-bottom: 20px; text-align: center; font-size: 0.7em } .wiDe { min-width: 640px; } .nArrow { max-width: 480px } .myTable tr { height: 40px; } .myTable td, th { border: 1px white solid; padding: 8px; } .myTable th { background-color: #ffa775; color: whitesmoke; } .headerOrange th { background-color: #F5F5F5; } .headerGreen th { background-color: #81e281; } .headerBlue th { background-color: #7799ff; } .myTable.headerH tr:nth-Child(odd) { background-color: #F0F0F0; } .myTable.headerH td, .myTable.headerH th { border-width: 0 1px; } .myTable.headerH tr:hover td { border-color: transparent; background-color: #E6E6E6; } .myTable.headerH tr:hover td:first-Child { border-left-color: white; } .myTable.headerH tr:hover td:last-Child { border-right-color: white; } .myTable.headerV { width: 50%; } .myTable.headerV td:nth-Child(odd) { background-color: #F0F0F0; } .myTable.headerHybrid tr:first-Child th:first-Child { background-color: transparent; } /* 복합 형식 1번 셀 */ .myTable.headerHybrid td:hover { background-color: #E6E6E6; } .myTable caption { margin: 4px 0; }
+
+
+  </style>
 </head>
 
 <body>
@@ -58,9 +64,9 @@
 										for(Board b : bList){
 									%>
 									<tr>
-									  <td><%= b.getBoardCategory() %><input type="hidden" size="40" name="bNo" value=<%= b.getBoardNo() %>></td>
-									<td><%= b.getBoardTitle() %><input type="hidden" size="40" name="bCate" value=<%= b.getBoardCategory() %>></td>
-									<td><%= b.getBoardView() %><input type="hidden" size="40" name="bCode" value=<%= b.getBoardCode() %>></td>
+									    <td><%= b.getBoardCategory() %><input type="hidden" size="40" name="bNo" value=<%= b.getBoardNo() %>></td>
+										<td><%= b.getBoardTitle() %><input type="hidden" size="40" name="bCate" value=<%= b.getBoardCategory() %>></td>
+										<td><%= b.getBoardView() %><input type="hidden" size="40" name="bCode" value=<%= b.getBoardCode() %>></td>
 									</tr>
 									<%
 											} 
@@ -134,7 +140,38 @@
          						<span >결제 정보</span>
          					</div>
          					<div class="myPage_left_topBox_myWrite_contents">
-         						<input class="inputBox_style_none" type="text" placeholder="결제한 이력이 없습니다.">
+         						<table id="myPage_myQNA_table" class="myTable headerH">
+									<% if(pList.isEmpty()){ %>
+										<tr>
+										  <td colspan="5" id="nullTd">작성한 글이 없습니다.</td>
+										</tr>
+										<%
+										}else{
+											%>
+											<tr> 
+												<th>일련 번호</th>
+												<th>상품 제목</th>
+												<th>상품 수량</th>
+												<th>결제 금액</th>
+												<th>주소</th> 
+											</tr>
+
+											<%
+											for(Pay p : pList){
+										%>
+										<tr>
+											<td><%= p.getPayNo() %></td>
+										 	<td><%= p.getTitle() %></td>
+											<td><%= p.getCount() %></td>
+											<td><%= p.getAmount() %></td>
+											<td><%= p.getEmail() %></td> 
+											<input type="hidden" name="gNo" value="<%= p.getGoodsNo() %>">
+										</tr>
+										<%
+												} 
+										}		
+									%>
+         						</table>
          					</div>
          				</div>	
          			
@@ -249,7 +286,19 @@
 				location.href='<%= request.getContextPath() %>/detail.qna?bNo=' + num;
 			}});
 			
+			// 결재 정보 디테일
+			$('#myPage_myQNA_table td').not("#nullTd").on({'mouseenter':function(){
+				$(this).parent().css({'background':'rgba(243, 156, 18, 0.5)', 'cursor':'pointer'});
+			}, 'mouseout':function(){
+				$(this).parent().css('background', 'none');
+			}, 'click':function(){
+				var gNo = $('input[name=gNo]').val();
+				location.href='<%= request.getContextPath() %>/detail.gs?gNo=' + gNo;
+			}});
+			
 		});
+		
+		
 	</script>
     
    

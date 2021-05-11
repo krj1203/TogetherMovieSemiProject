@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import board.model.vo.Board;
 import board.model.vo.Comment;
+import goods.model.vo.Pay;
 
 public class mypageDAO {
 	
@@ -156,4 +157,39 @@ public class mypageDAO {
 		return qList;
 	}
 
+	public ArrayList<Pay> selectpList(Connection conn, String uId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Pay> pList = null;
+		
+		String query = prop.getProperty("selectPayList");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, uId);
+			
+			rset = pstmt.executeQuery();
+			pList = new ArrayList<Pay>();
+			
+			while(rset.next()) {
+				Pay p = new Pay(rset.getInt("PAY_NO"),
+								rset.getInt("GOODS_NO"),
+								rset.getString("TITLE"),
+								rset.getString("USER_ID"),
+								rset.getInt("AMOUNT"),
+								rset.getInt("ACOUNT"),
+								rset.getString("EMAIL"),
+								rset.getString("STATUS"));
+				pList.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return pList;
+	}
 }

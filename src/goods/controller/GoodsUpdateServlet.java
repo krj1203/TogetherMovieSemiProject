@@ -41,7 +41,7 @@ public class GoodsUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-if(ServletFileUpload.isMultipartContent(request)) { 
+		if(ServletFileUpload.isMultipartContent(request)) { 
 			
 			int maxSize = 1024*1024*10; // 전송파일 용량 : 10Mbyte
 			String root = request.getSession().getServletContext().getRealPath("/"); // WebContent로 넘어가기 위해

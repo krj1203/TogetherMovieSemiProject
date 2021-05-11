@@ -5,6 +5,7 @@
 	int amount = (int)request.getAttribute("amount");
 	String count = (String)request.getAttribute("count");
 	String title = (String)request.getAttribute("title");
+	System.out.println("pay.jsp까지 넘어옴"+title);
 	int gNo = (int)request.getAttribute("gNo");
 %>
 
@@ -65,9 +66,9 @@
                 //성공시 이동할 페이지
                 var amount = <%= amount %>;
                 var count = <%= count %>;
-                var title = <%= title %>;
+                var title = "<%= title %>";
                 var gNo = <%= gNo%>;
-                location.href='<%= request.getContextPath()%>/insertPay.gs?amount='+ amount + '&count=' + count + '&title=' + "title" + '&gNo=' + gNo;
+                location.href='<%= request.getContextPath()%>/insertPay.gs?amount='+ amount + '&count=' + count + '&title=' + title + '&gNo=' + gNo;
                 
             } else {
                 msg = '결제에 실패하였습니다.';
