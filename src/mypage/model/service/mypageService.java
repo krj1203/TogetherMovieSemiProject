@@ -35,4 +35,15 @@ public class mypageService {
 		return cList;
 	}
 
+	public ArrayList<Board> selectqList(int uNo) {
+		mypageDAO mpDAO = mypageDAO.getInstance();
+		Connection conn = getConnection();
+		mpDAO.setConnection(conn);
+		
+		ArrayList<Board> qList = new mypageDAO().selectqList(conn, uNo);
+		close(conn);
+		
+		return qList;
+	}
+
 }

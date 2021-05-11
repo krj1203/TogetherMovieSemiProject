@@ -42,10 +42,12 @@ public class mypageListServlet extends HttpServlet {
 		
 		ArrayList<Board> bList = mpService.selectbList(uNo);
 		ArrayList<Comment> cList = mpService.selectcList(uNo);
+		ArrayList<Board> qList = mpService.selectqList(uNo);
 		
 		String page = "contents/myPage/myPage.jsp";
 			request.setAttribute("bList", bList);
 			request.setAttribute("cList", cList);
+			request.setAttribute("qList", qList);
 		
 		request.getRequestDispatcher(page).forward(request, response);
 	}

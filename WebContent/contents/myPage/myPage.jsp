@@ -8,7 +8,7 @@
 <% 
 	ArrayList<Board> bList = (ArrayList<Board>)request.getAttribute("bList");
 	ArrayList<Comment> cList = (ArrayList<Comment>)request.getAttribute("cList");
-	
+	ArrayList<Board> qList = (ArrayList<Board>)request.getAttribute("qList");	
 %>
 <!DOCTYPE html>
 <html>
@@ -106,7 +106,25 @@
          						<span >1:1문의</span>
          					</div>
          					<div class="myPage_left_topBox_myWrite_contents">
-         						<input class="inputBox_style_none" type="text" placeholder="작성한 글이 없습니다.">
+         						<table id="myPage_myQNA_table">
+									<% if(bList.isEmpty()){ %>
+										<tr>
+										  <td colspan="5" id="nullTd">작성한 글이 없습니다.</td>
+										</tr>
+										<%
+										}else{
+											for(Board q : qList){
+										%>
+										<tr>
+										  <td><%= q.getBoardCategory() %><input type="hidden" size="40" name="qbNo" value=<%= q.getBoardNo() %>></td>
+										<td><%= q.getBoardTitle() %><input type="hidden" size="40" name="qbCate" value=<%= q.getBoardCategory() %>></td>
+										<td><%= q.getBoardView() %><input type="hidden" size="40" name="qbCode" value=<%= q.getBoardCode() %>></td>
+										</tr>
+										<%
+												} 
+										}		
+									%>
+								</table>
          					</div>
          				</div>
          				
@@ -217,6 +235,18 @@
 				} else if(bCode == 1){
 					location.href='<%= request.getContextPath() %>/detail.fb?bNo=' + num;
 				}
+			}});
+			
+			$('#myPage_myQNA_table td').not("#nullTd").on({'mouseenter':function(){
+				$(this).parent().css({'background':'rgba(243, 156, 18, 0.5)', 'cursor':'pointer'});
+			}, 'mouseout':function(){
+				$(this).parent().css('background', 'none');
+			}, 'click':function(){
+				var num = $(this).parent().children().eq(0).find("input").val();
+				var cate = $(this).parent().children().eq(1).find("input").val();
+				var code = $(this).parent().children().eq(2).find("input").val();
+				
+				location.href='<%= request.getContextPath() %>/detail.qna?bNo=' + num;
 			}});
 			
 		});

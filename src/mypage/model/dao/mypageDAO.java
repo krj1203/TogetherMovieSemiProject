@@ -117,4 +117,43 @@ public class mypageDAO {
 		return cList;
 	}
 
+	public ArrayList<Board> selectqList(Connection conn, int uNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> qList = null;
+		
+		String query = prop.getProperty("selectQNAList");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, uNo);
+			
+			rset = pstmt.executeQuery();
+			qList = new ArrayList<Board>();
+			
+			while(rset.next()) {
+				Board b = new Board(rset.getInt("BOARD_NO"),
+									rset.getInt("BOARD_TYPE"),
+									rset.getString("BOARD_TITLE"),
+									rset.getString("BOARD_CONTENT"),
+									rset.getDate("BOARD_DATE"),
+									rset.getInt("BOARD_VIEW"),
+									rset.getString("BOARD_CATEGORY"),
+									rset.getInt("BOARD_CODE"),
+									rset.getString("STATUS"),
+									rset.getInt("USERS_NO"),
+									rset.getString("USERS_NICKNAME"));
+				qList.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("qList : " + qList);
+		
+		return qList;
+	}
+
 }
