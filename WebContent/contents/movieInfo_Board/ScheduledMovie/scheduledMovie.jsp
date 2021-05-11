@@ -48,15 +48,15 @@
 
 
 
+
 .thumbnailArea {width:1100px; height:1600px;
                 margin:20px; padding-left:160px; margin-top: 50px;
                 line-height: 150%;}
                 
 .thumb-list{width:300px; height:400px;  display:inline-block;  border:1px solid black;}
-.thumnail-list img{width:250px; height:300px; cursor:pointer; border:1px solid black;}
-
+.Smovie img{width:295px; height:300px; cursor:pointer; border:1px solid black;}
 .Smovie p{font-size:30px; padding-left:10px;}
-.lll{display:inline-block; padding-left:15px;}
+.lll{display:inline-block; padding-left:10px;}
 
 </style>
 
@@ -100,7 +100,7 @@
 										<% if(b.getMovieNo() == a.getMovieNo()){ %>
 											<ul class='Smovie'>
 												<li><img src ="<%=request.getContextPath() %>/uploadFiles/<%=a.getChangeName() %>"
-												               style="max-width: 100%; height: 310px;"></li>
+												               style="max-width: 100%;"></li>
 												<li><p style="text-align: left" ><%=b.getMovieTitle() %></p></li>
 												<li class="lll"><input  class='button' type="button" onclick="" id="detailtBtn" value="+상세보기"	></li>	
 											</ul>
