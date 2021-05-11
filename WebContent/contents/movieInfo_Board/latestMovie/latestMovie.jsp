@@ -52,7 +52,7 @@
                 
 .thumb-list{width:300px; height:400px;  display:inline-block;  border:1px solid black;}
 .Lmovie img{width:295px; height:300px; cursor:pointer; border:1px solid black;}
-.Lmoviep{font-size:30px; padding-left:10px;}
+.Lmovie p{font-size:16px; display: flex; justify-content: center;}
 .lll{display:inline-block; padding-left:80px;}
 
 </style>
