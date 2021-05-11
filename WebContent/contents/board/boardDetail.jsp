@@ -379,6 +379,12 @@
     			
     		});
     	});
+    	var txtArea = $("textarea");
+    	if(txtArea){
+    		txtArea.each(function(){
+    			$(this).height(this.scrollHeight);
+    		});
+    	}
     </script>
     
 
