@@ -51,7 +51,7 @@ public class CommentInsertServlet extends HttpServlet {
 		
 		ArrayList<Comment> list = new BoardService().insertComment(c);
 		
-		response.setContentType("application/json; charset-UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
 		GsonBuilder gb = new GsonBuilder();
 		GsonBuilder gbDate = gb.setDateFormat("yyyy-MM-dd");
 		Gson gson = gbDate.create();

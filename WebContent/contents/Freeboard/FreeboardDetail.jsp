@@ -327,7 +327,7 @@
     					$('#commentContent').val('');
     				}
     			});
-    			
+    			location.reload();
     		});
     	});
     	var txtArea = $("textarea");
