@@ -718,7 +718,7 @@ ul {
 		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		
 		
-		
+		 
 		if (document.frm.address.value.length == 0) {
 			//alert("주소를 써주세요.");
 			msg += "주소";

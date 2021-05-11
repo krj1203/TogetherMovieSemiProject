@@ -862,7 +862,7 @@ ul {
 			frm.user_password.focus();
 			return false;
 		}
-		
+		 
 		return true;
 		
 	}

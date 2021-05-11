@@ -62,6 +62,8 @@
 		var re = /^[a-zA-z0-9]{4,12}$/;
 		
 		
+		
+    	
     	if (document.frm.user_newPassword.value == "") {
     		msg ="암호를 입력해주세요";
     		$('#pass').focus();
