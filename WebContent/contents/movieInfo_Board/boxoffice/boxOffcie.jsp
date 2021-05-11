@@ -7,8 +7,7 @@
 <%
 	ArrayList<MovieInfo> BmList = (ArrayList<MovieInfo>)request.getAttribute("BmList");
 	ArrayList<MovieFile> fList = (ArrayList<MovieFile>)request.getAttribute("fList");
-	System.out.println("B:" + BmList);
-	System.out.println("B_F:" + fList);
+
 %>
 
 
@@ -93,6 +92,7 @@
 					<% }else{ %>
 						<%for(int i=0; i < BmList.size(); i++) {%>
 							<% MovieInfo b = BmList.get(i); %>
+							<input type="hidden" name="movieCode" value=<%=b.getMovieCode() %>>
 							<div class="thumb-list">
 								<div>	
 									<input type="hidden" id="sNo" name="sNo" value="<%=b.getMovieNo()%>">
@@ -131,7 +131,9 @@
 			var sNo = $(this).children().children().eq(0).val();
 			 console.log(sNo);
 			 
-			 url='<%= request.getContextPath()%>/BMoviedetail.mo?sNo=' + sNo;
+			 var movieCode = $('input[name=movieCode]').val();
+			 url='<%= request.getContextPath()%>/BMoviedetail.mo?sNo=' + sNo + '&movieCode=' + movieCode;
+			 
 			   
 			 
 			 $.ajax({
@@ -145,7 +147,7 @@
 	          });
 	       
 	       });
-    
+    		
     </script>
    
     

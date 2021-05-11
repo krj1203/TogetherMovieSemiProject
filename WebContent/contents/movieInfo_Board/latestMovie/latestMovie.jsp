@@ -7,8 +7,7 @@
 <%
 	ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>)request.getAttribute("mList");
 	ArrayList<MovieFile> fList = (ArrayList<MovieFile>)request.getAttribute("fList");
-	System.out.println("l:" + mList);
-	System.out.println("l_F:" + fList);
+	
 %>
 
 

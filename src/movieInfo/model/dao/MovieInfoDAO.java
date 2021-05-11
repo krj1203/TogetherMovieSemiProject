@@ -100,7 +100,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
 									   rset.getString("CONTENT"),
-									   rset.getString("RECOM_STATUS")));
+									   rset.getString("RECOM_STATUS"),
+									   rset.getString("STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,7 +134,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
 									   rset.getString("CONTENT"),
-									   rset.getString("RECOM_STATUS")));
+									   rset.getString("RECOM_STATUS"),
+									   rset.getString("STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,7 +170,8 @@ public int getMovieInfoListCount(Connection conn) {
 									   rset.getString("RUNNINGTIME"),
 									   rset.getString("AGE"),
 									   rset.getString("CONTENT"),
-									   rset.getString("RECOM_STATUS")));
+									   rset.getString("RECOM_STATUS"),
+									   rset.getString("STATUS")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -294,7 +297,8 @@ public int getMovieInfoListCount(Connection conn) {
 										   rset.getString("RUNNINGTIME"),
 										   rset.getString("AGE"),
 										   rset.getString("CONTENT"),
-										   rset.getString("RECOM_STATUS"));
+										   rset.getString("RECOM_STATUS"),
+										   rset.getString("STATUS"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -342,6 +346,85 @@ public int getMovieInfoListCount(Connection conn) {
 		
 		return list;
 	}
+
+	public int deleteMovie(int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteMovie");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateMovieInfo(Connection conn, MovieInfo ff) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateMovieInfo");
+		//UPDATE MOVIE_INFO SET MOVIE_DATE=?, MOVIE_TITLE=?, DIRECTOR=?, 
+		//						ACTOR=?, GENRE=?, RUNNINGTIME=?, AGE=?, CONTENT=? WHERE MOVIE_NO=?
+		try {
+			pstmt= conn.prepareStatement(query);
+			pstmt.setString(1, ff.getMovieDate());
+			pstmt.setString(2, ff.getMovieTitle());
+			pstmt.setString(3, ff.getDirector());
+			pstmt.setString(4, ff.getActor());
+			pstmt.setString(5, ff.getGenre());
+			pstmt.setString(6, ff.getRunningTime());
+			pstmt.setString(7, ff.getAge());
+			pstmt.setString(8, ff.getContent());
+			pstmt.setInt(9, ff.getMovieNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateMovieFile(Connection conn, MovieInfo ff, ArrayList<MovieFile> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateMovieFile");
+		//UPDATE MOVIE_FILE SET ORIGIN_NAME=?, CHANGE_NAME=? WHERE MOVIE_NO=?
+		
+		MovieFile mf = new MovieFile();
+		
+		try {
+			for(int i =0; i<fileList.size(); i++) {
+				pstmt= conn.prepareStatement(query);
+				pstmt.setString(1, mf.getOriginName());
+				pstmt.setString(2, mf.getChangeName());
+				pstmt.setInt(3, mf.getMovieNo());
+				
+				result += pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
 
 
 }

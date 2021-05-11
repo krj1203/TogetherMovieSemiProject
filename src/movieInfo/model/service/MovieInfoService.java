@@ -5,6 +5,7 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import cinema.model.dao.CinemaDAO;
 import goods.model.dao.GoodsDAO;
 import movieInfo.model.dao.MovieInfoDAO;
 import movieInfo.model.vo.MovieFile;
@@ -172,6 +173,43 @@ public int getGoodsListCount() {
 		close(conn);
 		return list;
 	}
+
+	
+	public int deleteMovie(int no) {
+		MovieInfoDAO dao = new MovieInfoDAO();
+		Connection conn = getConnection();
+		dao.setConnection(conn);
+		
+		int result = dao.deleteMovie(no);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
+	public int updateMovieInfo(MovieInfo ff, ArrayList<MovieFile> fileList) {
+		MovieInfoDAO dao = new MovieInfoDAO();
+		Connection conn = getConnection();
+		dao.setConnection(conn);
+		
+		int result1 = dao.updateMovieInfo(conn, ff);
+		int result2 = dao.updateMovieFile(conn, ff, fileList);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);	
+		}
+		close(conn);
+		return result1;
+	}
+
+
 	
 	
 

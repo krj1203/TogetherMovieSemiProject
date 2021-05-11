@@ -1,6 +1,7 @@
 package movieInfo.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class MovieFile {
 	private int filedId;

@@ -32,6 +32,8 @@ public class boxOfficeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		int sNo = Integer.parseInt(request.getParameter("sNo"));
 		System.out.println(sNo);
 		
@@ -40,8 +42,7 @@ public class boxOfficeDetailServlet extends HttpServlet {
 		MovieInfo movieInfo = service.selectMovieInfo(sNo);
 		ArrayList<MovieFile> fileList = service.selectMovieFile(sNo);
 		
-		System.out.println("movieInfo :" + movieInfo);
-		System.out.println("MovieFile : " + fileList);
+		
 		
 		String page = null;
 		if(fileList != null) {

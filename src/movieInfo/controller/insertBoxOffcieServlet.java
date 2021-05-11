@@ -102,6 +102,7 @@ public class insertBoxOffcieServlet extends HttpServlet {
 			
 			
 			
+			
 			ArrayList<MovieFile> fileList = new ArrayList<MovieFile>();
 			for(int i= originFiles.size() - 1; i >= 0; i--) {
 				MovieFile at = new MovieFile();
