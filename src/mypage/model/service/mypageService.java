@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import board.model.vo.Board;
 import board.model.vo.Comment;
+import goods.model.vo.Pay;
 import mypage.model.dao.mypageDAO;
 
 public class mypageService {
@@ -44,6 +45,17 @@ public class mypageService {
 		close(conn);
 		
 		return qList;
+	}
+
+	public ArrayList<Pay> selectpList(String uId) {
+		
+		mypageDAO mpDAO = mypageDAO.getInstance();
+		Connection conn = getConnection();
+		mpDAO.setConnection(conn);
+		
+		ArrayList<Pay> pList = new mypageDAO().selectpList(conn, uId);
+		close(conn);
+		return pList;
 	}
 
 }

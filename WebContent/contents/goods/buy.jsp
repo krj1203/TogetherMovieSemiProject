@@ -85,7 +85,7 @@
 					</div>
 					<c:if test="${not empty sessionScope.loginUser}">
 					<div class="btns">
-						<a class="btn2">구매하기</a>
+						<a class="btn2" id="buy">구매하기</a>
 					</div>
 					</c:if>
 				</div>
@@ -105,28 +105,17 @@
 		</script>
 		<script>
 		$(function () {
-			$('.btn2').click(function () {
+			$('#buy').click(function () {
 				var amount = $('input[name=amount]').val();
 				var count = $('input[name=count]').val();
 				var title = $('input[name=title]').val();
-
 				var gNo = <%= gNo %>;
 				
-				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + "title" + '&gNo=' +gNo;
-
-		
+				location.href='<%= request.getContextPath()%>/pay.gs?amount=' + amount + '&count=' + count + '&title=' + title + '&gNo=' +gNo;
 
 			});
 		});
 		
-		function goodsDelete(){
-    		var bool = confirm('정말 삭제하시겠습니까?');
-    		var gNo = <%= gNo %>;
-    		if(bool){
-    			location.href='<%= request.getContextPath() %>/delete.gs?gNo=' + gNo;
-    		}
-    	};
-    	
     	$(function () {
     		$('#update').click(function () {
 				
@@ -139,6 +128,15 @@
     		location.href='<%= request.getContextPath() %>/update.gs?gNo=' + gNo + '&price=' + price + '&title=' + title + '&contents=' + contents +'&img=' + img;
 			});
 		});
+		
+		function goodsDelete(){
+    		var bool = confirm('정말 삭제하시겠습니까?');
+    		var gNo = <%= gNo %>;
+    		if(bool){
+    			location.href='<%= request.getContextPath() %>/delete.gs?gNo=' + gNo;
+    		}
+    	};
+    	
     	
 //     	function updateBtn(){
 <%--     		var gNo = <%= gNo %>; --%>
