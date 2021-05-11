@@ -107,8 +107,6 @@ textarea[disabled]{padding:11px; font-size:16px; color:#666; font-weight:normal;
 	    <div>
 	      <ul>
 	      <li><a href="<%=request.getContextPath()%>/insertMember.do" >회원가입</a></li>
-	      <li><a href="">아이디 찾기</a></li>
-	      <li><a href="<%=request.getContextPath()%>/findUserPassword.do" >비밀번호 찾기 </a></li>
 	      </ul>
 	    </div>
 	  </section>

@@ -816,14 +816,11 @@ ul {
 	        return false;
 	    }
 		
-		if (document.frm.phone.value.length == 0) {
+		if (document.frm.phone.value == "") {
 			alert("휴대폰 번호를 입력해주새요.");
-			frm.user_phone.focus();
+			frm.phone.focus();
 			return false;
 		}
-		
-		
-		
 		
 		if (document.frm.user_email.value.length == 0) {
 			alert("이메일을 써주세요.");
