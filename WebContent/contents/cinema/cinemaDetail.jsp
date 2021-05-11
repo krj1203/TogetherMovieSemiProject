@@ -117,7 +117,7 @@
          <div class=parking-title>
             <span>주차</span>
         </div>
-        <div class="parking" style="width: 678px;">
+        <div class="parking" style="width: 830px;">
             <div class="dongDaeMoon-box">
                 <div class=parking-guide>
                     <div class=parking-guide__logo>
@@ -182,7 +182,7 @@
             <span>대중교통</span>
         </div>
         <!-- 버스 -->
-        <div class="publicTransport dongDaeMoon-publicTransport"style="min-height: 150%; padding-bottom: 50px; width: 678px;" >
+        <div class="publicTransport dongDaeMoon-publicTransport"style="min-height: 150%; padding-bottom: 50px; width: 830px;" >
            <div class="publicTransport-bigBox ddong">
                 <div class=publicTransport-logo>
                     <i class="fas fa-bus fa-3x"></i>
