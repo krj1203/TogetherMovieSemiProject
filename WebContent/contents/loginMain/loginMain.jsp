@@ -104,7 +104,7 @@ textarea[disabled]{padding:11px; font-size:16px; color:#666; font-weight:normal;
 	      <li><input type="hidden" style="color: red">${message }</li>
 	      <li><button onclick="return loginCheck()">로그인</button></li>
 	    </ul>
-	    <div>
+	    <div> 
 	      <ul>
 	      <li><a href="<%=request.getContextPath()%>/insertMember.do" >회원가입</a></li>
 	      </ul>
