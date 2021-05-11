@@ -57,10 +57,6 @@ public class InsertPayServlet extends HttpServlet {
 		} else {
 			request.setAttribute("msg", "상품 결재실패");
 		}
-		
-		
-		
-		
 
 	}
 
