@@ -53,9 +53,11 @@
 			<input type ="hidden" name = "bus" value="<%=cinema.getCn_bus()%>">
 			<input type ="hidden" name = "metro" value="<%=cinema.getCn_metro() %>">
 			<input type ="hidden" name = "code" value="<%=cinema.getCode() %>">
-			
+	
 			<!-- 주차, 층별, 교통, 보유시설같은 다른 Array로 온 것들도 cinema로 보내야 할 것 같음 -->
+		
 		<div style="padding-bottom: =100px;">
+						
         	<div class="cinema">
               <div class="cinema-title" style="width: 500px;"><%=cinema.getCn_name() %>
               	<div style="text-align: right;">
@@ -115,7 +117,7 @@
          <div class=parking-title>
             <span>주차</span>
         </div>
-        <div class="parking">
+        <div class="parking" style="width: 678px;">
             <div class="dongDaeMoon-box">
                 <div class=parking-guide>
                     <div class=parking-guide__logo>
@@ -180,8 +182,7 @@
             <span>대중교통</span>
         </div>
         <!-- 버스 -->
-        <div class="publicTransport dongDaeMoon-publicTransport"
-        style="min-height: 150%; padding-bottom: 50px;" >
+        <div class="publicTransport dongDaeMoon-publicTransport"style="min-height: 150%; padding-bottom: 50px; width: 678px;" >
            <div class="publicTransport-bigBox ddong">
                 <div class=publicTransport-logo>
                     <i class="fas fa-bus fa-3x"></i>
@@ -222,6 +223,8 @@
 		</div>
        
        </div>
+
+     
 		</form>
        
        <div class="parking" style="border: none;">
