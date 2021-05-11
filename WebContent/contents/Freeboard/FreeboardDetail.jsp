@@ -143,7 +143,6 @@
 		
 		textarea{
    			width:100%;
-   			minHeight:1;
 		}
 		
 		section{ margin-right: 20px;}
@@ -331,6 +330,12 @@
     			
     		});
     	});
+    	var txtArea = $("textarea");
+    	if(txtArea){
+    		txtArea.each(function(){
+    			$(this).height(this.scrollHeight);
+    		});
+    	}
     </script>
     
 

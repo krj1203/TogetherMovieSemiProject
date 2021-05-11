@@ -36,27 +36,32 @@ public class mypageListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String page = null;
 		
-		
-		int uNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUser_no();
-		String uId = ((Member)(request.getSession().getAttribute("loginUser"))).getUser_id();
-		
-		
-		mypageService mpService = new mypageService();
-		
-		ArrayList<Board> bList = mpService.selectbList(uNo);
-		ArrayList<Comment> cList = mpService.selectcList(uNo);
-		ArrayList<Board> qList = mpService.selectqList(uNo);
-		ArrayList<Pay> pList = mpService.selectpList(uId);
-		
-		
-		
-		String page = "contents/myPage/myPage.jsp";
-			request.setAttribute("bList", bList);
-			request.setAttribute("cList", cList);
-			request.setAttribute("qList", qList);
-			request.setAttribute("pList", pList);
-		
+		Member session = (Member)request.getSession().getAttribute("loginUser");
+				
+		if(session == null) {
+			page = "goMain.ma";
+		} else {
+			String uId = ((Member)(request.getSession().getAttribute("loginUser"))).getUser_id();
+			int uNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUser_no();
+			
+			
+			mypageService mpService = new mypageService();
+			
+			ArrayList<Board> bList = mpService.selectbList(uNo);
+			ArrayList<Comment> cList = mpService.selectcList(uNo);
+			ArrayList<Board> qList = mpService.selectqList(uNo);
+			ArrayList<Pay> pList = mpService.selectpList(uId);
+			
+			
+			
+			page = "contents/myPage/myPage.jsp";
+				request.setAttribute("bList", bList);
+				request.setAttribute("cList", cList);
+				request.setAttribute("qList", qList);
+				request.setAttribute("pList", pList);
+		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

@@ -165,6 +165,34 @@ ul{
 	size: 20px;
 	
 }
+
+/* 조회순, 최신순 css */
+.btn{ 
+      text-decoration: none;
+      font-size:1rem;
+      color: brgb(102, 102, 102);
+      padding:10px 20px 10px 20px;
+      margin:20px;
+      display:inline-block;
+      border-radius: 10px;
+      transition:all 0.1s;
+      font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+    }
+    .btn:active{
+      transform: translateY(3px);
+    }
+    .btn.blue{
+      background-color: rgba(243, 156, 18, 0.5);
+      border-bottom:5px solid rgba(243, 156, 18, 0.5);;
+    }
+    .btn.blue:active{
+      border-bottom:2px solid rgba(243, 156, 18, 0.5);;
+    }
+
+
+
+
+
 </style>
 </head>
 
@@ -181,7 +209,7 @@ ul{
 				<div class="middle-subtitle">
 					<div><span>상품 목록</span></div>
 				</div>
-				<div align="right" class="newList" style="cursor:default"><a>최신 상품순</a></div>
+				<div align="right" class="newList" style="cursor:default"><a class="btn blue">최신순</a></div>
 				<div>
 				</div>
 			<div class="clear"></div>
@@ -231,7 +259,7 @@ ul{
 		
 		</script>
 		<script>
-	        $('.newList').on('click', function () {
+	        $('.btn').on('click', function () {
 				location.href="<%= request.getContextPath() %>/newList.gs";
 			});
         </script>
