@@ -49,19 +49,7 @@
 					<span><%= bCate %> 설명</span>
 				</div>
 			</div>
-			<div class="local-box3">
-			<form>
-				<div>
-					<select name="opt" id="local-opt">
-						<option value="0">제목</option>
-						<option value="1">작성자</option>
-					</select>
-				</div>
-					<div><input class="local-search" type="text"></div>
-					<div><input type="submit" class="local-btn" value="검색"></div>
-			</form>					
-			</div>
-			
+
 		<div class="main-content">
 		  <div class="main-tableBox">	
 			<table id="mainTable">

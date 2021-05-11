@@ -357,6 +357,7 @@
     			$.ajax({
     				url: 'insertComment.bo',
     				data: {writer:writer, bNo:bNo, content:content, uNo:uNo},
+    				type: 'GET',
     				success: function(data){
     					console.log(data);
     					$commentTable = $('#commentSelectTable');
@@ -372,11 +373,13 @@
     						$tr.append($contentTd);
     						$tr.append($dateTd);
     						$commentTable.append($tr);
+    						
+    						
     					}
     					$('#commentContent').val('');
     				}
     			});
-    			
+    			location.reload();
     		});
     	});
     	var txtArea = $("textarea");
@@ -385,6 +388,7 @@
     			$(this).height(this.scrollHeight);
     		});
     	}
+    	
     </script>
     
 

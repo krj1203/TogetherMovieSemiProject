@@ -330,7 +330,7 @@
     					$('#commentContent').val('');
     				}
     			});
-    			
+    			location.reload();
     		});
     	});
     </script>
