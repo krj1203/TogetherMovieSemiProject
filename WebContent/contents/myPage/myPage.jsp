@@ -183,7 +183,7 @@
          						<span >결제 정보</span>
          					</div>
          					<div class="myPage_left_topBox_myWrite_contents">
-         						<table id="myPage_myQNA_table" class="myTable headerH">
+         						<table id="myPage_myQNA_table_pay" class="myTable headerH">
 									<% if(pList.isEmpty()){ %>
 										<tr>
 										  <td colspan="5" id="nullTd">작성한 글이 없습니다.</td>
@@ -330,7 +330,7 @@
 			}});
 			
 			// 결재 정보 디테일
-			$('#myPage_myQNA_table td').not("#nullTd").on({'mouseenter':function(){
+			$('#myPage_myQNA_table_pay td').not("#nullTd").on({'mouseenter':function(){
 				$(this).parent().css({'background':'rgba(243, 156, 18, 0.5)', 'cursor':'pointer'});
 			}, 'mouseout':function(){
 				$(this).parent().css('background', 'none');
