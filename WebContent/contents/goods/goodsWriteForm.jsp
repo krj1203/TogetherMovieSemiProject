@@ -91,24 +91,6 @@
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<th>내용 사진</th>
-						<td>
-							<div id="contentImgArea1">
-								<img id="contentImg1" width="120" height="100"> 
-							</div>
-						</td>
-						<td>
-							<div id="contentImgArea2">
-								<img id="contentImg2" width="120" height="100"> 
-							</div>
-						</td>
-						<td>
-							<div id="contentImgArea3">
-								<img id="contentImg3" width="120" height="100"> 
-							</div>
-						</td>
-					</tr>
 					</table>
 					
 					<div id="fileArea">
