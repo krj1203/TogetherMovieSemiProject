@@ -57,10 +57,13 @@
 			margin-left: 30px;
 		}
 		
+		.main-tableBox{
+		width:100%;
+		}
+		
 		#bulletin, #commentWriteTable, #commentSelectTable{
+			width:100%;
 			margin-bottom: 40px;
-			margin-left: 30px;
-			margin-right: 30px;
 			text-align: center;
 			border-top: 1px solid rgba(243, 156, 18, 0.5);
 			padding: 8px;
@@ -139,9 +142,13 @@
 		}
 		
 		textarea{
-   			width:"100%";
+   			width:100%;
    			minHeight:1;
 		}
+		
+		section{ margin-right: 20px;}
+		
+		.footer{ margin-top: 200px;	}		
 		
     </style>
     
@@ -156,13 +163,10 @@
 				<div class="local-box1">
 					<span>고객센터</span>
 				</div>
-				<div class="local-box2">
-					<span><%= qboard.getBoardTitle() %></span>
-				</div>
 			</div>
 			
 			<br><br><br><br>
-			
+	<section>		
 		<div class="main-content">
 		  <div class="main-tableBox">	
 		  	<form action="<%= request.getContextPath() %>/boardUpdateForm.qna" id="detailForm" method="post" encType="multipart/form-data">
@@ -204,22 +208,23 @@
 									<br><br>
 								<% } %>
 								<input type="hidden" id="category" name="category" value=<%= qboard.getBoardCategory() %>>
-								<textarea id="textBox" name="content" cols="155" style="resize:none;" readonly><%= qboard.getBoardContent() %></textarea>
+								<textarea id="textBox" name="content" style="resize:none;" readonly><%= qboard.getBoardContent() %></textarea>
 							</td>
 						</tr>
 						</tbody>
 					</table>
 					
-					<div align="right">
-					 	<%-- <c:if test="${not empty sessionScope.loginUser  && sessionScope.loginUser.user_no == board.getUsersNo()}"> --%>
+					<div>
+						 <c:if test="${not empty sessionScope.loginUser  && sessionScope.loginUser.user_no == qboard.getUsersNo()}">
 							<input type="submit" class="detailBtn" id="updateBtn" value="수정">
 							<input type="button" class="detailBtn" onclick="BoardDelete();" id="deleteBtn" value="삭제">
-						<%--  </c:if> --%>
+						 </c:if> 
 					</div>
 				</form>
 				
 				<div class="commentWrite">
 					<table id="commentWriteTable">
+						<c:if test="${sessionScope.loginUser.user_id == 'admin'}">  
 					<thead>
 						<tr>
 							<td id="commentTitle" colspan="3" width="1100px">댓글 작성</td>
@@ -228,29 +233,28 @@
 						<tr class="row1">
 							<td id="tc1" colspan="2" width="1000px">
 								<input type="hidden" size="80" name="nickName">
-			                    <textarea id="commentContent" name="content" cols="145" rows="2" style="resize:none;"></textarea>
+			                    <textarea id="commentContent" name="content" style="resize:none; border:none;"></textarea>
 							</td>
+						 
 							<td id="tc3" style="background-color: rgb(243, 156, 18);">
 							<div align="center">
+							
 								<c:if test="${empty sessionScope.loginUser}">
 									<input type="button" id="dontWriteNoBtn" value="등록">
 								</c:if>
+						
 								<c:if test="${not empty sessionScope.loginUser}">
 									<input type="button" id="writeNoBtn" value="등록">
 								</c:if>
 							</div>
 							</td>
+						</c:if>
 					    </tr>
 					</table>
 				</div>
-				<br>
+				
 				<div class="commentSelect">
 					<table id="commentSelectTable">
-					<thead>
-						<tr>
-							<td id="commentTitle" colspan="3">Comment</td>
-						</tr>
-					</thead>
 						<% if(list.isEmpty()){%>
 							<tr><td colspan="3" width="1100px">댓글이 없습니다.</td></tr>
 						<% }else{ %>
@@ -270,17 +274,18 @@
 				<input type="button" class="detailBtn" id="cancelBtn" onclick="BoardMain();" value="메인으로">
 			</div>
 		</div>
+	</section>
     </main>
-    
+    <div class="footer">
     <%@include file="../common/footer.jsp" %>
-    
+    </div>
     <script>
     	function BoardDelete(){
     		var bool = confirm('정말 삭제하시겠습니까?');
     		var cate = $('#category').val();
     		
     		if(bool){
-    			if(cate == "문의사항"){
+    			if(cate == ""){
     				location.href='<%= request.getContextPath() %>/otherDelete.qna?bNo=<%= qboard.getBoardNo() %>';
     			} else if(cate == "사진"){    				
     				location.href='<%= request.getContextPath() %>/delete.qna?bNo=<%= qboard.getBoardNo() %>';
@@ -289,7 +294,7 @@
     	};
     	
     	function BoardMain(){
-    		location.href='<%= request.getContextPath() %>/list.fb';
+    		location.href='<%= request.getContextPath() %>/list.qna';
     	};
     	
     	$(function(){

@@ -98,7 +98,8 @@ public class MainDAO {
 						   rset.getString("GENRE"),
 						   rset.getString("RUNNINGTIME"),
 						   rset.getString("AGE"),
-						   rset.getString("CONTENT")));
+						   rset.getString("CONTENT"),
+						   rset.getString("STATUS")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -132,7 +133,8 @@ public class MainDAO {
 						   rset.getString("GENRE"),
 						   rset.getString("RUNNINGTIME"),
 						   rset.getString("AGE"),
-						   rset.getString("CONTENT")));
+						   rset.getString("CONTENT"),
+						   rset.getString("STATUS")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

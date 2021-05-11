@@ -32,7 +32,8 @@ public class boxOffcieListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-MovieInfoService mService =  new MovieInfoService();
+		request.setCharacterEncoding("UTF-8");
+		MovieInfoService mService =  new MovieInfoService();
 		
 		ArrayList<MovieInfo> BmList = mService.selectBList(1);
 		ArrayList<MovieFile> fList = mService.selectBList(2);
