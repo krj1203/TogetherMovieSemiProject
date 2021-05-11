@@ -27,7 +27,29 @@
     
     
   <style>
+
+  	.myTable { table-layout: auto; width: 100%; min-width: 320px; max-width: 100%; overflow: hidden; border: 0; border-collapse: collapse; background-color: #FAFAFA; margin: auto; margin-bottom: 20px; text-align: center; font-size: 0.7em }
+  	.wiDe { min-width: 640px; }
+  	.nArrow { max-width: 480px }
+  	.myTable tr { height: 40px; }
+  	.myTable td, th { border: 1px white solid; padding: 8px; }
+  	.myTable th { background-color: #ffa775; color: whitesmoke; }
+  	.headerOrange th { background-color: #F5F5F5; }
+  	.headerGreen th { background-color: #81e281; }
+	.headerBlue th { background-color: #7799ff; }
+  	.myTable.headerH tr:nth-Child(odd) { background-color: #F0F0F0; }
+	.myTable.headerH td, .myTable.headerH th { border-width: 0 1px; }
+	.myTable.headerH tr:hover td { border-color: transparent; background-color: #E6E6E6; }
+	.myTable.headerH tr:hover td:first-Child { border-left-color: white; }
+	.myTable.headerH tr:hover td:last-Child { border-right-color: white; }
+	.myTable.headerV { width: 50%; }
+	.myTable.headerV td:nth-Child(odd) { background-color: #F0F0F0; }
+	.myTable.headerHybrid tr:first-Child th:first-Child { background-color: transparent; } /* 복합 형식 1번 셀 */
+	.myTable.headerHybrid td:hover { background-color: #E6E6E6; }
+	.myTable caption { margin: 4px 0; }
+
   	.myTable { table-layout: auto; width: 100%; min-width: 320px; max-width: 100%; overflow: hidden; border: 0; border-collapse: collapse; background-color: #FAFAFA; margin: auto; margin-bottom: 20px; text-align: center; font-size: 0.6em } .wiDe { min-width: 640px; } .nArrow { max-width: 480px } .myTable tr { height: 40px; } .myTable td, th { border: 1px white solid; padding: 8px; } .myTable th { background-color: #ffa775; color: whitesmoke; } .headerOrange th { background-color: #F5F5F5; } .headerGreen th { background-color: #81e281; } .headerBlue th { background-color: #7799ff; } .myTable.headerH tr:nth-Child(odd) { background-color: #F0F0F0; } .myTable.headerH td, .myTable.headerH th { border-width: 0 1px; } .myTable.headerH tr:hover td { border-color: transparent; background-color: #E6E6E6; } .myTable.headerH tr:hover td:first-Child { border-left-color: white; } .myTable.headerH tr:hover td:last-Child { border-right-color: white; } .myTable.headerV { width: 50%; } .myTable.headerV td:nth-Child(odd) { background-color: #F0F0F0; } .myTable.headerHybrid tr:first-Child th:first-Child { background-color: transparent; } /* 복합 형식 1번 셀 */ .myTable.headerHybrid td:hover { background-color: #E6E6E6; } .myTable caption { margin: 4px 0; }
+
 
 
   </style>
@@ -54,13 +76,20 @@
          					<div class="myPage_left_topBox_myWrite_title">
          						<span >작성 글</span>
          					</div>
-         					<table id="myPage_myWrite_table">
+         					<table id="myPage_myWrite_table" class="myTable headerH">
 								<% if(bList.isEmpty()){ %>
 									<tr>
 									  <td colspan="5" id="nullTd">작성한 글이 없습니다.</td>
 									</tr>
 									<%
 									}else{
+									%>
+										<tr> 
+											<th>카테고리</th>
+											<th>제목</th>
+											<th>조회수</th>
+										</tr>
+									<%
 										for(Board b : bList){
 									%>
 									<tr>
@@ -81,13 +110,20 @@
          						<span >작성 댓글</span>
          					</div>
          					<div class="myPage_left_topBox_myWrite_contents">
-         						<table id="myPage_myComment_table">
+         						<table id="myPage_myComment_table" class="myTable headerH">
 								<% if(cList.isEmpty()){ %>
 									<tr>
 									  <td colspan="5" id="nullTd">작성한 댓글이 없습니다.</td>
 									</tr>
 									<%
 									}else{
+									%>
+										<tr> 
+											<th>게시글 번호</th>
+											<th>댓글 내용</th>
+											<th>작성 날짜</th>
+										</tr>
+									<%
 										for(Comment c : cList){
 									%>
 									<tr>
@@ -112,19 +148,26 @@
          						<span >1:1문의</span>
          					</div>
          					<div class="myPage_left_topBox_myWrite_contents">
-         						<table id="myPage_myQNA_table">
+         						<table id="myPage_myQNA_table" class="myTable headerH">
 									<% if(bList.isEmpty()){ %>
 										<tr>
 										  <td colspan="5" id="nullTd">작성한 글이 없습니다.</td>
 										</tr>
 										<%
 										}else{
+										%>
+											<tr> 
+												<th>카테고리</th>
+												<th>제목</th>
+												<th>조회수</th>
+											</tr>
+										<%
 											for(Board q : qList){
 										%>
 										<tr>
-										  <td><%= q.getBoardCategory() %><input type="hidden" size="40" name="qbNo" value=<%= q.getBoardNo() %>></td>
-										<td><%= q.getBoardTitle() %><input type="hidden" size="40" name="qbCate" value=<%= q.getBoardCategory() %>></td>
-										<td><%= q.getBoardView() %><input type="hidden" size="40" name="qbCode" value=<%= q.getBoardCode() %>></td>
+											<td><%= q.getBoardCategory() %><input type="hidden" size="40" name="qbNo" value=<%= q.getBoardNo() %>></td>
+											<td><%= q.getBoardTitle() %><input type="hidden" size="40" name="qbCate" value=<%= q.getBoardCategory() %>></td>
+											<td><%= q.getBoardView() %><input type="hidden" size="40" name="qbCode" value=<%= q.getBoardCode() %>></td>
 										</tr>
 										<%
 												} 
