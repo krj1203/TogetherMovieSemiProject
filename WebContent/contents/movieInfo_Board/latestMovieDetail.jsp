@@ -39,17 +39,7 @@
 </style>
 </head>
 <body>
-<form action="<%= request.getContextPath()%>/updateFormMovie.mv" method="post">
-	<input type ="hidden" name = "no" value="<%=m.getMovieNo() %>">
-	<input type ="hidden" name = "thumbnail" value="<%= titleImg.getChangeName()%>">
-	<input type ="hidden" name = "title" value="<%=m.getMovieTitle()%>">
-	<input type ="hidden" name = "date" value="<%=m.getMovieDate() %>">
-	<input type ="hidden" name = "director" value="<%=m.getDirector() %>">
-	<input type ="hidden" name = "actor" value="<%=m.getActor() %>">
-	<input type ="hidden" name = "genre" value="<%=m.getGenre() %>">
-	<input type ="hidden" name = "runningtime" value="<%=m.getRunningTime() %>">
-	<input type ="hidden" name = "age" value="<%=m.getAge() %>">
-	<input type ="hidden" name = "movieCode" value="<%=m.getMovieCode() %>">
+
 	
 	<div class="movieInfo_view">
 		
@@ -61,13 +51,12 @@
 		
 		<div class="movieInfo">
 		<c:if test="${sessionScope.loginUser.user_id == 'admin'}">
-				<input type ="submit" id ="RecomButton" style="border:0px; background-color: rgb(243, 156, 18, 0.5);"value="오늘의 영화로 선정">
+				<input type ="button" id ="RecomButton" style="border:0px; background-color: rgb(243, 156, 18, 0.5);"value="오늘의 영화로 선정">
 				<%if(m.getRecom_status().equals("Y")){ %>
-				<input type ="submit" id ="RecomdeleteButton" style="border:0px; background-color: rgb(195, 195, 195, 0.5);"value="오늘의 영화로 취소">
+				<input type ="button" id ="RecomdeleteButton" style="border:0px; background-color: rgb(195, 195, 195, 0.5);"value="오늘의 영화로 취소">
 				<%} %>
-			<!-- 	<input type="submit" class="detailBtn" id="updateBtn" value="수정"
-							style="border:0px; background-color: rgb(243, 156, 18, 0.5);"> -->
-				<input type="button" class="detailBtn" onclick="location.href ='<%=request.getContextPath()%>/MDelete.mv'" id="deleteBtn" value="삭제"
+	
+				<input type="button" class="detailBtn" id="deleteBtn" value="삭제"
 							style="border:0px; background-color: rgb(243, 156, 18, 0.5);">
 		
 		</c:if>
@@ -108,14 +97,14 @@
 					<td>
 						<div class="stillShotImgArea">
 							 	<img id="stillShotImg<%=i%>" class="stillShotImg" src="<%=request.getContextPath() %>/uploadFiles/<%=fileList.get(i).getChangeName() %>">
-								<input type ="hidden" name = "stillShot<%=i%>" value="<%=fileList.get(i).getChangeName() %>">
+								
 						</div>
 					</td>
 				<%} %>
 		</table>
 		
 	</div>
-</form>		
+	
 		<script>
     	$('#RecomButton').on('click', function(){
     		var bool = confirm('오늘의 영화로 선정 하시겠습니까?');
