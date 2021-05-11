@@ -53,9 +53,9 @@ public class DeleteMemberSeverlet extends HttpServlet {
 
 		DeleteMemberServcie deleteMemberService = new	DeleteMemberServcie();
 		
-		int result = deleteMemberService.deleteMember(user_id,user_password);
+		int result = deleteMemberService.deleteMember(user_id);
 		
-		if(result == 1) {
+		if(result > 0) {
 			HttpSession sesssion = request.getSession();
 			session.invalidate();
 			

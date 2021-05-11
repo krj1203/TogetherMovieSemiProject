@@ -18,7 +18,7 @@ main {
   position: relative;
   width:100%;
   display: flex;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 2.4rem;
   float:fixed;
 }
 
@@ -30,7 +30,7 @@ main {
     font-weight: 600;
     float:left;
     text-align:center;
-    padding: 50px;
+    padding: 80px;
     list-style:none;
 }
 
@@ -121,7 +121,7 @@ main {
 .dropdown-menu a:hover {
   background-color: #ddd;
 }
-.nav-item a:hover{
+.dropdown #goods:hover{
 	 background-color: #ddd;
 }
 
@@ -133,7 +133,7 @@ main {
   display: inline-block; 
   width: 0; 
   height: 0; 
-  margin-left: 2px; 
+  margin-left: 30px; 
   vertical-align: middle; 
   border-top: 4px dashed; 
   border-top: 4px solid \9;
@@ -191,7 +191,7 @@ ul{list-style:none;}
                     <a class="dropdown-item" href="<%= request.getContextPath() %>/contents/group/group.jsp">만남의광장</a>
                   </div> 
                 </li>
-                <li class="nav-item">
+                <li class="dropdown">
                   <a class="nav-link" id="goods" style="cursor:default">굿즈</a>
                 </li>
                 

@@ -8,7 +8,7 @@ import member.model.dao.DeleteMemberDAO;
 
 public class DeleteMemberServcie {
 
-	public int deleteMember(String user_id, String user_password) {
+	public int deleteMember(String user_id) {
 		
 		DeleteMemberDAO deleteMemberDAO =  DeleteMemberDAO.getInstance();
 		
@@ -16,7 +16,7 @@ public class DeleteMemberServcie {
 		
 		deleteMemberDAO.setConnetion(con);
 		
-		int result = deleteMemberDAO.deleteMember(user_id,user_password);
+		int result = deleteMemberDAO.deleteMember(user_id);
 		
 		
 		if(result > 0) {

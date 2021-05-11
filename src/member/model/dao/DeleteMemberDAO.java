@@ -27,11 +27,11 @@ public class DeleteMemberDAO {
 		
 	}
 
-	public int deleteMember(String user_id, String user_password) {
+	public int deleteMember(String user_id) {
 		
 		int result = -1;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		
 		
 		
 		
@@ -41,13 +41,9 @@ public class DeleteMemberDAO {
 			pstmt = con.prepareStatement("UPDATE USERS SET STATUS = 'N' WHERE USERS_ID = ?");
 			pstmt.setString(1, user_id);
 			
-			rs = pstmt.executeQuery();
+			result = pstmt.executeUpdate();
 			
-			if(rs.next()) {
-				result = 1;
-			}else {
-				result = -1;
-			}
+			
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -55,7 +51,6 @@ public class DeleteMemberDAO {
 		}finally {
 			
 			try {
-				close(rs);
 				close(pstmt);
 			}catch(Exception e) {
 				e.printStackTrace();
