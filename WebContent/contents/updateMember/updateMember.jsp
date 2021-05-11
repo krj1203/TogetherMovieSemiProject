@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <script type="text/javascript" src="script/member.js"></script>
+<script src="<%=request.getContextPath() %>/contents/main/js/jquery-3.6.0.min.js"></script>
 <head>
     <meta charset="UTF-8">
 <style>
@@ -624,7 +625,7 @@ ul {
 
 
   
-  <form action="updateMember.do" method="post" name="frm">
+  <form action="updateMember.do" method="post" name="frm" id="update">
 	<div class="wrap wd668">
 		<div class="container">
 			<div class="form_txtInput">
@@ -648,23 +649,23 @@ ul {
 							</tr>
 							<tr>
 								<th><span>이름</span></th>
-								<td><input type="text" placeholder="<c:out value="${user_nickName}" />" name="user_name"></td>
+								<td><input type="text" placeholder="<c:out value="${user_name}" />" name="user_name" id="user_name"></td>
 							</tr>
 			
 							<tr>
 								<th><span>휴대전화</span></th>
-								<td><input type="text" placeholder="<c:out value="${phone}" />" name="user_name"></td>
+								<td><input type="text" placeholder="<c:out value="${phone}" />" name="phone" id="phone"></td>
 							
 							</tr>
 							
 								
 							<tr class="email">
 								<th><span>이메일</span></th>
-								<td><input type="text" class="email" placeholder="<c:out value="${user_email}" />" name="user_email">		
+								<td><input type="text" class="email" placeholder="<c:out value="${user_email}" />" name="user_email" id="user_email">		
 							</tr>
 							<tr>
 								<th><span>주소</span></th>
-								<td><input type="text" placeholder="<c:out value="${user_address}" />" name="address"></td>
+								<td><input type="text" placeholder="<c:out value="${user_address}" />" name="address" id="address"></td>
 							</tr>
 						
 						</tbody>
@@ -676,7 +677,7 @@ ul {
 				<!-- join_form E  -->
 				
 				<div class="btn_wrap">
-					<input type="submit" value="회원정보 수정" onclick="return joinCheck()" style="width: 180px; height: 55px; border-style: none; background-color: rgb(243, 156, 18); color: white"  >
+					<input type="button" id ="subtn"value="회원정보 수정"  style="width: 180px; height: 55px; border-style: none; background-color: rgb(243, 156, 18); color: white"  >
 					<br><br>
 				</div>
 			</div>
@@ -686,5 +687,60 @@ ul {
 	</div>
 	<!-- container E -->
   </form>	
+  
+  <script>
+  $('#subtn').click(function(){
+		//onclick="return updateCheck();"
+		var flag = true;
+		var msg = "입력안된 ";
+		if (document.frm.user_name.value.length == 0) {
+			msg += "이름, ";
+			$('#user_name').focus();
+			flag = false;
+		}
+		
+		
+		if (document.frm.phone.value.length == 0) {
+			//alert("휴대폰 번호를 입력해주새요.");
+			msg += "휴대폰, ";
+			$('#phone').focus();
+			flag = false;
+		}
+
+		
+		if (document.frm.user_email.value.length == 0) {
+			//alert("이메일을 써주세요.");
+			msg += "이메일, ";
+			$('#user_email').focus();
+			flag = false;
+		}
+		
+		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		
+		
+		if (document.frm.address.value.length == 0) {
+			//alert("주소를 써주세요.");
+			msg += "주소";
+			$('#address').focus();
+			flag = false;
+		}
+		
+		msg += "를 입력해주세요";
+		if(!flag){
+			alert(msg);
+		}else{
+			if(!re2.test(document.frm.user_email.value)){
+				alert("적합하지 않은 이메일 형식입니다.");
+				$('#user_email').focus();
+				flag = false;
+			}else{
+				$('#update').submit();	
+			}
+			
+		}
+		
+	});
+  </script>
 </body>
 </html>
