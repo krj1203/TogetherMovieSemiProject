@@ -2,42 +2,42 @@
 
 
 .myPage_box{
-	width:1194px;
-	display:flex;
-	justify-content: space-between;
+   width:1194px;
+   display:flex;
+   justify-content: space-between;
 }
 
 
 
 
 .myPage-rightBox{
-	width: 220px;
-	height: 280px;
-	background-color: rgb(243, 156, 18);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	
+   width: 220px;
+   height: 230px;
+   background-color: rgb(243, 156, 18);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   
 }
 
 .myPage_rightBox_myInfo{
-	width:163px;
-	height: 53px;
-	font-size: 22px;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-bottom: 1px solid black;
+   width:163px;
+   height: 53px;
+   font-size: 22px;
+   font-weight: bold;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-bottom: 1px solid black;
 }
 
 .myPage_rightBox_pim{
-	margin-top: 20px;
+   margin-top: 20px;
 }
 
 
 .myPage_rightBox_withdrawl{
-	margin-top: 20px;
+   margin-top: 20px;
 }
 
 
@@ -46,104 +46,81 @@
 
 
 .myPage_rightBox_write_input{
-	border-style: none;
+   border-style: none;
 }
 
 .myPage_rightBox_passwordChange{
-	margin-top:20px;
+   margin-top:20px;
 }
 
 .myPage_leftBox{
-	width:880px;
-	height:700px;
+   width:880px;
+   height:700px;
 
 
 }
 
 .myPage_leftBox_title{
-	width: 180px;
-	height: 82px;
-	background-color: rgb(243, 156, 18);
-	font-size: 27px;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   width: 180px;
+   height: 82px;
+   background-color: rgb(243, 156, 18);
+   font-size: 27px;
+   font-weight: bold;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 
 
 .myPage_left_BigBox{
-	height:618px;
+   height:618px;
 }
 
 .myPage_left_topBox{
-	
-	height:307px;
-	display:flex;
-	justify-content: space-between;
+  
+   height:307px;
+   display:flex;
+   justify-content: space-between;
 }
 
 
 .myPage_left_topBox_myWrite{
-	width:400px;
-	height:300px;
+   width:400px;
+   height:300px;
 }
 
 .myPage_left_topBox_myWrite_title{
-	font-size: 18px;
-	font-weight: bold;
-	border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
-	padding-top: 40px;
-	padding-bottom: 7px;
+   font-size: 18px;
+   font-weight: bold;
+   border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+   padding-top: 40px;
+   padding-bottom: 7px;
 }
 
 
 .myPage_left_topBox_myWrite_contents{
-	height: 200px;
-	border-bottom:0.5px solid rgba(0, 0, 0, 0.5);  
-	
-	
+   height: 200px;
+   border-bottom:0.5px solid rgba(0, 0, 0, 0.5);  
+   
+   
 }
 
 .inputBox_style_none{
-	border-style: none;
-	padding-top:20px;
+   border-style: none;
+   padding-top:20px;
 }
-
-
-
-
-
-
-
-
-
 
 
 
 .myPage_left_bottomBox{
-	height:300px;
+   height:300px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.new_box{
+	width:880px;
 	display: flex;
 	justify-content: space-between;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

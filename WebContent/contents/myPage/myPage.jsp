@@ -17,10 +17,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/contents/cinema/css/style.css">
-      <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/contents/myPage/myPage.css?ver=1.2">
+      <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/contents/myPage/myPage.css?ver=1.1">
         
-    
-    
+
 	<script src="contents/main/js/jquery-3.6.0.min.js"></script>
 	<script src="contents/main/js/lightslider.js"></script>
     <title>마이 페이지</title>
@@ -30,10 +29,7 @@
 
 <body>
 		
-		<c:set var="boardList" value="boardList.boardTitle"></c:set>
-		
-		<c:out value="boardList"></c:out>
-		
+	
 		
 		
  		<%@include file="../common/loginbar.jsp" %>
@@ -47,6 +43,7 @@
          		</div>
          		<div class="myPage_left_BigBox">
          			<div class="myPage_left_topBox">
+         			  <div class="new_box">
          				<div class="myPage_left_topBox_myWrite">
          					<div class="myPage_left_topBox_myWrite_title">
          						<span >작성 글</span>
@@ -70,9 +67,8 @@
 									}		
 								%>
 							</table>
-         					</div>
          				</div>
-         				
+         		
          				
          				<div class="myPage_left_topBox_myWrite">
          					<div class="myPage_left_topBox_myWrite_title">
@@ -99,11 +95,11 @@
 								%>
 							</table>
          					</div>
-         				</div>	
+         				</div>
+         				</div>
+         					
          			</div>
-         			
-         			
-
+         		<div>
          			<div class="myPage_left_bottomBox">
          				<div class="myPage_left_topBox_myWrite">
          					<div class="myPage_left_topBox_myWrite_title">
@@ -124,64 +120,32 @@
          					</div>
          				</div>	
          			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
          			</div>
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         			
-         		
-         		
          		</div>
-         		
+         			
          	</div>
-         	
-         	
-         	
-         	
-         	
-         	
-         	
-         	
-         	
-         	
-         	
-         	
-         	
-         	<div class="myPage-rightBox">
-         		<div class="myPage_rightBox_myInfo">my 정보</div>
-         		<div class="myPage_rightBox_pim">
-         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/updateMember.do'" >회원정보 수정 </a>
+
+         		
          		</div>
-         		<div class="myPage_rightBox_passwordChange">
-         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/updateUserPassword.do'" >비밀번호 변경</a>
-         		</div>
-         		<div class="myPage_rightBox_withdrawl">
-         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/deleteMember.do'" >회원 탈퇴</a>
-         		</div>
+         		
+         		
+         		
+         		
+         		
+	         	<div class="myPage-rightBox">
+		         		<div class="myPage_rightBox_myInfo"><span>my 정보</span></div>
+		         		<div class="myPage_rightBox_pim">
+		         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/updateMember.do'" >회원정보 수정 </a>
+		         		</div>
+		         		<div class="myPage_rightBox_passwordChange">
+		         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/updateUserPassword.do'" >비밀번호 변경</a>
+		         		</div>
+		         		<div class="myPage_rightBox_withdrawl">
+		         			<a style="cursor: pointer;" onclick="location.href ='<%=request.getContextPath()%>/deleteMember.do'" >회원 탈퇴</a>
+		         		</div>
+	         	</div>
          	</div>
-         </div>
+
     </main>
     
     
