@@ -28,16 +28,16 @@
 		<main>
 		<%@include file="../common/header.jsp" %>
          
-     	 <form action="deleteMember.do" method="post" name="frm">
+     	 <form action="deleteMember.do" method="post" name="frm" id="delete">
      		<div class="deleteMemberBox">
         	<div class="deleteMemberBox_title">
         		<span>본 사이트에서 탈퇴합니다.</span>
         	</div>
         	<div>
-        		<input class="deleteMemberBox_pwd" type="password" placeholder="비밀번호를 입력하세요." name="user_password">
+        		<input class="deleteMemberBox_pwd" type="password" placeholder="비밀번호를 입력하세요." name="user_password" id="pass">
         	</div>
         	<div class="deleteMemberBox_btnBox">
-        		<input class="deleteMemberBox_btn" type="submit" value="확인"  style="cursor: pointer;">
+        		<input class="deleteMemberBox_btn" type="button" value="확인" id="subtn" style="cursor: pointer;">
         		<input class="deleteMemberBox_btn" type="button" value="취소"  style="cursor: pointer;" onclick="location.href='<%= request.getContextPath() %>/contents/myPage/myPage.jsp'">
         		
         	</div>
@@ -52,6 +52,22 @@
     
     <%@include file="../common/footer.jsp" %>
     
+    <script>
+    	$('#subtn').click(function(){
+    		var flag = true;
+    		var pass = $('#pass').val();
+    		console.log(pass);
+    		console.log('${sessionScope.loginUser.user_password}');
+    		if('${sessionScope.loginUser.user_password}' != pass){
+    			alert('일치하지 않는 비밀번호입니다. 비밀번호를 확인해주시길 바랍니다.');
+    			flag = false;
+    		}
+    		
+    		if(flag){
+    			$('#delete').submit();
+    		}
+    	});
+    </script>
     
    
 </body>
