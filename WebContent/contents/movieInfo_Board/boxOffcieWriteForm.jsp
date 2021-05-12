@@ -187,7 +187,7 @@
 				</script>
 					<div class="btns">
 						<input type="submit" class="btn1" id="insertBtn" value="작성완료">
-						<input type="button" class="btn2" id="cancelBtn" onclick="location.href='<%= request.getContextPath() %>/list.gs'" value="취소하기">
+						<input type="button" class="btn2" id="cancelBtn" onclick="location.href='<%= request.getContextPath() %>/listBMovie'" value="취소하기">
 					</div>
 				</div>
 			</div>
