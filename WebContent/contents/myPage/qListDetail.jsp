@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, board.model.vo.*"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <% 
-	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	ArrayList<Board> qList = (ArrayList<Board>)request.getAttribute("qList");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -22,7 +22,7 @@
     
     <script src="contents/main/js/jquery-3.6.0.min.js"></script>
 	<script src="contents/main/js/lightslider.js"></script>
-    <title>자유게시판</title>   
+    <title>마이페이지</title>   
 </head>
 <body>
 		<%@include file="../common/loginbar.jsp" %>
@@ -31,53 +31,48 @@
     
 	    	<div class="local-box">
 				<div class="local-box1">
-					<span>자유게시판</span>
+					<span>마이페이지</span>
 				</div>
 				<div class="local-box2">
-					<span>한정된 주제 없이 자유롭게 소통하는 게시판</span>
+					<span>작성 문의 목록</span>
 				</div>
 			</div>
 			
 		<div class="main-content">
 		  <div class="main-tableBox">	
 			<table id="mainTable">
-				  <thead>
-				    <tr style="background: rgba(243, 156, 18, 0.5)">
-				      <th class="th1">순서</th>
-				      <th class="th2">분류</th>
-				      <th class="th3">제목</th>
-				      <th class="th4">작성자</th>
-				      <th class="th5">조회수</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  <% if(list.isEmpty()){ %>
-				    <tr>
-				      <td colspan="5" id="nullTd">게시글이 없습니다.</td>
-				    </tr>
-				    <%
-				    	}else{
-				    		int number = listCount - (currentPage - 1) * pageLimit;
-				    		for(Board b : list){
-				    %>
-				    <tr>
-				      <td><%= number-- %><input type="hidden" size="40" name="bNo" value=<%= b.getBoardNo() %>></td>
-				      <td><%= b.getBoardCategory() %></td>
-				      <td><%= b.getBoardTitle() %></td>
-				      <td><%= b.getNickName() %></td>
-				      <td><%= b.getBoardView() %></td>
-				    </tr>
-				    <%
-				    		} 
-				  		}		
-				    %>
+					<tr style="background: rgba(243, 156, 18, 0.5)">
+						<th class="th1">순서</th> 
+						<th class="th2">카테고리</th>
+						<th class="th3">제목</th>
+						<th class="th4">조회수</th>
+					</tr>
+				  <% if(qList.isEmpty()){ %>
+					<tr>
+					  <td colspan="5" id="nullTd">작성한 문의가 없습니다.</td>
+					</tr>
+					<%
+					}else{
+						int number = listCount - (currentPage - 1) * pageLimit;
+						for(Board b : qList){
+					%>
+					<tr>
+						<td><%= number-- %></td>
+					    <td><%= b.getBoardCategory() %><input type="hidden" size="40" name="bNo" value=<%= b.getBoardNo() %>></td>
+						<td><%= b.getBoardTitle() %><input type="hidden" size="40" name="bCate" value=<%= b.getBoardCategory() %>></td>
+						<td><%= b.getBoardView() %><input type="hidden" size="40" name="bCode" value=<%= b.getBoardCode() %>></td>
+					</tr>
+					<%
+							} 
+					}		
+				%>
 				</tbody>
 			</table>
 			
 		<div class="mainBottom">
 			<div class="pagination">
-				<button class="page-item" onclick="location.href='<%= request.getContextPath() %>/list.fb?currentPage=1'">&lt;&lt;</button>
-				<button class="page-item" onclick="location.href='<%= request.getContextPath() %>/list.fb?currentPage=<%= currentPage - 1 %>'" id="beforeBtn">&lt;</button>
+				<button class="page-item" onclick="location.href='<%= request.getContextPath() %>/qList.mp?currentPage=1'">&lt;&lt;</button>
+				<button class="page-item" onclick="location.href='<%= request.getContextPath() %>/qList.mp?currentPage=<%= currentPage - 1 %>'" id="beforeBtn">&lt;</button>
 				<script>
 					if(<%= currentPage %> <= 1){
 						var before = $('#beforeBtn');
@@ -88,21 +83,18 @@
 					if(p == currentPage){ %>
 					<button class="page-item" id='choosen' disabled><%= p %></button>
 				<% } else{ %>
-					<button class="page-item" id="numBtn" onclick="location.href='<%= request.getContextPath() %>/list.fb?currentPage=<%= p %>'"><%= p %></button>
+					<button class="page-item" id="numBtn" onclick="location.href='<%= request.getContextPath() %>/qList.mp?currentPage=<%= p %>'"><%= p %></button>
 				<% 		}
 					} %>
-				<button class="page-item" onclick="location.href='<%=request.getContextPath() %>/list.fb?currentPage=<%= currentPage + 1 %>'" id="afterBtn">&gt;</button>
+				<button class="page-item" onclick="location.href='<%=request.getContextPath() %>/qList.mp?currentPage=<%= currentPage + 1 %>'" id="afterBtn">&gt;</button>
 				<script>
 					if(<%= currentPage %> >= <%= maxPage %>){
 						var after = $('#afterBtn');
 						after.attr('disabled', true);
 					}
 				</script>
-				<button class="page-item" onclick="location.href='<%= request.getContextPath() %>/list.fb?currentPage=<%= maxPage %>'">&gt;&gt;</button>
+				<button class="page-item" onclick="location.href='<%= request.getContextPath() %>/qList.mp?currentPage=<%= maxPage %>'">&gt;&gt;</button>
 			</div>	
-			<c:if test="${not empty sessionScope.loginUser }">
-				<button id="writeNoBtn" onclick="location.href='<%= request.getContextPath() %>/boardWriteForm.fb'">작성하기</button>
-			</c:if>
     	 </div>
 		</div>
 	</div>		
@@ -114,7 +106,7 @@
 	<script>
 		$(function(){
 			<%
-				for(Board b : list){
+				for(Board b : qList){
 			%>
 					var bNo = <%= b.getBoardNo() %>;
 			<%
@@ -125,8 +117,11 @@
 			}, 'mouseout':function(){
 				$(this).parent().css('background', 'none');
 			}, 'click':function(){
-				var num = $(this).parent().children().eq(0).find("input").val();
-				location.href='<%= request.getContextPath() %>/detail.fb?bNo=' + num;
+				var num = $(this).parent().children().eq(1).find("input").val();
+				var cate = $(this).parent().children().eq(2).find("input").val();
+				var code = $(this).parent().children().eq(3).find("input").val();
+				
+				location.href='<%= request.getContextPath() %>/detail.qna?bNo=' + num;
 			}});
 		});
 	</script>

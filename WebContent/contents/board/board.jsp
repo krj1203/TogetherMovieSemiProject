@@ -46,7 +46,7 @@
 					<span><%= bCate %></span>
 				</div>
 				<div class="local-box2">
-					<span><%= bCate %> 설명</span>
+					<span><%= bCate %> 지역 사람들의 소통이 가능한 게시판</span>
 				</div>
 			</div>
 
