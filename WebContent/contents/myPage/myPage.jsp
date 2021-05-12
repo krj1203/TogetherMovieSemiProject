@@ -49,7 +49,7 @@
 	.myTable caption { margin: 4px 0; }
 
   	.myTable { table-layout: auto; width: 100%; min-width: 320px; max-width: 100%; overflow: hidden; border: 0; border-collapse: collapse; background-color: #FAFAFA; margin: auto; margin-bottom: 20px; text-align: center; font-size: 0.6em } .wiDe { min-width: 640px; } .nArrow { max-width: 480px } .myTable tr { height: 40px; } .myTable td, th { border: 1px white solid; padding: 8px; } .myTable th { background-color: #ffa775; color: whitesmoke; } .headerOrange th { background-color: #F5F5F5; } .headerGreen th { background-color: #81e281; } .headerBlue th { background-color: #7799ff; } .myTable.headerH tr:nth-Child(odd) { background-color: #F0F0F0; } .myTable.headerH td, .myTable.headerH th { border-width: 0 1px; } .myTable.headerH tr:hover td { border-color: transparent; background-color: #E6E6E6; } .myTable.headerH tr:hover td:first-Child { border-left-color: white; } .myTable.headerH tr:hover td:last-Child { border-right-color: white; } .myTable.headerV { width: 50%; } .myTable.headerV td:nth-Child(odd) { background-color: #F0F0F0; } .myTable.headerHybrid tr:first-Child th:first-Child { background-color: transparent; } /* 복합 형식 1번 셀 */ .myTable.headerHybrid td:hover { background-color: #E6E6E6; } .myTable caption { margin: 4px 0; }
-
+	.detailBtn { background-color: #ffa775; color: whitesmoke; border:none; float:right;}
 
 
   </style>
@@ -74,7 +74,10 @@
          			  <div class="new_box">
          				<div class="myPage_left_topBox_myWrite">
          					<div class="myPage_left_topBox_myWrite_title">
-         						<span >작성 글</span>
+         						<span>작성 글</span>
+         						<span>
+         							<input type="button" class="detailBtn" id="bListBtn" onclick="bList();" value="+">
+         						</span>
          					</div>
          					<table id="myPage_myWrite_table" class="myTable headerH">
 								<% if(bList.isEmpty()){ %>
@@ -108,6 +111,9 @@
          				<div class="myPage_left_topBox_myWrite">
          					<div class="myPage_left_topBox_myWrite_title">
          						<span >작성 댓글</span>
+         						<span>
+         							<input type="button" class="detailBtn" id="cListBtn" onclick="cList();" value="+">
+         						</span>
          					</div>
          					<div class="myPage_left_topBox_myWrite_contents">
          						<table id="myPage_myComment_table" class="myTable headerH">
@@ -146,12 +152,15 @@
          				<div class="myPage_left_topBox_myWrite">
          					<div class="myPage_left_topBox_myWrite_title">
          						<span >1:1문의</span>
+         						<span>
+         							<input type="button" class="detailBtn" id="qListBtn" onclick="qList();" value="+">
+         						</span>
          					</div>
          					<div class="myPage_left_topBox_myWrite_contents">
          						<table id="myPage_myQNA_table" class="myTable headerH">
 									<% if(bList.isEmpty()){ %>
 										<tr>
-										  <td colspan="5" id="nullTd">작성한 글이 없습니다.</td>
+										  <td colspan="5" id="nullTd">작성한 문의가 없습니다.</td>
 										</tr>
 										<%
 										}else{
@@ -181,12 +190,15 @@
          				<div class="myPage_left_topBox_myWrite">
          					<div class="myPage_left_topBox_myWrite_title">
          						<span >결제 정보</span>
+         						<span>
+         							<input type="button" class="detailBtn" id="gListBtn" onclick="gList();" value="+">
+         						</span>
          					</div>
          					<div class="myPage_left_topBox_myWrite_contents">
          						<table id="myPage_myQNA_table_pay" class="myTable headerH">
 									<% if(pList.isEmpty()){ %>
 										<tr>
-										  <td colspan="5" id="nullTd">작성한 글이 없습니다.</td>
+										  <td colspan="5" id="nullTd">결제 내역이 없습니다.</td>
 										</tr>
 										<%
 										}else{
@@ -194,9 +206,9 @@
 											<tr> 
 												<th>일련 번호</th>
 												<th>상품 제목</th>
+												<th>주소</th> 
 												<th>상품 수량</th>
 												<th>결제 금액</th>
-												<th>주소</th> 
 											</tr>
 
 											<%
@@ -205,9 +217,9 @@
 										<tr>
 											<td><%= p.getPayNo() %></td>
 										 	<td><%= p.getTitle() %></td>
+											<td><%= p.getEmail() %></td> 
 											<td><%= p.getCount() %></td>
 											<td><%= p.getAmount() %></td>
-											<td><%= p.getEmail() %></td> 
 											<input type="hidden" name="gNo" value="<%= p.getGoodsNo() %>">
 										</tr>
 										<%
@@ -341,6 +353,21 @@
 			
 		});
 		
+		function bList(){
+    		location.href='<%= request.getContextPath() %>/bList.mp';
+    	};
+
+		function cList(){
+    		location.href='<%= request.getContextPath() %>/cList.mp';
+    	};
+    	
+		function qList(){
+    		location.href='<%= request.getContextPath() %>/qList.mp';
+    	};
+    	
+		function gList(){
+    		location.href='<%= request.getContextPath() %>/gList.mp';
+    	};
 		
 	</script>
     

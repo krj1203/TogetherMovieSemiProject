@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import board.model.vo.Board;
 import board.model.vo.Comment;
+import board.model.vo.PageInfo;
 import goods.model.vo.Pay;
 import mypage.model.dao.mypageDAO;
 
@@ -58,4 +59,76 @@ public class mypageService {
 		return pList;
 	}
 
+	public int getbListCount(int uNo) {
+		Connection conn = getConnection();
+		
+		int listCount = new mypageDAO().getbListCount(conn, uNo);
+		close(conn);
+		
+		return listCount;
+		
+	}
+
+	public ArrayList<Board> selectbList(PageInfo pi, int uNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Board> bList = new mypageDAO().selectbList(conn, pi, uNo);
+		close(conn);
+		
+		return bList;
+	}
+
+	public int getcListCount(int uNo) {
+		Connection conn = getConnection();
+		
+		int listCount = new mypageDAO().getcListCount(conn, uNo);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public ArrayList<Comment> selectcList(PageInfo pi, int uNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Comment> cList = new mypageDAO().selectcList(conn, pi, uNo);
+		close(conn);
+		
+		return cList;
+	}
+
+	public int getqListCount(int uNo) {
+		Connection conn = getConnection();
+		
+		int listCount = new mypageDAO().getqListCount(conn, uNo);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public ArrayList<Board> selectqList(PageInfo pi, int uNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Board> qList = new mypageDAO().selectqList(conn, pi, uNo);
+		close(conn);
+		
+		return qList;
+	}
+
+	public int getgListCount(String uId) {
+		Connection conn = getConnection();
+		
+		int listCount = new mypageDAO().getgListCount(conn, uId);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public ArrayList<Pay> selectgList(PageInfo pi, String uId) {
+		Connection conn = getConnection();
+		
+		ArrayList<Pay> gList = new mypageDAO().selectgList(conn, pi, uId);
+		close(conn);
+		
+		return gList;
+	}
 }

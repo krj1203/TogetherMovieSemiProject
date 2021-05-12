@@ -173,7 +173,6 @@
 		
 		textarea{
    			width:100%;
-   			minHeight:1;
 		}
 		
 		.footer{
@@ -235,15 +234,17 @@
 						</tr>
 						<tr>
 							<td colspan="3">
-								<textarea id="textBox" name="content" cols="110" rows="20" style="resize:none;" readonly><%= board.getBoardContent() %></textarea>
+								<textarea id="textBox" name="content" style="resize:none;" readonly><%= board.getBoardContent() %></textarea>
 							</td>
 						</tr>
 						</tbody>
 					</table>
 					
 					<div align="right">
-						<c:if test="${sessionScope.loginUser.user_id == 'admin'}">
+						<c:if test="${sessionScope.loginUser.user_no == board.getUsersNo()}">
 							<input type="submit" class="detailBtn" id="updateBtn" value="수정">
+						</c:if>
+						<c:if test="${sessionScope.loginUser.user_id == 'admin' || sessionScope.loginUser.user_no == board.getUsersNo()}">
 							<input type="button" class="detailBtn" onclick="BoardDelete();" id="deleteBtn" value="삭제">
 						</c:if>
 					</div>
