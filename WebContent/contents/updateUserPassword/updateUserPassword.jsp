@@ -65,13 +65,13 @@
 		
     	
     	if (document.frm.user_newPassword.value == "") {
-    		msg ="암호를 입력해주세요";
+    		alert("암호를 입력해주세요");
     		$('#pass').focus();
     		flag =  false;
     	}
     	
-    	if (document.frm.user_newPassword.value != document.frm.user_newPasswordCheck.value) {
-    		msg = "암호가 일치하지 않습니다."
+    	if ($('#user_newPassword') != $('#user_newPasswordCheck')) {
+    		alert("새로운 암호와 확인이 일치하지 않습니다");
     		$('#confirm').focus();
     		flag =  false;
     	}
