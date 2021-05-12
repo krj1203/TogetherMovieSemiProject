@@ -7,8 +7,7 @@
 <%
 	ArrayList<MovieInfo> SmList = (ArrayList<MovieInfo>)request.getAttribute("SmList");
 	ArrayList<MovieFile> fList = (ArrayList<MovieFile>)request.getAttribute("fList");
-	System.out.println("s:" + SmList);
-	System.out.println("s_F:" + fList);
+
 
 %>
 
@@ -41,20 +40,20 @@
 		  color:white;
 		  padding-top:20px;
 		 }
-#boxOffice{background-color:rgb(243, 156, 18);}
-#lMovie{background-color:rgb(243, 156, 18);}
-#sMovie{background-color:white;}
+#boxOffice{background-color:white;}
+#lMovie{background-color:white;}
+#sMovie{background-color:rgb(243, 156, 18);}
 .button{background-color:white;  font-size: 16px; height: 40px; width: 130px; margin-top:15px; margin-left: 70px;}
 
 
 
 
 .thumbnailArea {width:1100px; height:1600px;
-                margin:20px; padding-left:160px; margin-top: 50px;
+                margin:20px; padding-left:140px; margin-top: 50px;
                 line-height: 150%;}
                 
-.thumb-list{width:300px; height:400px;  display:inline-block;  border:1px solid black;}
-.Smovie img{width:295px; height:300px; cursor:pointer; border:1px solid black;}
+.thumb-list{width:300px; height:400px;  display:inline-block; margin:10px;}
+.Smovie img{width:300px; height:300px; cursor:pointer;}
 .Smovie p{font-size:16px; display: flex; justify-content: center;}
 .lll{display:inline-block; padding-left:10px;}
 
@@ -92,7 +91,7 @@
 					<% }else{ %>
 						<%for(int i=0; i < SmList.size(); i++) {%>
 							<% MovieInfo b = SmList.get(i); %>
-							<div class="thumb-list">
+							<div class="thumb-list" style="border-style:none">
 								<div>	
 									<input type="hidden" id="sNo" name="sNo" value="<%=b.getMovieNo()%>">
 									<%for(int j=0; j < fList.size(); j++) {%>
@@ -102,7 +101,7 @@
 												<li><img src ="<%=request.getContextPath() %>/uploadFiles/<%=a.getChangeName() %>"
 												               style="max-width: 100%;"></li>
 												<li><p style="text-align: left" ><%=b.getMovieTitle() %></p></li>
-												<li class="lll"><input  class='button' type="button" onclick="" id="detailtBtn" value="+상세보기"	></li>	
+												<li class="lll"><input  class='button' type="button" onclick="" id="detailtBtn" value="상세보기"	></li>	
 											</ul>
 										<% } %>
 									<% } %>	
@@ -126,7 +125,7 @@
     $(function name() {
 		$('.thumb-list').click(function () {
 			var w = window.open("about:blank", '영화 상세정보',
-								'width=900, height=800, left=200,  menubar=no, status=no, toolbar=no, location=no');
+								'width=1200, height=800, left=200,  menubar=no, status=no, toolbar=no, location=no');
 			var sNo = $(this).children().children().eq(0).val();
 			 console.log(sNo);
 			 
