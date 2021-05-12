@@ -117,7 +117,7 @@ public class BoardService {
 		boardDAO.setConnection(con);
 		
 		ArrayList<Comment> list = new BoardDAO().selectCommentList(con, bNo);
-		
+		close(con);
 		return list;
 	}
 	
@@ -193,6 +193,7 @@ public class BoardService {
 		boardDAO.setConnection(con);
 		
 		BoardInfo fList = new BoardDAO().selectImage(con, bNo);
+		close(con);
 		return fList;
 	}
 
@@ -210,6 +211,7 @@ public class BoardService {
 		} else {
 			rollback(conn);
 		}
+		close(conn);
 		return result1;
 	}
 
@@ -226,6 +228,7 @@ public class BoardService {
 		} else {
 			rollback(conn);
 		}
+		close(conn);
 		return result1;
 	}
 
@@ -242,6 +245,7 @@ public class BoardService {
 		} else {
 			rollback(conn);
 		}
+		close(conn);
 		return result1;
 	}
 
