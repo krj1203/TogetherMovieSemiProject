@@ -162,4 +162,20 @@ public int getGoodsListCount() {
 		return result1;
 	}
 
+	public int updateGoods1(Goods g) {
+		GoodsDAO dao = new GoodsDAO();
+		Connection conn = getConnection();
+		
+		GoodsInfo gi = new GoodsInfo();
+		int result1 = dao.updateBoard(conn, g);
+		
+		if(result1 > 0 ) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result1;
+		
+	}
+
 }

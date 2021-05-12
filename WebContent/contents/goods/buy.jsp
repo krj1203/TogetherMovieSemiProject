@@ -6,7 +6,6 @@
 	ArrayList<GoodsInfo> fileList = (ArrayList<GoodsInfo>)request.getAttribute("fileList");
 	GoodsInfo titleImg = fileList.get(0);
 	int gNo = (int)request.getAttribute("gNo");
-	
 
 %>
 
@@ -136,15 +135,6 @@
     			location.href='<%= request.getContextPath() %>/delete.gs?gNo=' + gNo;
     		}
     	};
-    	
-    	
-//     	function updateBtn(){
-<%--     		var gNo = <%= gNo %>; --%>
-//     		var price = $('input[name=price]').val();
-//     		var contents = $('input[name=contents]').val();
-//     		var title = $('input[name=title]').val();
-<%--     		location.href='<%= request.getContextPath() %>/update.gs?gNo=' + gNo + '&price=' + price + '&title=' + "title" + '&contents=' +"contents"; --%>
-//     	};
     	
 	</script>
 </body>
