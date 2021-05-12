@@ -125,6 +125,12 @@ width:310px;
 	
 }
 
+
+.bin{
+	display: flex;
+	flex-direction: row;
+
+}
 	
 </style>
 <head>
@@ -161,7 +167,7 @@ width:310px;
     <main>
        <%@include file="../../contents/common/header.jsp" %>
           
-    	  <div class="container">
+    	 <div class="container" style="background-color: white;">
     	  	<%if(SList.isEmpty() || FList.isEmpty()){ %>
     	  	
     	  		<%}else{ %>
@@ -224,7 +230,7 @@ width:310px;
 				for(var i in data){
 					
 					$('.mid').append(
-							'<li class="mid-item" onclick="goDetail()">' +
+							'<li class="mid-item" onclick="goDetail()" style="margin:50px;">' +
 							'<input type="hidden" id="sNo" name="sNo" value='+data[i].movieNo+'>'+
 							'<div class="mid-title">'+ data[i].movieTitle +
 							'</div>'+
