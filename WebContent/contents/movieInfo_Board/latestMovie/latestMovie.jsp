@@ -52,7 +52,7 @@
                 
 .thumb-list{width:300px; height:400px;  display:inline-block; margin:10px;}
 .Lmovie img{width:300px; height:300px; cursor:pointer;}
-.Lmovie p{font-size:16px; display: flex; justify-content: center;}
+.Lmovie p{font-size:16px; display: flex; justify-content: center; cursor:pointer;}
 .lll{display:inline-block; padding-left:80px;}
 
 </style>
@@ -69,9 +69,9 @@
 	
 		<div class="category">
 			 <nav>
-				<div class="movie_go" id='boxOffice'><a onclick="location.href ='<%=request.getContextPath()%>/listBMovie'">박스오피스</a></div>
-				<div class="movie_go" id="lMovie" ><a onclick="location.href ='<%=request.getContextPath()%>/listLMovie'">최신개봉작</a></div>
-				<div class="movie_go" id="sMovie"><a onclick="location.href ='<%=request.getContextPath()%>/listSMovie'">상영예정작</a></div>
+				<div class="movie_go" id='boxOffice'><a onclick="location.href ='<%=request.getContextPath()%>/listBMovie'" style="cursor:pointer;">박스오피스</a></div>
+				<div class="movie_go" id="lMovie" ><a onclick="location.href ='<%=request.getContextPath()%>/listLMovie'" style="cursor:pointer;">최신개봉작</a></div>
+				<div class="movie_go" id="sMovie"><a onclick="location.href ='<%=request.getContextPath()%>/listSMovie'" style="cursor:pointer;">상영예정작</a></div>
 			</nav>
 		</div>
 				

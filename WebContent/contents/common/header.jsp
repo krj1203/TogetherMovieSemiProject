@@ -170,9 +170,9 @@ ul{list-style:none;}
                 <li class="dropdown">
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">영화정보<b class="caret"></b></a>
                   <div class="dropdown-menu">
-                  	<a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listBMovie'">박스오피스</a>
-                    <a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listLMovie'">최신개봉작</a>
-                    <a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listSMovie'">상영예정작</a>
+                  	<a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listBMovie'" style="cursor:pointer;">박스오피스</a>
+                    <a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listLMovie'" style="cursor:pointer;">최신개봉작</a>
+                    <a class="dropdown-item" onclick="location.href ='<%=request.getContextPath()%>/listSMovie'" style="cursor:pointer;">상영예정작</a>
                   </div> 
                 </li>
                 <li class="dropdown">
@@ -192,7 +192,7 @@ ul{list-style:none;}
                   </div> 
                 </li>
                 <li class="dropdown">
-                  <a class="nav-link" id="goods" style="cursor:default">굿즈</a>
+                  <a class="nav-link" id="goods" style="cursor:pointer;">굿즈</a>
                 </li>
                 
                  <li class="dropdown">
