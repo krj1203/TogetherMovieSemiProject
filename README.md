@@ -31,17 +31,14 @@
   * 관리자가 오늘의 추천 영화를 선정함으로써 사용자에게 추천  
   
 
-<img src ="https://user-images.githubusercontent.com/73329610/127974742-1663bc4d-71cd-425e-8763-941a8cf35dda.png" width="50%" height="50%">
+<img src ="https://user-images.githubusercontent.com/73329610/128128857-3bd94d1e-09f0-4744-84ac-2656944b5ec5.png" width="50%" height="50%">
 
-* 사용자가 해당 페이지에서 레시피를 추가할 수 있는 기능
-  * 레시피를 추가하면 메인페이지에 레시피가 노출
-  * 자신이 작성한 레시피는 마이 페이지에서 확인 가능 
+* 박스오피스 , 최신 개봉작, 상영예정작을 구분하여 사용자에게 영회 정보 제공 
 
 
-<img src ="https://user-images.githubusercontent.com/73329610/127976877-28bc7642-c581-4fc9-8821-58858b6d2363.png" width="50%" height="50%"><img src ="https://user-images.githubusercontent.com/73329610/127976609-e0288243-c94a-455a-9c74-b7dc77d02d83.png" width="50%" height="50%">
+<img src ="https://user-images.githubusercontent.com/73329610/128127631-797ad6fa-1643-429a-8ba8-e1bc77a6cb84.png" width="50%" height="50%">
 
-* 사용자가 설문조사를 작성하면 DB에 저장되고 , 설문조사를 구글 통계 API를 이용하여 집계처리
-* 설문조사를 통해  사용자들의 연령이나 성별과 연관시켜서 연령이나 성별에 따른 식습관이나 트렌드 파악
+* 친구 , 커플 , 솔로가 갈만한 영화관 특징을 구분지어 영화관 정보 제공 
   
 
 ## 설계 주안점
